@@ -1,0 +1,12 @@
+C:\Study\WebApi\CMSApi\Resources\bin\Release\Resources.dll
+C:\Study\WebApi\CMSApi\Resources\bin\Release\Resources.pdb
+C:\Study\WebApi\CMSApi\Resources\bin\Release\ms\Resources.resources.dll
+C:\Study\WebApi\CMSApi\Resources\obj\Release\Resources.csprojAssemblyReference.cache
+C:\Study\WebApi\CMSApi\Resources\obj\Release\Resources.GlobalResource.cn.resources
+C:\Study\WebApi\CMSApi\Resources\obj\Release\Resources.GlobalResource.resources
+C:\Study\WebApi\CMSApi\Resources\obj\Release\Resources.GlobalResource.ms.resources
+C:\Study\WebApi\CMSApi\Resources\obj\Release\Resources.csproj.GenerateResource.cache
+C:\Study\WebApi\CMSApi\Resources\obj\Release\Resources.csproj.CoreCompileInputs.cache
+C:\Study\WebApi\CMSApi\Resources\obj\Release\ms\Resources.resources.dll
+C:\Study\WebApi\CMSApi\Resources\obj\Release\Resources.dll
+C:\Study\WebApi\CMSApi\Resources\obj\Release\Resources.pdb

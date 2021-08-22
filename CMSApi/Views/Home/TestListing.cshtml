@@ -1,0 +1,57 @@
+﻿@model IEnumerable<CMSLcLy.Data.Workflow.workflowmasterItemViewModel>
+
+@{
+    ViewBag.Title = "TestListing";
+}
+
+<h2>TestListing</h2>
+
+<p>
+    @Html.ActionLink("Create New", "AddWorkflow")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            WorkFlowName
+        </th>
+        <th>
+            CreatedDate
+        </th>
+        <th>
+            CreatedBy
+        </th>
+        <th>
+            ModifyBy
+        </th>
+        <th>
+            ModifyDate
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.WorkFlowName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ModifyBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ModifyDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.WorkFlowMasterID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.WorkFlowMasterID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.WorkFlowMasterID })
+        </td>
+    </tr>
+}
+
+</table>

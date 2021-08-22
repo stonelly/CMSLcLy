@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CMSLcLy" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="DefaultConnection" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="workflowmasters" EntityType="CMSLcLy.workflowmaster" />
+    <EntitySet Name="aspnetroles" EntityType="CMSLcLy.aspnetrole" />
+    <EntitySet Name="aspnetuserclaims" EntityType="CMSLcLy.aspnetuserclaim" />
+    <EntitySet Name="aspnetuserlogins" EntityType="CMSLcLy.aspnetuserlogin" />
+    <EntitySet Name="aspnetusers" EntityType="CMSLcLy.aspnetuser" />
+    <AssociationSet Name="FK_userclaim_user" Association="CMSLcLy.FK_userclaim_user">
+      <End Role="aspnetuser" EntitySet="aspnetusers" />
+      <End Role="aspnetuserclaim" EntitySet="aspnetuserclaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_userlogin_user" Association="CMSLcLy.FK_userlogin_user">
+      <End Role="aspnetuser" EntitySet="aspnetusers" />
+      <End Role="aspnetuserlogin" EntitySet="aspnetuserlogins" />
+    </AssociationSet>
+    <AssociationSet Name="aspnetuserroles" Association="CMSLcLy.aspnetuserroles">
+      <End Role="aspnetrole" EntitySet="aspnetroles" />
+      <End Role="aspnetuser" EntitySet="aspnetusers" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="workflowmaster">
+    <Key>
+      <PropertyRef Name="WorkFlowMasterID" />
+    </Key>
+    <Property Name="WorkFlowMasterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WorkFlowName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="ModifyBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="ModifyDate" Type="DateTime" />
+  </EntityType>
+  <EntityType Name="aspnetrole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="aspnetusers" Relationship="CMSLcLy.aspnetuserroles" FromRole="aspnetrole" ToRole="aspnetuser" />
+  </EntityType>
+  <EntityType Name="aspnetuserclaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="ClaimType" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+    <Property Name="ClaimValue" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="aspnetuser" Relationship="CMSLcLy.FK_userclaim_user" FromRole="aspnetuserclaim" ToRole="aspnetuser" />
+  </EntityType>
+  <EntityType Name="aspnetuserlogin">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="aspnetuser" Relationship="CMSLcLy.FK_userlogin_user" FromRole="aspnetuserlogin" ToRole="aspnetuser" />
+  </EntityType>
+  <EntityType Name="aspnetuser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="aspnetuserclaims" Relationship="CMSLcLy.FK_userclaim_user" FromRole="aspnetuser" ToRole="aspnetuserclaim" />
+    <NavigationProperty Name="aspnetuserlogins" Relationship="CMSLcLy.FK_userlogin_user" FromRole="aspnetuser" ToRole="aspnetuserlogin" />
+    <NavigationProperty Name="aspnetrole" Relationship="CMSLcLy.aspnetuserroles" FromRole="aspnetuser" ToRole="aspnetrole" />
+  </EntityType>
+  <Association Name="FK_userclaim_user">
+    <End Type="CMSLcLy.aspnetuser" Role="aspnetuser" Multiplicity="1" />
+    <End Type="CMSLcLy.aspnetuserclaim" Role="aspnetuserclaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnetuser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="aspnetuserclaim">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_userlogin_user">
+    <End Type="CMSLcLy.aspnetuser" Role="aspnetuser" Multiplicity="1" />
+    <End Type="CMSLcLy.aspnetuserlogin" Role="aspnetuserlogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnetuser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="aspnetuserlogin">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="aspnetuserroles">
+    <End Type="CMSLcLy.aspnetrole" Role="aspnetrole" Multiplicity="0..1" />
+    <End Type="CMSLcLy.aspnetuser" Role="aspnetuser" Multiplicity="*" />
+  </Association>
+</Schema>

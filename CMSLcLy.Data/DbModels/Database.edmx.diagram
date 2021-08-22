@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="18b05566093549d1b1ff427aab3c8827" Name="Diagram1">
+        <EntityTypeShape EntityType="CMSLcLy.workflowmaster" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="CMSLcLy.aspnetrole" Width="1.5" PointX="0.75" PointY="2.5" />
+        <EntityTypeShape EntityType="CMSLcLy.aspnetuserclaim" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="CMSLcLy.aspnetuserlogin" Width="1.5" PointX="5.25" PointY="3.75" />
+        <EntityTypeShape EntityType="CMSLcLy.aspnetuser" Width="1.5" PointX="3" PointY="1.375" />
+        <AssociationConnector Association="CMSLcLy.FK_userclaim_user" />
+        <AssociationConnector Association="CMSLcLy.FK_userlogin_user" />
+        <AssociationConnector Association="CMSLcLy.aspnetuserroles" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
