@@ -1,0 +1,99 @@
+﻿@charset "UTF-8";
+/* CSS Document */
+html {
+    background: none !important;
+}
+
+body.outter_login {
+    background-image: url(../Content/img/layout-icon/gra_login2.svg);
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
+    background-color: #dbdbdb !important;
+}
+
+body.outter_forgotpw, body.outter_resetpw {
+    background-color: #80cedb !important;
+    background-image: none !important;
+}
+
+body.outter_webmaintenance {
+    background-image: url(../img/layout-icon/gra_webmaintenance.svg);
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
+    background-color: #4abcf4 !important;
+}
+
+body.outter_generalerror {
+    background-color: #dbdbdb !important;
+    background-image: none !important;
+}
+
+.login_wrapper, .webmaintenance_wrapper {
+    max-width: 1024px;
+    margin: 13% auto 3%;
+    z-index: 29 !important;
+    padding: 20px 0;
+}
+
+.forgotpw_wrapper, .generalerror_wrapper {
+    max-width: 1024px;
+    margin: 7% auto 3%;
+    z-index: 29 !important;
+    padding: 20px 0;
+}
+
+.resetpw_wrapper {
+    max-width: 1024px;
+    margin: 5% auto;
+    z-index: 29 !important;
+    padding: 20px 0;
+}
+
+.form_wrapper {
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: -31px 32px 53px rgba(0, 0, 0, 0.20);
+    overflow: hidden;
+    padding: 13px;
+    position: relative;
+    border-radius: 3px;
+}
+
+.form_wrapper_nopadding {
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: -31px 32px 53px rgba(0, 0, 0, 0.20);
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    border-radius: 3px;
+}
+
+.error403_bg {
+    background-image: url(../Content/img/layout-icon/gra_403.svg);
+    background-repeat: no-repeat;
+    background-position: top;
+}
+
+
+/* font settings */
+
+.font-xl {
+    font-size: 45px;
+}
+
+.font-xxl {
+    font-size: 50px;
+}
+
+/* font settings end */
+
+
+@media (max-width: 480px) {
+
+    .login_wrapper, .webmaintenance_wrapper, .forgotpw_wrapper, .generalerror_wrapper, .resetpw_wrapper {
+        margin: 1% auto;
+    }
+
+
+    /* ------- */

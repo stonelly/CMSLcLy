@@ -1,0 +1,497 @@
+﻿@media only screen and (max-width: 319px) and (min-width: 0) {
+    .jarviswidget > header > h2 {
+        width: 150px;
+    }
+}
+
+/*Login Form - Start*/
+@media screen and (min-width:768px) {
+    .login_div {
+        width: 768px;
+    }
+
+    .preset-geofence-form {
+        width: 700px;
+    }
+
+    .set-trip-geofence-form {
+        width: 700px;
+    }
+}
+
+@media screen and (min-width:992px) {
+    .login_div {
+        width: 650px;
+    }
+
+    .preset-geofence-form {
+        width: 900px;
+    }
+
+    .set-trip-geofence-form {
+        width: 800px;
+    }
+}
+
+@media screen and (min-width:1200px) {
+    .login_div {
+        width: 500px;
+    }
+
+    .preset-geofence-form {
+        width: 1100px;
+    }
+}
+
+.login_div {
+    /* Center form on page horizontally & vertically */
+    padding: 30px;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding-top: 100px !important;
+}
+
+.login_bg {
+    background-color: #D3D3D3 !important;
+}
+/*Login Form - End*/
+
+/* Forgot Password Form - Start*/
+.fgt_pwd_msg {
+    color: lightcoral;
+    font-size: 11px;
+    font-weight: bold;
+}
+/* Forgot Password Form - End*/
+
+
+
+/*Dashboard animation vehicle realtime*/
+.rowUpdatedAnimate {
+    -webkit-animation-name: rowHighlightAnimation; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 3s; /* Safari 4.0 - 8.0 */
+    animation-name: rowHighlightAnimation;
+    animation-duration: 3s;
+}
+
+@keyframes rowHighlightAnimation {
+    /*0% {background-color: none;}*/
+    30% {
+        background-color: lightgreen;
+    }
+
+    100% {
+        background-color: none;
+    }
+}
+
+
+.rowUpdatedAnimateSlow {
+    -webkit-animation-name: rowHighlightAnimation; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 6s; /* Safari 4.0 - 8.0 */
+    animation-name: rowHighlightAnimation;
+    animation-duration: 6s;
+}
+
+@keyframes rowHighlightAnimation {
+    /*0% {background-color: none;}*/
+    30% {
+        background-color: lightgreen;
+    }
+
+    100% {
+        background-color: none;
+    }
+}
+
+
+/*Dashboard animation vehicle realtime - End*/
+
+
+
+/*Bootstrap custom tooltip form map image*/
+.borderImage {
+    border-radius: 15px;
+}
+/* Tooltip */
+.tooltipMap + .tooltip > .tooltip-inner {
+    background-color: silver;
+    color: #FFFFFF;
+    border: 1px solid gray;
+    padding: 1px;
+    font-size: 20px;
+    border-radius: 15px;
+}
+
+.tooltip.in {
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+
+.tooltipMap + .tooltip.right > .tooltip-arrow {
+    visibility: hidden;
+}
+
+.tooltipMap + .tooltip.top > .tooltip-arrow {
+    visibility: hidden;
+}
+
+.tooltipMap + .tooltip.bottom > .tooltip-arrow {
+    visibility: hidden;
+}
+
+.tooltipMap + .tooltip.left > .tooltip-arrow {
+    visibility: hidden;
+}
+
+.hovercolor:hover {
+    color: red;
+}
+/*Bootstrap custom tooltip form map image - End*/
+
+/* region modal general */
+.confirmbox-header {
+    border: 1px solid #f89406;
+    background-color: #f89406;
+    padding: 5px;
+}
+
+.confirmbox-border {
+    border: 1px solid #f89406;
+}
+
+.confirmbox-footer {
+    padding: 6px;
+}
+
+.alertbox-error-header {
+    border: 1px solid #ee5f5b;
+    background-color: #ee5f5b;
+}
+
+.alertbox-error-border {
+    border: 1px solid #ee5f5b;
+}
+
+.alertbox-info-header,
+.confirmbox-info-header {
+    border: 1px solid #5bc0de;
+    background-color: #5bc0de;
+}
+
+.alertbox-info-border,
+confirmbox-info-border {
+    border: 1px solid #5bc0de;
+}
+/* endregion modal general */
+
+/* region map search box */
+#pac-input {
+    background-color: #fff;
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 12px;
+    padding: 0 11px 0 13px;
+    -ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    width: 250px;
+    top: 9px !important;
+}
+
+    #pac-input:focus {
+        border-color: #4d90fe;
+    }
+/* end region map search box*/
+
+/* region trip schedule modal box */
+.trip-schedule-modal-header {
+    background-color: #eee;
+}
+
+.trip-schedule-modal-header,
+.trip-schedule-modal-footer {
+    padding: 10px;
+}
+
+.close-button {
+    /*margin-top: 7px !important;*/
+    color: #ffffff;
+}
+
+.close {
+    opacity: 1;
+}
+
+/* end region */
+
+/* region generic control */
+.form-control[disabled], .form-control[readonly] {
+    background-color: #fff !important;
+}
+
+.dropdown-menu {
+    background-color: #fff !important;
+}
+
+textarea {
+    resize: none;
+}
+/* end region generic-control*/
+
+/* region aside panel */
+.custom-side-submenu {
+    padding-left: 20px;
+}
+/* end region aside panel */
+
+/* region travelling report */
+td.travelling-separator {
+    border-top: 2px solid grey !important;
+}
+
+td.speed-separator {
+    border-top: 2px solid #c09853 !important;
+}
+/* end region travelling report */
+
+
+/*Task 183 : Fix issue with "select2" accessibility*/
+/* this is to hide a accessibility span created by select2, probably a bug on their side, it looks off, so we're hiding it */
+.select2-hidden-accessible {
+    visibility: hidden;
+}
+/*End of Task 183*/
+
+
+/* Hover CSS http://ianlunn.github.io/Hover/ */
+
+/*Hover*/
+.hvr-grow {
+    display: inline-block;
+    vertical-align: middle;
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    transition-duration: 0.3s;
+    transition-property: transform;
+}
+
+    .hvr-grow:hover,
+    .hvr-grow:focus,
+    .hvr-grow:active {
+        transform: scale(1.1);
+    }
+
+/* Glow */
+.hvr-glow {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px transparent;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: box-shadow;
+    transition-property: box-shadow;
+}
+
+.hvr-glow:hover, .hvr-glow:focus, .hvr-glow:active {
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+}
+
+/* End of Hover CSS */
+
+.label-bold {
+    font-weight: bold;
+}
+
+/* region alert notification */
+.emaillistrow,
+.smslistrow,
+.alertlistrow {
+    background-color: #eff3f8;
+}
+
+.emaillistrow:hover,
+.smslistrow:hover,
+.alertlistrow:hover {
+    background-color: #e0e8f1;
+}
+
+.emaillistsubcol, .smslistsubcol, .alertlistsubcol {
+    padding: 5px 5px 5px 10px !important;
+}
+
+.emaillistdateacol, .smslistdatecol, .alertlistdatecol {
+    padding: 5px 10px 5px 5px !important;
+}
+
+.emailtable, .smstable {
+    border-collapse: separate !important;
+    border-spacing: 0 1px;
+}
+
+.alertnotification-panel {
+    min-height: 400px !important;
+    max-height: 600px !important;
+    overflow-y: auto !important;
+}
+
+.device-action-log-modal-header,
+.auto-trip-fuel-info-header,
+.trip-customer-list-header,
+.trip-report-customer-info-header,
+.trip-report-consignment-info-header {
+    padding: 10px;
+    background-color: #eee;
+}
+
+.alert-sms-modal-header,
+.alert-email-modal-header,
+.device-response-modal-header {
+    padding: 5px;
+    border-bottom: none;
+}
+
+.alert-sms-modal-header .close,
+.alert-email-modal-header .close,
+.device-response-modal-header .close,
+.device-action-log-modal-header .close,
+.auto-trip-fuel-info-header .close,
+.trip-customer-list-header .close,
+.trip-report-customer-info-header .close,
+.trip-report-consignment-info-header .close {
+    margin-top: 0 !important;
+    margin-right: 5px;
+}
+
+.alert-sms-modal-body,
+.alert-email-modal-body,
+.device-response-modal-body,
+.device-action-log-modal-body,
+.auto-trip-fuel-info-body,
+.trip-customer-list-modal-body {
+    padding: 10px;
+}
+
+.alert-email-modal-body td.content-class,
+.alert-sms-modal-body td.content-class {
+    max-height: 200px;
+    float: left;
+    overflow-y: scroll;
+}
+
+.add-new-modal-header {
+    padding: 10px;
+    background-color: #3276b1;
+    color: #ffffff;
+}
+
+.auto-trip-fuel-info-footer {
+    padding: 10px;
+}
+/* endregion alert notification */
+.geofenceshow, .sendalertshow, .emaillistshow, .smslistshow, .listshow {
+    cursor: pointer;
+}
+
+.sampletext {
+    font-size: small;
+    font-style: italic;
+}
+
+.preserveWhiteSpace {
+    white-space: pre-wrap;
+}
+
+.display-inline-block {
+    display: inline-block;
+}
+
+.device-response-css {
+    white-space: pre;
+}
+
+.borderless td, .borderless th {
+    border: none !important;
+}
+
+.group-separator {
+    background-color: lightgray;
+}
+
+.auto-trip-footer-separator {
+    background-color: lightyellow;
+}
+
+
+/*Overwrite the content*/
+body.smart-style-6 #logo-group > span#logo:before {
+    content: "MF Telematics" !important;
+    font-size: 17px;
+    color: #fff;
+    font-weight: 300;
+    margin-top: 1px;
+    display: block;
+}
+
+.menu-on-top .menu-item-parent {
+    max-width: 100px !important;
+    min-width: 50px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    font-size: 11px !important;
+}
+
+
+/*Overwrite Dygraphs legend default location*/
+.dygraph-legend {
+    width: 100% !important;
+    left: 80px !important;
+}
+
+.ajax-dropdown {
+    width: 370px !important;
+}
+
+.dashboard-table-summary {
+    height: 340px;
+    overflow-y: scroll;
+}
+
+/* for selectpicker - https://silviomoreto.github.io/bootstrap-select/examples/ */
+.dropdown-header > span.text {
+    font-weight: bolder;
+    color: black;
+}
+
+/* this can be omitted if need, may use solution here - https://silviomoreto.github.io/bootstrap-select/examples/#divider */
+.dropdown-menu.inner > li.divider {
+    display: none;
+}
+/* end selectpicker */
+
+.mileage-detail-summary {
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
+.feature-icon {
+    font-size: 22px;
+    margin: 20px 0;
+}
+
+.fleet-utilization-footer-separator {
+    background-color: lightyellow;
+}
+
+.fleet-utilization-header-separator {
+    font-weight: bold;
+}

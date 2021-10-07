@@ -1,20 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="CMSLcLyStoreContainer" CdmEntityContainer="DefaultConnection">
-    <EntitySetMapping Name="workflowmasters">
-      <EntityTypeMapping TypeName="CMSLcLy.workflowmaster">
-        <MappingFragment StoreEntitySet="workflowmaster">
-          <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
-          <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
-          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-          <ScalarProperty Name="WorkFlowName" ColumnName="WorkFlowName" />
-          <ScalarProperty Name="WorkFlowMasterID" ColumnName="WorkFlowMasterID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
+  <EntityContainerMapping StorageEntityContainer="DefaultConnectionStoreContainer" CdmEntityContainer="lawfirmhelperEntities">
     <EntitySetMapping Name="aspnetroles">
-      <EntityTypeMapping TypeName="CMSLcLy.aspnetrole">
+      <EntityTypeMapping TypeName="DefaultConnection.aspnetrole">
         <MappingFragment StoreEntitySet="aspnetroles">
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Id" ColumnName="Id" />
@@ -22,7 +10,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="aspnetuserclaims">
-      <EntityTypeMapping TypeName="CMSLcLy.aspnetuserclaim">
+      <EntityTypeMapping TypeName="DefaultConnection.aspnetuserclaim">
         <MappingFragment StoreEntitySet="aspnetuserclaims">
           <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
           <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
@@ -32,7 +20,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="aspnetuserlogins">
-      <EntityTypeMapping TypeName="CMSLcLy.aspnetuserlogin">
+      <EntityTypeMapping TypeName="DefaultConnection.aspnetuserlogin">
         <MappingFragment StoreEntitySet="aspnetuserlogins">
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
@@ -41,7 +29,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="aspnetusers">
-      <EntityTypeMapping TypeName="CMSLcLy.aspnetuser">
+      <EntityTypeMapping TypeName="DefaultConnection.aspnetuser">
         <MappingFragment StoreEntitySet="aspnetusers">
           <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
@@ -58,7 +46,46 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="aspnetuserroles" TypeName="CMSLcLy.aspnetuserroles" StoreEntitySet="aspnetuserroles">
+    <EntitySetMapping Name="cacmasters">
+      <EntityTypeMapping TypeName="DefaultConnection.cacmaster">
+        <MappingFragment StoreEntitySet="cacmaster">
+          <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+          <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Fax2" ColumnName="Fax2" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="Phone3" ColumnName="Phone3" />
+          <ScalarProperty Name="Phone2" ColumnName="Phone2" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+          <ScalarProperty Name="Address3" ColumnName="Address3" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+          <ScalarProperty Name="CACName" ColumnName="CACName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="enummasters">
+      <EntityTypeMapping TypeName="DefaultConnection.enummaster">
+        <MappingFragment StoreEntitySet="enummaster">
+          <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+          <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="EnumValue" ColumnName="EnumValue" />
+          <ScalarProperty Name="EnumName" ColumnName="EnumName" />
+          <ScalarProperty Name="EnumType" ColumnName="EnumType" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="aspnetuserroles" TypeName="DefaultConnection.aspnetuserroles" StoreEntitySet="aspnetuserroles">
       <EndProperty Name="aspnetuser">
         <ScalarProperty Name="Id" ColumnName="UserId" />
       </EndProperty>
@@ -67,5 +94,181 @@
       </EndProperty>
       <Condition ColumnName="RoleId" IsNull="false" />
     </AssociationSetMapping>
+    <EntitySetMapping Name="bankshortcutmasters">
+      <EntityTypeMapping TypeName="DefaultConnection.bankshortcutmaster">
+        <MappingFragment StoreEntitySet="bankshortcutmaster">
+          <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+          <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="RegistrationAddress" ColumnName="RegistrationAddress" />
+          <ScalarProperty Name="CompanyNo" ColumnName="CompanyNo" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+          <ScalarProperty Name="BankShortCut" ColumnName="BankShortCut" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bankmasters">
+      <EntityTypeMapping TypeName="DefaultConnection.bankmaster">
+        <MappingFragment StoreEntitySet="bankmaster">
+          <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+          <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="CACID" ColumnName="CACID" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Fax2" ColumnName="Fax2" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="Phone3" ColumnName="Phone3" />
+          <ScalarProperty Name="Phone2" ColumnName="Phone2" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+          <ScalarProperty Name="Address3" ColumnName="Address3" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+          <ScalarProperty Name="BankShortCutID" ColumnName="BankShortCutID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="firmmasters">
+      <EntityTypeMapping TypeName="DefaultConnection.firmmaster">
+        <MappingFragment StoreEntitySet="firmmaster">
+          <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+          <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Fax2" ColumnName="Fax2" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="Phone3" ColumnName="Phone3" />
+          <ScalarProperty Name="Phone2" ColumnName="Phone2" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+          <ScalarProperty Name="Address3" ColumnName="Address3" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="FirmName" ColumnName="FirmName" />
+          <ScalarProperty Name="AspNetUserID" ColumnName="AspNetUserID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="documentworkflows">
+      <EntityTypeMapping TypeName="DefaultConnection.documentworkflow">
+        <MappingFragment StoreEntitySet="documentworkflow">
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="isRPA" ColumnName="isRPA" />
+          <ScalarProperty Name="isCompleted" ColumnName="isCompleted" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+          <ScalarProperty Name="WorkflowDetailID" ColumnName="WorkflowDetailID" />
+          <ScalarProperty Name="DocumentID" ColumnName="DocumentID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="workflows">
+      <EntityTypeMapping TypeName="DefaultConnection.workflow">
+        <MappingFragment StoreEntitySet="workflow">
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CriticalDuration" ColumnName="CriticalDuration" />
+          <ScalarProperty Name="WorkflowTotalDuration" ColumnName="WorkflowTotalDuration" />
+          <ScalarProperty Name="WorkflowDescrption_CN" ColumnName="WorkflowDescrption_CN" />
+          <ScalarProperty Name="WorkflowDescrption_BM" ColumnName="WorkflowDescrption_BM" />
+          <ScalarProperty Name="WorkflowDescrption" ColumnName="WorkflowDescrption" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="workflowdetails">
+      <EntityTypeMapping TypeName="DefaultConnection.workflowdetail">
+        <MappingFragment StoreEntitySet="workflowdetail">
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+          <ScalarProperty Name="Description_CN" ColumnName="Description_CN" />
+          <ScalarProperty Name="Description_BM" ColumnName="Description_BM" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+          <ScalarProperty Name="WorkflowMasterID" ColumnName="WorkflowMasterID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="workflowmasters">
+      <EntityTypeMapping TypeName="DefaultConnection.workflowmaster">
+        <MappingFragment StoreEntitySet="workflowmaster">
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="WorkFlowMasterDuration" ColumnName="WorkFlowMasterDuration" />
+          <ScalarProperty Name="WorkFlowMasterDesc_CN" ColumnName="WorkFlowMasterDesc_CN" />
+          <ScalarProperty Name="WorkFlowMasterDesc_BM" ColumnName="WorkFlowMasterDesc_BM" />
+          <ScalarProperty Name="WorkFlowMasterDesc" ColumnName="WorkFlowMasterDesc" />
+          <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+          <ScalarProperty Name="WorkflowID" ColumnName="WorkflowID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="userdetails">
+      <EntityTypeMapping TypeName="DefaultConnection.userdetail">
+        <MappingFragment StoreEntitySet="userdetail">
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="DirectorSectIDNo" ColumnName="DirectorSectIDNo" />
+          <ScalarProperty Name="DirectorSectName" ColumnName="DirectorSectName" />
+          <ScalarProperty Name="DirectorIDNo" ColumnName="DirectorIDNo" />
+          <ScalarProperty Name="DirectorName" ColumnName="DirectorName" />
+          <ScalarProperty Name="BussState" ColumnName="BussState" />
+          <ScalarProperty Name="BussCity" ColumnName="BussCity" />
+          <ScalarProperty Name="BussPostCode" ColumnName="BussPostCode" />
+          <ScalarProperty Name="BussAddress3" ColumnName="BussAddress3" />
+          <ScalarProperty Name="BussAddress2" ColumnName="BussAddress2" />
+          <ScalarProperty Name="BussAddress" ColumnName="BussAddress" />
+          <ScalarProperty Name="RegState" ColumnName="RegState" />
+          <ScalarProperty Name="RegCity" ColumnName="RegCity" />
+          <ScalarProperty Name="RegPostCode" ColumnName="RegPostCode" />
+          <ScalarProperty Name="RegAddress3" ColumnName="RegAddress3" />
+          <ScalarProperty Name="RegAddress2" ColumnName="RegAddress2" />
+          <ScalarProperty Name="RegAddress" ColumnName="RegAddress" />
+          <ScalarProperty Name="TaxBranch" ColumnName="TaxBranch" />
+          <ScalarProperty Name="TaxFileNo" ColumnName="TaxFileNo" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="MobileContactNo" ColumnName="MobileContactNo" />
+          <ScalarProperty Name="OfficeContactNo" ColumnName="OfficeContactNo" />
+          <ScalarProperty Name="HomeContactNo" ColumnName="HomeContactNo" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+          <ScalarProperty Name="Address3" ColumnName="Address3" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="ConsumptionTaxNo" ColumnName="ConsumptionTaxNo" />
+          <ScalarProperty Name="IdentityNo" ColumnName="IdentityNo" />
+          <ScalarProperty Name="IdentityType" ColumnName="IdentityType" />
+          <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+          <ScalarProperty Name="AspNetUserId" ColumnName="AspNetUserId" />
+          <ScalarProperty Name="UserDetailsId" ColumnName="UserDetailsId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

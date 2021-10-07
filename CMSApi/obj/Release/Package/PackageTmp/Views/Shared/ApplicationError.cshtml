@@ -1,0 +1,22 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    Layout = "~/Views/Shared/_DisplayLayout.cshtml";
+    string error = "An error has occured";
+    if(Model != null && Model.Exception != null )
+    {
+        error += ": " + Model.Exception.Message;
+    }
+}
+
+<div class="form_wrapper">
+    <div class="row text-center">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <h1 class="font-xxl txt-color-red">Opps!</h1>
+            <img src="~/Content/img/layout-icon/gra_generalerror.svg" alt="" style="max-width: 80%" />
+            <h2 class="margin-top-5">@error</h2>
+            @{ Html.RenderPartial("~/Views/Error/_ActionButton.cshtml"); }
+            <br>
+        </div>
+    </div>
+</div>

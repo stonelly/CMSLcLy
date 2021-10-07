@@ -1,42 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="CMSLcLy" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityContainer Name="DefaultConnection" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="workflowmasters" EntityType="CMSLcLy.workflowmaster" />
-    <EntitySet Name="aspnetroles" EntityType="CMSLcLy.aspnetrole" />
-    <EntitySet Name="aspnetuserclaims" EntityType="CMSLcLy.aspnetuserclaim" />
-    <EntitySet Name="aspnetuserlogins" EntityType="CMSLcLy.aspnetuserlogin" />
-    <EntitySet Name="aspnetusers" EntityType="CMSLcLy.aspnetuser" />
-    <AssociationSet Name="FK_userclaim_user" Association="CMSLcLy.FK_userclaim_user">
+<Schema Namespace="DefaultConnection" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="lawfirmhelperEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="aspnetroles" EntityType="DefaultConnection.aspnetrole" />
+    <EntitySet Name="aspnetuserclaims" EntityType="DefaultConnection.aspnetuserclaim" />
+    <EntitySet Name="aspnetuserlogins" EntityType="DefaultConnection.aspnetuserlogin" />
+    <EntitySet Name="aspnetusers" EntityType="DefaultConnection.aspnetuser" />
+    <EntitySet Name="cacmasters" EntityType="DefaultConnection.cacmaster" />
+    <EntitySet Name="enummasters" EntityType="DefaultConnection.enummaster" />
+    <AssociationSet Name="FK_userclaim_user" Association="DefaultConnection.FK_userclaim_user">
       <End Role="aspnetuser" EntitySet="aspnetusers" />
       <End Role="aspnetuserclaim" EntitySet="aspnetuserclaims" />
     </AssociationSet>
-    <AssociationSet Name="FK_userlogin_user" Association="CMSLcLy.FK_userlogin_user">
+    <AssociationSet Name="FK_userlogin_user" Association="DefaultConnection.FK_userlogin_user">
       <End Role="aspnetuser" EntitySet="aspnetusers" />
       <End Role="aspnetuserlogin" EntitySet="aspnetuserlogins" />
     </AssociationSet>
-    <AssociationSet Name="aspnetuserroles" Association="CMSLcLy.aspnetuserroles">
+    <AssociationSet Name="aspnetuserroles" Association="DefaultConnection.aspnetuserroles">
       <End Role="aspnetrole" EntitySet="aspnetroles" />
       <End Role="aspnetuser" EntitySet="aspnetusers" />
     </AssociationSet>
+    <EntitySet Name="bankshortcutmasters" EntityType="DefaultConnection.bankshortcutmaster" />
+    <EntitySet Name="bankmasters" EntityType="DefaultConnection.bankmaster" />
+    <EntitySet Name="firmmasters" EntityType="DefaultConnection.firmmaster" />
+    <EntitySet Name="documentworkflows" EntityType="DefaultConnection.documentworkflow" />
+    <EntitySet Name="workflows" EntityType="DefaultConnection.workflow" />
+    <EntitySet Name="workflowdetails" EntityType="DefaultConnection.workflowdetail" />
+    <EntitySet Name="workflowmasters" EntityType="DefaultConnection.workflowmaster" />
+    <EntitySet Name="userdetails" EntityType="DefaultConnection.userdetail" />
+    <AssociationSet Name="userdetail_ibfk_1" Association="DefaultConnection.userdetail_ibfk_1">
+      <End Role="aspnetuser" EntitySet="aspnetusers" />
+      <End Role="userdetail" EntitySet="userdetails" />
+    </AssociationSet>
   </EntityContainer>
-  <EntityType Name="workflowmaster">
-    <Key>
-      <PropertyRef Name="WorkFlowMasterID" />
-    </Key>
-    <Property Name="WorkFlowMasterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="WorkFlowName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="CreatedDate" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
-    <Property Name="ModifyBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
-    <Property Name="ModifyDate" Type="DateTime" />
-  </EntityType>
   <EntityType Name="aspnetrole">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
     <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="aspnetusers" Relationship="CMSLcLy.aspnetuserroles" FromRole="aspnetrole" ToRole="aspnetuser" />
+    <NavigationProperty Name="aspnetusers" Relationship="DefaultConnection.aspnetuserroles" FromRole="aspnetrole" ToRole="aspnetuser" />
   </EntityType>
   <EntityType Name="aspnetuserclaim">
     <Key>
@@ -46,7 +48,7 @@
     <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
     <Property Name="ClaimType" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
     <Property Name="ClaimValue" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="aspnetuser" Relationship="CMSLcLy.FK_userclaim_user" FromRole="aspnetuserclaim" ToRole="aspnetuser" />
+    <NavigationProperty Name="aspnetuser" Relationship="DefaultConnection.FK_userclaim_user" FromRole="aspnetuserclaim" ToRole="aspnetuser" />
   </EntityType>
   <EntityType Name="aspnetuserlogin">
     <Key>
@@ -57,7 +59,7 @@
     <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
     <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
     <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="aspnetuser" Relationship="CMSLcLy.FK_userlogin_user" FromRole="aspnetuserlogin" ToRole="aspnetuser" />
+    <NavigationProperty Name="aspnetuser" Relationship="DefaultConnection.FK_userlogin_user" FromRole="aspnetuserlogin" ToRole="aspnetuser" />
   </EntityType>
   <EntityType Name="aspnetuser">
     <Key>
@@ -75,13 +77,51 @@
     <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
     <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
     <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="aspnetuserclaims" Relationship="CMSLcLy.FK_userclaim_user" FromRole="aspnetuser" ToRole="aspnetuserclaim" />
-    <NavigationProperty Name="aspnetuserlogins" Relationship="CMSLcLy.FK_userlogin_user" FromRole="aspnetuser" ToRole="aspnetuserlogin" />
-    <NavigationProperty Name="aspnetrole" Relationship="CMSLcLy.aspnetuserroles" FromRole="aspnetuser" ToRole="aspnetrole" />
+    <NavigationProperty Name="aspnetuserclaims" Relationship="DefaultConnection.FK_userclaim_user" FromRole="aspnetuser" ToRole="aspnetuserclaim" />
+    <NavigationProperty Name="aspnetuserlogins" Relationship="DefaultConnection.FK_userlogin_user" FromRole="aspnetuser" ToRole="aspnetuserlogin" />
+    <NavigationProperty Name="aspnetrole" Relationship="DefaultConnection.aspnetuserroles" FromRole="aspnetuser" ToRole="aspnetrole" />
+    <NavigationProperty Name="userdetails" Relationship="DefaultConnection.userdetail_ibfk_1" FromRole="aspnetuser" ToRole="userdetail" />
+  </EntityType>
+  <EntityType Name="cacmaster">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CACName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="BankName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Address2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Address3" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="PostCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Phone2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Phone3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Fax2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="ModifyDate" Type="DateTime" />
+    <Property Name="ModifyBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="enummaster">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EnumType" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="EnumName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="EnumValue" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="ModifyDate" Type="DateTime" />
+    <Property Name="ModifyBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
   </EntityType>
   <Association Name="FK_userclaim_user">
-    <End Type="CMSLcLy.aspnetuser" Role="aspnetuser" Multiplicity="1" />
-    <End Type="CMSLcLy.aspnetuserclaim" Role="aspnetuserclaim" Multiplicity="*" />
+    <End Type="DefaultConnection.aspnetuser" Role="aspnetuser" Multiplicity="1" />
+    <End Type="DefaultConnection.aspnetuserclaim" Role="aspnetuserclaim" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="aspnetuser">
         <PropertyRef Name="Id" />
@@ -92,8 +132,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_userlogin_user">
-    <End Type="CMSLcLy.aspnetuser" Role="aspnetuser" Multiplicity="1" />
-    <End Type="CMSLcLy.aspnetuserlogin" Role="aspnetuserlogin" Multiplicity="*" />
+    <End Type="DefaultConnection.aspnetuser" Role="aspnetuser" Multiplicity="1" />
+    <End Type="DefaultConnection.aspnetuserlogin" Role="aspnetuserlogin" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="aspnetuser">
         <PropertyRef Name="Id" />
@@ -104,7 +144,188 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="aspnetuserroles">
-    <End Type="CMSLcLy.aspnetrole" Role="aspnetrole" Multiplicity="0..1" />
-    <End Type="CMSLcLy.aspnetuser" Role="aspnetuser" Multiplicity="*" />
+    <End Type="DefaultConnection.aspnetrole" Role="aspnetrole" Multiplicity="0..1" />
+    <End Type="DefaultConnection.aspnetuser" Role="aspnetuser" Multiplicity="*" />
+  </Association>
+  <EntityType Name="bankshortcutmaster">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BankShortCut" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BankName" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="CompanyNo" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="RegistrationAddress" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="ModifyDate" Type="DateTime" />
+    <Property Name="ModifyBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="bankmaster">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BankShortCutID" Type="Int32" Nullable="false" />
+    <Property Name="BranchName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Address2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Address3" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="PostCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Phone2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Phone3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Fax2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CACID" Type="Int32" Nullable="false" />
+    <Property Name="Remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="ModifyDate" Type="DateTime" />
+    <Property Name="ModifyBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="firmmaster">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AspNetUserID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="FirmName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Address2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Address3" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="PostCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="State" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Phone2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Phone3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Fax2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Remark" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="ModifyDate" Type="DateTime" />
+    <Property Name="ModifyBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="documentworkflow">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DocumentID" Type="Int32" />
+    <Property Name="WorkflowDetailID" Type="Int32" Nullable="false" />
+    <Property Name="Sequence" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DueDate" Type="DateTime" Nullable="false" />
+    <Property Name="isCompleted" Type="Int32" Nullable="false" />
+    <Property Name="isRPA" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="workflow">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WorkflowDescrption" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="WorkflowDescrption_BM" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="WorkflowDescrption_CN" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="WorkflowTotalDuration" Type="Int32" />
+    <Property Name="CriticalDuration" Type="Int32" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="workflowdetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WorkflowMasterID" Type="Int32" Nullable="false" />
+    <Property Name="Sequence" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Description_BM" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Description_CN" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Duration" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="workflowmaster">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WorkflowID" Type="Int32" />
+    <Property Name="Sequence" Type="Int32" />
+    <Property Name="WorkFlowMasterDesc" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="WorkFlowMasterDesc_BM" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="WorkFlowMasterDesc_CN" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="WorkFlowMasterDuration" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="userdetail">
+    <Key>
+      <PropertyRef Name="UserDetailsId" />
+    </Key>
+    <Property Name="UserDetailsId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AspNetUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="UserTypeID" Type="Int32" />
+    <Property Name="IdentityType" Type="Int32" />
+    <Property Name="IdentityNo" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="ConsumptionTaxNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FullName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Address2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Address3" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="PostCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="HomeContactNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OfficeContactNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MobileContactNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Fax" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="TaxFileNo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="TaxBranch" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="RegAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="RegAddress2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="RegAddress3" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="RegPostCode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="RegCity" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="RegState" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="BussAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="BussAddress2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="BussAddress3" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="BussPostCode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="BussCity" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="BussState" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="DirectorName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="DirectorIDNo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="DirectorSectName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="DirectorSectIDNo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" />
+    <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ModifiedDate" Type="DateTime" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="aspnetuser" Relationship="DefaultConnection.userdetail_ibfk_1" FromRole="userdetail" ToRole="aspnetuser" />
+  </EntityType>
+  <Association Name="userdetail_ibfk_1">
+    <End Type="DefaultConnection.aspnetuser" Role="aspnetuser" Multiplicity="1" />
+    <End Type="DefaultConnection.userdetail" Role="userdetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnetuser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="userdetail">
+        <PropertyRef Name="AspNetUserId" />
+      </Dependent>
+    </ReferentialConstraint>
   </Association>
 </Schema>

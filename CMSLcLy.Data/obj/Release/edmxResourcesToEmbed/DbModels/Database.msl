@@ -1,71 +1,163 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="CMSLcLyStoreContainer" CdmEntityContainer="DefaultConnection">
-    <EntitySetMapping Name="workflowmasters">
-      <EntityTypeMapping TypeName="CMSLcLy.workflowmaster">
-        <MappingFragment StoreEntitySet="workflowmaster">
-          <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
-          <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
-          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-          <ScalarProperty Name="WorkFlowName" ColumnName="WorkFlowName" />
-          <ScalarProperty Name="WorkFlowMasterID" ColumnName="WorkFlowMasterID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
+  <EntityContainerMapping StorageEntityContainer="DefaultConnectionStoreContainer" CdmEntityContainer="lawfirmhelperEntities">
     <EntitySetMapping Name="aspnetroles">
-      <EntityTypeMapping TypeName="CMSLcLy.aspnetrole">
+      <EntityTypeMapping TypeName="DefaultConnection.aspnetrole">
         <MappingFragment StoreEntitySet="aspnetroles">
-          <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="aspnetuserclaims">
-      <EntityTypeMapping TypeName="CMSLcLy.aspnetuserclaim">
+      <EntityTypeMapping TypeName="DefaultConnection.aspnetuserclaim">
         <MappingFragment StoreEntitySet="aspnetuserclaims">
-          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
-          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="aspnetuserlogins">
-      <EntityTypeMapping TypeName="CMSLcLy.aspnetuserlogin">
+      <EntityTypeMapping TypeName="DefaultConnection.aspnetuserlogin">
         <MappingFragment StoreEntitySet="aspnetuserlogins">
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
           <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="aspnetusers">
-      <EntityTypeMapping TypeName="CMSLcLy.aspnetuser">
+      <EntityTypeMapping TypeName="DefaultConnection.aspnetuser">
         <MappingFragment StoreEntitySet="aspnetusers">
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
-          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
-          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
-          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
-          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
-          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
-          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
-          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
-          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bankmasters">
+      <EntityTypeMapping TypeName="DefaultConnection.bankmaster">
+        <MappingFragment StoreEntitySet="bankmaster">
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="aspnetuserroles" TypeName="CMSLcLy.aspnetuserroles" StoreEntitySet="aspnetuserroles">
-      <EndProperty Name="aspnetuser">
-        <ScalarProperty Name="Id" ColumnName="UserId" />
-      </EndProperty>
-      <EndProperty Name="aspnetrole">
+    <EntitySetMapping Name="documentworkflows">
+      <EntityTypeMapping TypeName="DefaultConnection.documentworkflow">
+        <MappingFragment StoreEntitySet="documentworkflow">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="WorkflowDetailID" ColumnName="WorkflowDetailID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="isCompleted" ColumnName="isCompleted" />
+          <ScalarProperty Name="isRPA" ColumnName="isRPA" />
+          <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="userdetails">
+      <EntityTypeMapping TypeName="DefaultConnection.userdetail">
+        <MappingFragment StoreEntitySet="userdetails">
+          <ScalarProperty Name="UserDetailsId" ColumnName="UserDetailsId" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="AspNetUserId" ColumnName="AspNetUserId" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usermasters">
+      <EntityTypeMapping TypeName="DefaultConnection.usermaster">
+        <MappingFragment StoreEntitySet="usermaster">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="workflows">
+      <EntityTypeMapping TypeName="DefaultConnection.workflow">
+        <MappingFragment StoreEntitySet="workflow">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="WorkflowDescrption" ColumnName="WorkflowDescrption" />
+          <ScalarProperty Name="WorkflowDescrption_BM" ColumnName="WorkflowDescrption_BM" />
+          <ScalarProperty Name="WorkflowDescrption_CN" ColumnName="WorkflowDescrption_CN" />
+          <ScalarProperty Name="WorkflowTotalDuration" ColumnName="WorkflowTotalDuration" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="workflowdetails">
+      <EntityTypeMapping TypeName="DefaultConnection.workflowdetail">
+        <MappingFragment StoreEntitySet="workflowdetail">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="WorkflowMasterID" ColumnName="WorkflowMasterID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Description_BM" ColumnName="Description_BM" />
+          <ScalarProperty Name="Description_CN" ColumnName="Description_CN" />
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="workflowmasters">
+      <EntityTypeMapping TypeName="DefaultConnection.workflowmaster">
+        <MappingFragment StoreEntitySet="workflowmaster">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="WorkflowID" ColumnName="WorkflowID" />
+          <ScalarProperty Name="WorkFlowMasterDesc" ColumnName="WorkFlowMasterDesc" />
+          <ScalarProperty Name="WorkFlowMasterDesc_BM" ColumnName="WorkFlowMasterDesc_BM" />
+          <ScalarProperty Name="WorkFlowMasterDesc_CN" ColumnName="WorkFlowMasterDesc_CN" />
+          <ScalarProperty Name="WorkFlowMasterDuration" ColumnName="WorkFlowMasterDuration" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="aspnetuserroles" TypeName="DefaultConnection.aspnetuserroles" StoreEntitySet="aspnetuserroles">
+      <EndProperty Name="aspnetroles">
         <ScalarProperty Name="Id" ColumnName="RoleId" />
       </EndProperty>
-      <Condition ColumnName="RoleId" IsNull="false" />
+      <EndProperty Name="aspnetusers">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="firmmasters">
+      <EntityTypeMapping TypeName="DefaultConnection.firmmaster">
+        <MappingFragment StoreEntitySet="firmmaster">
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="FirmName" ColumnName="FirmName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

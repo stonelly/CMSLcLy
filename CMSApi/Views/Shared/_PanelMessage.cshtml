@@ -1,0 +1,14 @@
+﻿@using COMM = Magneto.Common
+
+@if (TempData[COMM.Constants.TopMessageUI.TopMessage] != null)
+{
+    var message = (MessageVM)TempData[COMM.Constants.TopMessageUI.TopMessage];
+    <div class="alert @message.CssClassName fade in" role="alert">
+        <button class="close" data-dismiss="alert">
+            ×
+        </button>
+        <i class="fa-fw fa @message.iCssClassName"></i>
+        <strong>@message.Title</strong>
+        @message.Message
+    </div>
+}

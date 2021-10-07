@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMSLcLy.Data", "CMSLcLy.Dat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resources", "Resources\Resources.csproj", "{BA67124C-EF74-41B2-9561-BF19127712E7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMSLcLy.Common", "CMSLcLy.Common\CMSLcLy.Common.csproj", "{D2EB4595-D587-42E3-9AFB-4144D2F2E98A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{BA67124C-EF74-41B2-9561-BF19127712E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA67124C-EF74-41B2-9561-BF19127712E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA67124C-EF74-41B2-9561-BF19127712E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2EB4595-D587-42E3-9AFB-4144D2F2E98A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2EB4595-D587-42E3-9AFB-4144D2F2E98A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2EB4595-D587-42E3-9AFB-4144D2F2E98A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2EB4595-D587-42E3-9AFB-4144D2F2E98A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

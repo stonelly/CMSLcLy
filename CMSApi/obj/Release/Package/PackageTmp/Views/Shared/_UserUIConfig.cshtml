@@ -1,0 +1,171 @@
+﻿@model Magneto.WebUI.Models.UserUIConfigVM
+
+<div style="padding-left:10px;padding-right:10px">
+    <br />
+	<table style="width:100%">
+		<tr>
+			<td style="width:40%">Layout Type</td>
+			<td>
+				<select id="ddlLayout" name="ddlLayout" style="height:25px;width:130px">
+					<option value="">Standard</option>
+					<option value="minified">Minified</option>
+					<option value="top-navigation menu-on-top">Top Navigation</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				Theme Skin
+			</td>
+			<td>
+				<select id="ddlTheme" name="ddlTheme" style="height:25px;width:130px">
+					<option value="smart-style-3">Default Orange</option>
+					@*<option value="smart-style-6">Bright Blue</option>*@
+					<option value="smart-style-1">Dark Elegance</option>
+					<option value="smart-style-2">Ultra Light</option>
+					<option value="smart-style-4">Green Navy</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">&nbsp;</td>
+		</tr>
+		<tr>
+			<td>Map Style</td>
+			<td>
+				<select id="ddlMapStyle" name="ddlMapStyle" style="height:25px;width:130px;">
+					<option value="DefaultStyle">Default Style</option>
+					<option value="RetroStyle">Retro Style</option>
+					<option value="DarkStyle">Dark Style</option>
+					<option value="SilverStyle">Silver Style</option>
+					<option value="DarkBlueStyle">Dark Blue Style</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">&nbsp;</td>
+		</tr>
+		<tr>
+			<td>Dashboard Idling Refresh Interval</td>
+			<td>
+				<input type="number" id="txtRefreshInterval" name="txtRefreshInterval" /> minutes
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">&nbsp;</td>
+		</tr>
+		<tr>
+			<td>Minimum Total Idling Time Display in Dashboard</td>
+			<td>
+				<input type="number" id="txtMinIdlingTimeDisplay" name="txtMinIdlingTimeDisplay" /> minutes
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">&nbsp;</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<div class="checkbox">
+					<label class="no-padding">
+						<input type="checkbox" id="chkDisplayAllPlateNo" />
+						<span class="cr"><i class="cr-icon fa fa-check"></i></span>
+						Display plate number on ALL vehicles in Vehicle RealTime Map
+					</label>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">&nbsp;</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<div class="checkbox">
+					<label class="no-padding">
+						<input type="checkbox" id="chkDisplayGeofenceNotification" />
+						<span class="cr"><i class="cr-icon fa fa-check"></i></span>
+						Display vehicle geofence notification in Vehicle RealTime Map
+					</label>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">&nbsp;</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<div class="checkbox">
+					<label class="no-padding">
+						<input type="checkbox" id="chkDisplayPopupAlert" />
+						<span class="cr"><i class="cr-icon fa fa-check"></i></span>
+						Display popup alert in screen
+					</label>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><input type="button" id="btnSaveChangesUIPreference" value="Save Changes" /></td>
+		</tr>
+	</table>
+</div>
+
+<script type="text/javascript">
+
+	$(document).ready(function () {
+		$("#ddlLayout").val("@Model.WebUILayoutValue");
+		$("#ddlTheme").val("@Model.WebUIThemeValue");
+        $("#ddlMapStyle").val("@Model.WebUIMapStyle");
+        @if (Model.WebUIRealTimeMapPlateNo)
+        {
+            <text>$('#chkDisplayAllPlateNo').prop('checked', true)</text>
+        }
+        @if (Model.WebUIRealTimeMapGeofenceNotification)
+        {
+            <text>$('#chkDisplayGeofenceNotification').prop('checked', true)</text>
+        }
+		@if (Model.WebUIPopupAlertNotification)
+        {
+            <text>$('#chkDisplayPopupAlert').prop('checked', true)</text>
+        }
+        $("#txtRefreshInterval").val("@Model.WebUIDashboardIdlingRefreshInterval");
+        $("#txtMinIdlingTimeDisplay").val("@Model.WebUIMinIdlingTimeDashboardDisplay");
+	});
+
+	$("#btnSaveChangesUIPreference").click(function () {
+		var strLayout = $('#ddlLayout').val();
+		var strTheme = $('#ddlTheme').val();
+        var strMapStyle = $('#ddlMapStyle').val();
+        var isShowAllPlateNo = $('#chkDisplayAllPlateNo').prop('checked');
+        var isShowGeofenceNotification = $('#chkDisplayGeofenceNotification').prop('checked');
+        var dashboardRefreshInterval = $('#txtRefreshInterval').val();
+		var minIdlingTimeDisplay = $('#txtMinIdlingTimeDisplay').val();
+		var isShowPopupAlertNotification = $('#chkDisplayPopupAlert').prop('checked');
+
+		var url = "@Url.Action("SaveUserUIConfig")";
+
+		$.ajax({
+			url: url,
+			data: {
+				layout: strLayout,
+				theme: strTheme,
+                mapStyle: strMapStyle,
+                isShowAll: isShowAllPlateNo,
+                isShowGeofenceNotification: isShowGeofenceNotification,
+                dashboardRefreshInterval: dashboardRefreshInterval,
+				minIdlingTimeDisplay: minIdlingTimeDisplay,
+				isShowPopupAlertNotification: isShowPopupAlertNotification
+			},
+			cache: false,
+			type: "POST",
+			success: function (data) {
+				location.reload(true);
+			},
+            error: function (response) {
+				alert("error : " + response);
+			}
+		});
+	});
+</script>

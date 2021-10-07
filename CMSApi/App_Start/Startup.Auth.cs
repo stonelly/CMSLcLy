@@ -11,6 +11,7 @@ using Microsoft.Owin.Security.OAuth;
 using Owin;
 using CMSApi.Providers;
 using CMSApi.Models;
+using CMSLcLy.Data.User;
 
 namespace CMSApi
 {
@@ -101,5 +102,78 @@ namespace CMSApi
         //    var owinManager = new UserManager<IdentityUser>(userStore);
         //    return owinManager;
         //}
+
+        private void createRolesandUsers()
+        {
+            ApplicationDbContext context = new ApplicationDbContext();
+
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+
+
+            // In Startup iam creating first Admin Role and creating a default Admin User     
+            if (!roleManager.RoleExists("Superadmin"))
+            {
+
+                // first we create Admin rool    
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                role.Name = "Superadmin";
+                roleManager.Create(role);
+
+                //Here we create a Admin super user who will maintain the website                   
+
+                var user = new ApplicationUser();
+                user.UserName = "superadmin@gmail.com";
+                user.Email = "superadmin@gmail.com";
+
+                string userPWD = "Abc!23";
+
+                var chkUser = UserManager.Create(user, userPWD);
+
+                //Add default User to Role Admin    
+                if (chkUser.Succeeded)
+                {
+                    var result1 = UserManager.AddToRole(user.Id, "Superadmin");
+                    UserMasterItemViewModel userDetailsModel = new UserMasterItemViewModel();
+                    userDetailsModel.AspNetUserID = user.Id;
+
+                    using (var mgr = new CMSLcLy.Data.User.Manager())
+                    {
+                        var userResult = mgr.Save(userDetailsModel);
+                    }
+                }
+            }
+
+            // creating Creating Manager role     
+            if (!roleManager.RoleExists("Admin"))
+            {
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                role.Name = "Admin";
+                roleManager.Create(role);
+            }
+
+            // creating Creating Employee role     
+            if (!roleManager.RoleExists("Clerk"))
+            {
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                role.Name = "Clerk";
+                roleManager.Create(role);
+            }
+
+            // creating Creating Employee role     
+            if (!roleManager.RoleExists("Client"))
+            {
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                role.Name = "Client";
+                roleManager.Create(role);
+            }
+            //else
+            //{
+            //    var oldRole = roleManager.FindByName("Clerk");
+            //    oldRole.Name = "ClerkNew";
+            //    roleManager.Update(oldRole);
+
+            //}
+        }
     }
 }

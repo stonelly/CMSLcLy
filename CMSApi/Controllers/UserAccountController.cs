@@ -14,6 +14,10 @@ using System.Net.Http;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Microsoft.Owin.Security.Cookies;
+using System.Security.Principal;
+using CMSLcLy.Data.User;
+using COMM = CMSLcLy.Common;
+using DATA = CMSLcLy.Data;
 
 namespace CMSApi.Controllers
 {
@@ -62,6 +66,9 @@ namespace CMSApi.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            // We do not want to use any existing identity information
+            EnsureLoggedOut();
+             
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -105,7 +112,14 @@ namespace CMSApi.Controllers
 
                         TokenResponseModel apiToken = JsonConvert.DeserializeObject<TokenResponseModel>(token);
 
-                        Session["ApiToken"] = apiToken.access_token;
+                        HttpCookie tokenCookie = new HttpCookie("apiToken");
+                        tokenCookie.Values["apiToken"] = apiToken.access_token;
+                        //Set the Expiry date. Follow setting at startup
+                        tokenCookie.Expires = DateTime.Now.AddDays(14);
+                        //Add the Cookie to Browser.
+                        Response.Cookies.Add(tokenCookie);
+
+                        //Session["ApiToken"] = apiToken.access_token;
                     }
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
@@ -162,12 +176,46 @@ namespace CMSApi.Controllers
             }
         }
 
+        public RegisterViewModel InitializeNewModel(RegisterViewModel model = null)
+        {
+            if (model == null)
+                model = new RegisterViewModel();
+            model.Roles = GetRoles().Select(x => new SelectListItem() { Value = x.Name, Text = x.Name }).ToList();
+
+            var selected = model.Roles.Where(x => x.Value == "Client").First();
+            selected.Selected = true;
+
+            return model;
+        }
+
+
+        public IEnumerable<DATA.RoleMaster.RoleMasterItemViewModel> GetRoles()
+        {
+            IEnumerable<DATA.RoleMaster.RoleMasterItemViewModel> model = null; 
+
+            try
+            {
+                using (var mgr = new CMSLcLy.Data.RoleMaster.Manager())
+                {
+                    model = mgr.ListNotAdmin().ToList();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                TempData[COMM.Constants.WebUI.ErrorMessage] = "Failed to retrieve Roles: " + ex.Message;
+            }
+
+            return model;
+        }
+
         //
         // GET: /Account/Register
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            var model = InitializeNewModel();
+            return View("Register", model);
         }
 
         //
@@ -183,15 +231,31 @@ namespace CMSApi.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-
+                    //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    var result1 = UserManager.AddToRole(user.Id, model.UserRoles);
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    try
+                    {
+                        UserMasterItemViewModel userDetailsModel = new UserMasterItemViewModel();
+                        userDetailsModel.AspNetUserID = user.Id;
+
+                        using (var mgr = new CMSLcLy.Data.User.Manager())
+                        {
+                            var userResult = mgr.Save(userDetailsModel);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+
+
+                    return RedirectToAction("Edit", new { userId = user.Id });
                 }
                 AddErrors(result);
             }
@@ -239,10 +303,10 @@ namespace CMSApi.Controllers
 
                 // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                 // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
             // If we got this far, something failed, redisplay form
@@ -421,7 +485,13 @@ namespace CMSApi.Controllers
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
-            return RedirectToAction("Index", "Home");
+            Session.Abandon();
+            RemoveCookie();
+
+            //clear the principal to ensure the user does not retain any authentication
+            HttpContext.User = new GenericPrincipal(new GenericIdentity(string.Empty), null);
+
+            return RedirectToAction("Index", "Home", new { area = "" });
         }
         private IAuthenticationManager Authentication
         {
@@ -514,6 +584,230 @@ namespace CMSApi.Controllers
             }
         }
 
+        private void EnsureLoggedOut()
+        {
+            // If the request is (still) marked as authenticated we send the user to the logout action
+            if (Request.IsAuthenticated)
+                LogOff();
+        }
+
+        protected void RemoveCookie()
+        {
+            //Fetch the Cookie using its Key.
+            HttpCookie nameCookie = Request.Cookies["apiToken"];
+
+            //Set the Expiry date to past date.
+            nameCookie.Expires = DateTime.Now.AddDays(-1);
+
+            //Update the Cookie in Browser.
+            Response.Cookies.Add(nameCookie);
+        }
         #endregion
+
+
+
+        public ActionResult UserList()
+        {
+            IList<UserMasterItemViewModel> userMasterItemViewModel = null;
+
+            using (var mgr = new CMSLcLy.Data.User.Manager())
+            {
+                userMasterItemViewModel = mgr.List().ToList();
+            }
+
+            userMasterItemViewModel = CombineAddress(userMasterItemViewModel);
+
+            foreach(var model in userMasterItemViewModel)
+            {
+                model.Role = UserManager.GetRoles(model.AspNetUserID).FirstOrDefault();
+            }
+
+            return View(userMasterItemViewModel);
+        }
+
+
+
+
+        public UserMasterItemViewModel InitializeNewUserModel(UserMasterItemViewModel model = null)
+        {
+            if (model == null)
+                model = new UserMasterItemViewModel();
+            model.IdentityTypes = GetIdentityTypes(COMM.Constants.EnumMaster.IdentityType).Select(x => new SelectListItem() { Value = x.Id.ToString(), Text = x.EnumValue }).ToList();
+            model.IdentityTypes.Insert(0, new SelectListItem() { Value = "0", Text = "Please select ..." });
+
+            model.UserTypes = GetIdentityTypes(COMM.Constants.EnumMaster.UserType).Select(x => new SelectListItem() { Value = x.Id.ToString(), Text = x.EnumValue }).ToList();
+            model.UserTypes.Insert(0, new SelectListItem() { Value = "0", Text = "Please select ..." });
+
+
+            model.Roles = GetRoles().Select(x => new SelectListItem() { Value = x.Name, Text = x.Name }).ToList();
+
+
+            return model;
+        }
+
+        public IEnumerable<DATA.EnumMaster.EnumMasterItemViewModel> GetIdentityTypes(string type)
+        {
+            IEnumerable<DATA.EnumMaster.EnumMasterItemViewModel> model = null;
+
+            try
+            {
+                using (var mgr = new CMSLcLy.Data.EnumMaster.Manager())
+                {
+                    model = mgr.List(type).ToList();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                TempData[COMM.Constants.WebUI.ErrorMessage] = "Failed to retrieve Identity Types: " + ex.Message;
+            }
+
+            return model;
+        }
+
+
+
+        public ActionResult Create()
+        {
+            var model = new UserMasterItemViewModel();
+            model = InitializeNewUserModel(model);
+            return View("Create", model);
+        }
+
+        // GET: Administration/Bank/Edit/5
+        public ActionResult Edit(string userId)
+        {
+            UserMasterItemViewModel model = null; 
+            try
+            {
+
+                using (var mgr = new CMSLcLy.Data.User.Manager())
+                {
+                    model = mgr.Get(userId);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                TempData[COMM.Constants.WebUI.ErrorMessage] = "Failed to retrieve Bank CAC Information: " + ex.Message;
+            }
+            ViewBag.Title = "Home Page";
+            model.Role = UserManager.GetRoles(model.AspNetUserID).FirstOrDefault();
+            model = InitializeNewUserModel(model);
+
+            return View(model);
+        }
+
+        // POST: Administration/Bank/Create
+        [HttpPost]
+        [OverrideAuthorization]
+        //[RoleAuthorize(Roles = DefaultFunction.ManageVehicle, AccessType = AccessTypes.Create)]
+        public ActionResult Save(HttpPostedFileBase imageFile, UserMasterItemViewModel model, FormCollection form)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
+
+                    return RedirectToAction("UserList");
+                }
+
+                model.CreatedBy = User.Identity.Name;
+
+                var oldRole = UserManager.GetRoles(model.AspNetUserID).FirstOrDefault();
+
+                if(string.IsNullOrEmpty(oldRole))
+                {
+                    UserManager.AddToRole(model.AspNetUserID, model.Role);
+                }
+                else if(oldRole != model.Role)
+                {
+                    UserManager.RemoveFromRole(model.AspNetUserID, oldRole);
+                    UserManager.AddToRole(model.AspNetUserID, model.Role);
+                }
+
+                using (var mgr = new CMSLcLy.Data.User.Manager())
+                {
+                    var result = mgr.Save(model);
+                }                 
+
+                return RedirectToAction("UserList");
+            }
+            catch (Exception ex)
+            {
+                TempData[COMM.Constants.WebUI.ErrorMessage] = "Failed to update User: " + ex.Message;
+                return RedirectToAction("UserList", model);
+            }
+        }
+
+        // GET: Administration/Bank/Delete/5
+        public ActionResult Delete(string userId)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(userId))
+                {
+                    ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
+
+                    return RedirectToAction("UserList");
+                }
+
+                using (var mgr = new CMSLcLy.Data.User.Manager())
+                {
+                    var result = mgr.DeleteUserDetail(userId);
+                }
+                ApplicationUser UserToDelete = UserManager.FindById(userId);
+
+                if (UserToDelete != null)
+                {
+                    IdentityResult result = UserManager.Delete(UserToDelete);
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("UserList");
+                    }
+
+                    string errorMsg = string.Empty;
+
+                    foreach (string error in result.Errors)
+                    {
+                        errorMsg += error + ",";
+                        ModelState.AddModelError("", error);
+                    }
+
+
+                    TempData[COMM.Constants.WebUI.ErrorMessage] = "Failed to delete User: " + errorMsg;
+                }
+
+
+                return RedirectToAction("UserList");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
+
+                TempData[COMM.Constants.WebUI.ErrorMessage] = "Failed to delete User: " + ex.Message;
+                return RedirectToAction("UserList");
+            }
+        }
+
+        public IList<UserMasterItemViewModel> CombineAddress(IList<UserMasterItemViewModel> model)
+        {
+            if (model == null) return model;
+
+            foreach (var n in model)
+                CombineAddress(n);
+
+            return model;
+        }
+
+
+        public UserMasterItemViewModel CombineAddress(UserMasterItemViewModel model)
+        {
+            if (model == null) return model;
+            model.Address = $"{model.Address}, {model.Address2}, {model.Address3} ";
+
+            return model;
+        }
     }
 }

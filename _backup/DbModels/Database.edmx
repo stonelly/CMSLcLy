@@ -1,0 +1,623 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DefaultConnection.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="8.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="aspnetroles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="aspnetuserclaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="varchar" MaxLength="4000" />
+          <Property Name="ClaimValue" Type="varchar" MaxLength="4000" />
+        </EntityType>
+        <EntityType Name="aspnetuserlogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="varchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="aspnetuserroles">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="varchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="aspnetusers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="varchar" MaxLength="4000" />
+          <Property Name="SecurityStamp" Type="varchar" MaxLength="4000" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="4000" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" Precision="0" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="bankmaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BankName" Type="varchar" MaxLength="200" />
+          <Property Name="Address" Type="varchar" MaxLength="500" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="128" />
+          <Property Name="CreatedDate" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="documentworkflow">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WorkflowDetailID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DueDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="isCompleted" Type="int" Nullable="false" />
+          <Property Name="isRPA" Type="bit" Nullable="false" />
+          <Property Name="Sequence" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="userdetails">
+          <Key>
+            <PropertyRef Name="UserDetailsId" />
+          </Key>
+          <Property Name="UserDetailsId" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="255" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="PostalCode" Type="varchar" MaxLength="50" />
+          <Property Name="Country" Type="varchar" MaxLength="50" />
+          <Property Name="AspNetUserId" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Precision="0" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="255" />
+          <Property Name="Email" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="usermaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="workflow">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WorkflowDescrption" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="WorkflowDescrption_BM" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="WorkflowDescrption_CN" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="WorkflowTotalDuration" Type="int" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="CreatedDate" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="workflowdetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WorkflowMasterID" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="500" />
+          <Property Name="Description_BM" Type="varchar" MaxLength="500" />
+          <Property Name="Description_CN" Type="varchar" MaxLength="500" />
+          <Property Name="Duration" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="workflowmaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WorkflowID" Type="int" />
+          <Property Name="WorkFlowMasterDesc" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="WorkFlowMasterDesc_BM" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="WorkFlowMasterDesc_CN" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="WorkFlowMasterDuration" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="128" />
+        </EntityType>
+        <Association Name="FK_userclaim_user">
+          <End Role="aspnetusers" Type="Self.aspnetusers" Multiplicity="1" />
+          <End Role="aspnetuserclaims" Type="Self.aspnetuserclaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnetusers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="aspnetuserclaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_userlogin_user">
+          <End Role="aspnetusers" Type="Self.aspnetusers" Multiplicity="1" />
+          <End Role="aspnetuserlogins" Type="Self.aspnetuserlogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnetusers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="aspnetuserlogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_userroles_roles">
+          <End Role="aspnetroles" Type="Self.aspnetroles" Multiplicity="1" />
+          <End Role="aspnetuserroles" Type="Self.aspnetuserroles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnetroles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="aspnetuserroles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_userroles_user">
+          <End Role="aspnetusers" Type="Self.aspnetusers" Multiplicity="1" />
+          <End Role="aspnetuserroles" Type="Self.aspnetuserroles" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="aspnetusers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="aspnetuserroles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="userdetails_ibfk_1">
+          <End Role="aspnetusers" Type="Self.aspnetusers" Multiplicity="1" />
+          <End Role="userdetails" Type="Self.userdetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnetusers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="userdetails">
+              <PropertyRef Name="AspNetUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DefaultConnectionStoreContainer">
+          <EntitySet Name="aspnetroles" EntityType="Self.aspnetroles" Schema="lawfirmhelper" store:Type="Tables" />
+          <EntitySet Name="aspnetuserclaims" EntityType="Self.aspnetuserclaims" Schema="lawfirmhelper" store:Type="Tables" />
+          <EntitySet Name="aspnetuserlogins" EntityType="Self.aspnetuserlogins" Schema="lawfirmhelper" store:Type="Tables" />
+          <EntitySet Name="aspnetuserroles" EntityType="Self.aspnetuserroles" Schema="lawfirmhelper" store:Type="Tables" />
+          <EntitySet Name="aspnetusers" EntityType="Self.aspnetusers" Schema="lawfirmhelper" store:Type="Tables" />
+          <EntitySet Name="bankmaster" EntityType="Self.bankmaster" Schema="lawfirmhelper" store:Type="Tables" />
+          <EntitySet Name="documentworkflow" EntityType="Self.documentworkflow" Schema="lawfirmhelper" store:Type="Tables" />
+          <EntitySet Name="userdetails" EntityType="Self.userdetails" Schema="lawfirmhelper" store:Type="Tables" />
+          <EntitySet Name="usermaster" EntityType="Self.usermaster" Schema="lawfirmhelper" store:Type="Tables" />
+          <EntitySet Name="workflow" EntityType="Self.workflow" Schema="lawfirmhelper" store:Type="Tables" />
+          <EntitySet Name="workflowdetail" EntityType="Self.workflowdetail" Schema="lawfirmhelper" store:Type="Tables" />
+          <EntitySet Name="workflowmaster" EntityType="Self.workflowmaster" Schema="lawfirmhelper" store:Type="Tables" />
+          <AssociationSet Name="FK_userclaim_user" Association="Self.FK_userclaim_user">
+            <End Role="aspnetusers" EntitySet="aspnetusers" />
+            <End Role="aspnetuserclaims" EntitySet="aspnetuserclaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_userlogin_user" Association="Self.FK_userlogin_user">
+            <End Role="aspnetusers" EntitySet="aspnetusers" />
+            <End Role="aspnetuserlogins" EntitySet="aspnetuserlogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_userroles_roles" Association="Self.FK_userroles_roles">
+            <End Role="aspnetroles" EntitySet="aspnetroles" />
+            <End Role="aspnetuserroles" EntitySet="aspnetuserroles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_userroles_user" Association="Self.FK_userroles_user">
+            <End Role="aspnetusers" EntitySet="aspnetusers" />
+            <End Role="aspnetuserroles" EntitySet="aspnetuserroles" />
+          </AssociationSet>
+          <AssociationSet Name="userdetails_ibfk_1" Association="Self.userdetails_ibfk_1">
+            <End Role="aspnetusers" EntitySet="aspnetusers" />
+            <End Role="userdetails" EntitySet="userdetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DefaultConnection" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="aspnetrole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="aspnetusers" Relationship="Self.aspnetuserroles" FromRole="aspnetroles" ToRole="aspnetusers" />
+        </EntityType>
+        <EntityType Name="aspnetuserclaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="ClaimValue" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="aspnetuser" Relationship="Self.FK_userclaim_user" FromRole="aspnetuserclaims" ToRole="aspnetusers" />
+        </EntityType>
+        <EntityType Name="aspnetuserlogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="aspnetuser" Relationship="Self.FK_userlogin_user" FromRole="aspnetuserlogins" ToRole="aspnetusers" />
+        </EntityType>
+        <EntityType Name="aspnetuser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="aspnetuserclaims" Relationship="Self.FK_userclaim_user" FromRole="aspnetusers" ToRole="aspnetuserclaims" />
+          <NavigationProperty Name="aspnetuserlogins" Relationship="Self.FK_userlogin_user" FromRole="aspnetusers" ToRole="aspnetuserlogins" />
+          <NavigationProperty Name="userdetails" Relationship="Self.userdetails_ibfk_1" FromRole="aspnetusers" ToRole="userdetails" />
+          <NavigationProperty Name="aspnetrole" Relationship="Self.aspnetuserroles" FromRole="aspnetusers" ToRole="aspnetroles" />
+        </EntityType>
+        <EntityType Name="bankmaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BankName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="documentworkflow">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WorkflowDetailID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DueDate" Type="DateTime" Nullable="false" />
+          <Property Name="isCompleted" Type="Int32" Nullable="false" />
+          <Property Name="isRPA" Type="Boolean" Nullable="false" />
+          <Property Name="Sequence" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="userdetail">
+          <Key>
+            <PropertyRef Name="UserDetailsId" />
+          </Key>
+          <Property Name="UserDetailsId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PostalCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AspNetUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="aspnetuser" Relationship="Self.userdetails_ibfk_1" FromRole="userdetails" ToRole="aspnetusers" />
+        </EntityType>
+        <EntityType Name="usermaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="workflow">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WorkflowDescrption" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="WorkflowDescrption_BM" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="WorkflowDescrption_CN" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="WorkflowTotalDuration" Type="Int32" />
+          <Property Name="CreatedBy" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="workflowdetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WorkflowMasterID" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Description_BM" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Description_CN" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Duration" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="workflowmaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WorkflowID" Type="Int32" />
+          <Property Name="WorkFlowMasterDesc" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="WorkFlowMasterDesc_BM" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="WorkFlowMasterDesc_CN" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="WorkFlowMasterDuration" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_userclaim_user">
+          <End Role="aspnetusers" Type="Self.aspnetuser" Multiplicity="1" />
+          <End Role="aspnetuserclaims" Type="Self.aspnetuserclaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnetusers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="aspnetuserclaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_userlogin_user">
+          <End Role="aspnetusers" Type="Self.aspnetuser" Multiplicity="1" />
+          <End Role="aspnetuserlogins" Type="Self.aspnetuserlogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnetusers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="aspnetuserlogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="userdetails_ibfk_1">
+          <End Role="aspnetusers" Type="Self.aspnetuser" Multiplicity="1" />
+          <End Role="userdetails" Type="Self.userdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnetusers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="userdetails">
+              <PropertyRef Name="AspNetUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="aspnetuserroles">
+          <End Role="aspnetroles" Type="Self.aspnetrole" Multiplicity="0..1" />
+          <End Role="aspnetusers" Type="Self.aspnetuser" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="lawfirmhelperEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="aspnetroles" EntityType="Self.aspnetrole" />
+          <EntitySet Name="aspnetuserclaims" EntityType="Self.aspnetuserclaim" />
+          <EntitySet Name="aspnetuserlogins" EntityType="Self.aspnetuserlogin" />
+          <EntitySet Name="aspnetusers" EntityType="Self.aspnetuser" />
+          <EntitySet Name="bankmasters" EntityType="Self.bankmaster" />
+          <EntitySet Name="documentworkflows" EntityType="Self.documentworkflow" />
+          <EntitySet Name="userdetails" EntityType="Self.userdetail" />
+          <EntitySet Name="usermasters" EntityType="Self.usermaster" />
+          <EntitySet Name="workflows" EntityType="Self.workflow" />
+          <EntitySet Name="workflowdetails" EntityType="Self.workflowdetail" />
+          <EntitySet Name="workflowmasters" EntityType="Self.workflowmaster" />
+          <AssociationSet Name="FK_userclaim_user" Association="Self.FK_userclaim_user">
+            <End Role="aspnetusers" EntitySet="aspnetusers" />
+            <End Role="aspnetuserclaims" EntitySet="aspnetuserclaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_userlogin_user" Association="Self.FK_userlogin_user">
+            <End Role="aspnetusers" EntitySet="aspnetusers" />
+            <End Role="aspnetuserlogins" EntitySet="aspnetuserlogins" />
+          </AssociationSet>
+          <AssociationSet Name="userdetails_ibfk_1" Association="Self.userdetails_ibfk_1">
+            <End Role="aspnetusers" EntitySet="aspnetusers" />
+            <End Role="userdetails" EntitySet="userdetails" />
+          </AssociationSet>
+          <AssociationSet Name="aspnetuserroles" Association="Self.aspnetuserroles">
+            <End Role="aspnetroles" EntitySet="aspnetroles" />
+            <End Role="aspnetusers" EntitySet="aspnetusers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DefaultConnectionStoreContainer" CdmEntityContainer="lawfirmhelperEntities">
+          <EntitySetMapping Name="aspnetroles">
+            <EntityTypeMapping TypeName="DefaultConnection.aspnetrole">
+              <MappingFragment StoreEntitySet="aspnetroles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="aspnetuserclaims">
+            <EntityTypeMapping TypeName="DefaultConnection.aspnetuserclaim">
+              <MappingFragment StoreEntitySet="aspnetuserclaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="aspnetuserlogins">
+            <EntityTypeMapping TypeName="DefaultConnection.aspnetuserlogin">
+              <MappingFragment StoreEntitySet="aspnetuserlogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="aspnetusers">
+            <EntityTypeMapping TypeName="DefaultConnection.aspnetuser">
+              <MappingFragment StoreEntitySet="aspnetusers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bankmasters">
+            <EntityTypeMapping TypeName="DefaultConnection.bankmaster">
+              <MappingFragment StoreEntitySet="bankmaster">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="documentworkflows">
+            <EntityTypeMapping TypeName="DefaultConnection.documentworkflow">
+              <MappingFragment StoreEntitySet="documentworkflow">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="WorkflowDetailID" ColumnName="WorkflowDetailID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="isCompleted" ColumnName="isCompleted" />
+                <ScalarProperty Name="isRPA" ColumnName="isRPA" />
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="userdetails">
+            <EntityTypeMapping TypeName="DefaultConnection.userdetail">
+              <MappingFragment StoreEntitySet="userdetails">
+                <ScalarProperty Name="UserDetailsId" ColumnName="UserDetailsId" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="AspNetUserId" ColumnName="AspNetUserId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usermasters">
+            <EntityTypeMapping TypeName="DefaultConnection.usermaster">
+              <MappingFragment StoreEntitySet="usermaster">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="workflows">
+            <EntityTypeMapping TypeName="DefaultConnection.workflow">
+              <MappingFragment StoreEntitySet="workflow">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="WorkflowDescrption" ColumnName="WorkflowDescrption" />
+                <ScalarProperty Name="WorkflowDescrption_BM" ColumnName="WorkflowDescrption_BM" />
+                <ScalarProperty Name="WorkflowDescrption_CN" ColumnName="WorkflowDescrption_CN" />
+                <ScalarProperty Name="WorkflowTotalDuration" ColumnName="WorkflowTotalDuration" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="workflowdetails">
+            <EntityTypeMapping TypeName="DefaultConnection.workflowdetail">
+              <MappingFragment StoreEntitySet="workflowdetail">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="WorkflowMasterID" ColumnName="WorkflowMasterID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Description_BM" ColumnName="Description_BM" />
+                <ScalarProperty Name="Description_CN" ColumnName="Description_CN" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="workflowmasters">
+            <EntityTypeMapping TypeName="DefaultConnection.workflowmaster">
+              <MappingFragment StoreEntitySet="workflowmaster">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="WorkflowID" ColumnName="WorkflowID" />
+                <ScalarProperty Name="WorkFlowMasterDesc" ColumnName="WorkFlowMasterDesc" />
+                <ScalarProperty Name="WorkFlowMasterDesc_BM" ColumnName="WorkFlowMasterDesc_BM" />
+                <ScalarProperty Name="WorkFlowMasterDesc_CN" ColumnName="WorkFlowMasterDesc_CN" />
+                <ScalarProperty Name="WorkFlowMasterDuration" ColumnName="WorkFlowMasterDuration" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="aspnetuserroles" TypeName="DefaultConnection.aspnetuserroles" StoreEntitySet="aspnetuserroles">
+            <EndProperty Name="aspnetroles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="aspnetusers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

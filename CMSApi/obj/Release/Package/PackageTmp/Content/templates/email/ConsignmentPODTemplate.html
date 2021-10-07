@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+<head>
+	<style>
+		#customers {
+			font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+		#customers td, #customers th {
+			border: 1px solid #ddd;
+			padding: 8px;
+		}
+
+		#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+		#customers tr:hover {background-color: #ddd;}
+
+		#customers th {
+			padding-top: 12px;
+			padding-bottom: 12px;
+			text-align: left;
+			background-color: #4CAF50;
+			color: white;
+		}
+	</style>
+</head>
+<body>
+	<p>Hello,</p>
+	<p><b>{CompanyName}</b></p>
+	<p></p>
+	<p></p>
+	<p><b>{LoginUsername}</b> has completed a consignment delivery dated <b>{DeliveryDatetime}</b>.</p>
+	<p>The details of the delivered item are as follows:</p>
+	<p></p>
+	<table id="customers">
+		<tr>
+			<td>Information Supplied By</td>
+			<td>Proof of Delivery</td>
+			<td>Map of Delivery Location</td>
+		</tr>
+		<tr>
+			<td>
+				<table>
+					<tr>
+						<td>Company Name</td>					
+						<td>{CompanyName}</td>
+					</tr>
+					<tr>
+						<td>Date Scanned</td>					
+						<td>{DeliveryDatetime}</td>
+					</tr>
+					<tr>
+						<td>Consignment No.</td>					
+						<td>{ConsignmentNo}</td>
+					</tr>
+					<tr>
+						<td>Address of Scan</td>					
+						<td>{AddressOfScan}</td>
+					</tr>					
+				</table>
+			</td>
+			<!--<td><p><img border=0 height="320" width=420 src="https://s3.amazonaws.com/megaapp/New_Production/26/0626034551_1.png"></p></td>-->
+			<td><p><img border=0 height="320" width=420 src="{ScannedImagePath}"></p></td>
+			<td>
+				<p>
+					<a href="http://maps.google.com/?q={DeliveryLatLon}" target="_blank">
+						<span style='text-decoration:none;text-underline:none'>
+						<!--<img border=0 height="320" width=420 src="http://maps.googleapis.com/maps/api/staticmap?size=400x380&amp;markers=-36.8934084,174.8800727&amp;sensor=true">-->
+						<img border=0 height="320" width=420 src="http://maps.googleapis.com/maps/api/staticmap?size=400x380&amp;markers={DeliveryLatLon}&amp;sensor=true">
+						</span>
+					</a>
+				</p>
+			</td>
+		</tr>
+	</table>
+	
+	<p><span lang=EN-MY style='mso-ansi-language:EN-MY'>This email was supplied to you by Mega Telematics APP.</span></p>
+	<p class=MsoNormal><span><a target="_blank" href="http://www.megaiot.com.my">www.megaiot.com.my</a></span></p>
+</body>
+</html>

@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/css/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/css/font-awesome.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/css/smartadmin-production.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/css/mf_custom.css")" rel="stylesheet" type="text/css" />
+
+    <style>
+        /* fixes for header overlapping if pdf spans more than 1 page */
+        tr {
+            page-break-inside: avoid;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>

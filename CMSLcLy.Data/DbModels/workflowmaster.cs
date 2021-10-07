@@ -16,11 +16,14 @@ namespace CMSLcLy.Data.DbModels
     public partial class workflowmaster
     {
         [System.ComponentModel.DataAnnotations.Key]
-        public int WorkFlowMasterID { get; set; }
-        public string WorkFlowName { get; set; }
+        public int ID { get; set; }
+        public Nullable<int> WorkflowID { get; set; }
+        public Nullable<int> Sequence { get; set; }
+        public string WorkFlowMasterDesc { get; set; }
+        public string WorkFlowMasterDesc_BM { get; set; }
+        public string WorkFlowMasterDesc_CN { get; set; }
+        public int WorkFlowMasterDuration { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public string CreatedBy { get; set; }
-        public string ModifyBy { get; set; }
-        public Nullable<System.DateTime> ModifyDate { get; set; }
     }
 }

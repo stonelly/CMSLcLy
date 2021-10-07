@@ -1,0 +1,147 @@
+﻿@model CMSLcLy.Data.Bank.BankShortCut.bankshortcutmasterItemViewModel
+
+@{
+    ViewBag.Title = "Create Bank Shortcut";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="content">
+
+
+    <!-- widget grid -->
+    <section id="widget-grid" class="">
+
+        <!-- row -->
+
+        <div class="row">
+
+            <article class="col-sm-12">
+
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget jarviswidget-color-orange" id="wid-id-0" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false">
+
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                        <h2>Bank Shortcut</h2>
+
+                    </header>
+
+                    <!-- widget div-->
+                    <div>
+
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body no-padding">
+
+                            <div class="panel-group smart-accordion-default" id="accordion-2">
+                                <div class="panel panel-default">
+                                    <div id="collapse-1" class="panel-collapse collapse in">
+                                        <div class="panel-body">
+                                            @using (Html.BeginForm("Save", "BankShortcut", new { Area = "Administration" }, FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                                            {
+                                                @Html.AntiForgeryToken()
+                                                <div class="form-horizontal">
+                                                    <fieldset>
+                                                        <legend>
+                                                            Bank Information
+                                                        </legend>
+
+                                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.BankShortCut, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                            <div class="col-md-10">
+                                                                @Html.EditorFor(model => model.BankShortCut, new { htmlAttributes = new { @class = "form-control" } })
+                                                                @Html.ValidationMessageFor(model => model.BankShortCut, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.BankName, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                            <div class="col-md-10">
+                                                                @Html.EditorFor(model => model.BankName, new { htmlAttributes = new { @class = "form-control" } })
+                                                                @Html.ValidationMessageFor(model => model.BankName, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.CompanyNo, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                            <div class="col-md-10">
+                                                                @Html.EditorFor(model => model.CompanyNo, new { htmlAttributes = new { @class = "form-control" } })
+                                                                @Html.ValidationMessageFor(model => model.CompanyNo, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                        
+
+                                                    </fieldset>
+
+                                                    <div class="form-actions">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                @Html.ActionLink("Cancel", "Index", "BankShortcut", new { area = "Administration" }, new { @class = "btn btn-default" })
+
+                                                                <button class="btn btn-primary" type="submit">
+                                                                    <i class="fa fa-save"></i>
+                                                                    Save
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            @*hereya*@
+
+                        </div>
+                        <!-- end widget content -->
+
+                    </div>
+                    <!-- end widget div -->
+
+                </div>
+                <!-- end widget -->
+
+            </article>
+
+
+        </div>
+
+        <!-- end row -->
+
+
+    </section>
+    <!-- end widget grid -->
+</div>
+<!-- END MAIN CONTENT -->
+
+@section pagespecific {
+    <!-- PAGE RELATED PLUGIN(S) -->
+    <script src="/scripts/plugin/maxlength/bootstrap-maxlength.min.js"></script>
+    <script src="/scripts/plugin/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
+    <script src="/scripts/plugin/clockpicker/clockpicker.min.js"></script>
+    <script src="/scripts/plugin/bootstrap-tags/bootstrap-tagsinput.min.js"></script>
+    <script src="/scripts/plugin/noUiSlider/jquery.nouislider.min.js"></script>
+    <script src="/scripts/plugin/ion-slider/ion.rangeSlider.min.js"></script>
+    <script src="/scripts/plugin/bootstrap-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+    <script src="/scripts/plugin/colorpicker/bootstrap-colorpicker.min.js"></script>
+    <script src="/scripts/plugin/knob/jquery.knob.min.js"></script>
+    <script src="/scripts/plugin/x-editable/moment.min.js"></script>
+    <script src="/scripts/plugin/x-editable/jquery.mockjax.min.js"></script>
+    <script src="/scripts/plugin/x-editable/x-editable.min.js"></script>
+    <script src="/scripts/plugin/typeahead/typeahead.min.js"></script>
+    <script src="/scripts/plugin/typeahead/typeaheadjs.min.js"></script>
+
+    <script type="text/javascript">
+
+
+    </script>
+}
+
+

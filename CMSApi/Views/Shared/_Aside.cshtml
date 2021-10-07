@@ -1,0 +1,143 @@
+﻿    <!-- Left panel : Navigation area -->
+<!-- Note: This width of the aside area can be adjusted through LESS variables -->
+<aside id="left-panel">
+
+    <!-- User info -->
+    @{ Html.RenderPartial("_CurrentUser"); }
+    <!-- end user info -->
+    <!-- NAVIGATION : This navigation is also responsive
+
+    To make this navigation dynamic please make sure to link the node
+    (the reference to the nav > ul) after page load. Or the navigation
+    will not initialize.
+    -->
+    <nav>
+        <!-- NOTE: Notice the gaps after each icon usage <i></i>..
+        Please note that these links work a bit different than
+        traditional href="" links. See documentation for details.
+        -->
+
+        <ul>
+            <li class="@Html.RouteIf("index", "active")">
+                <a href="@Url.Action("index", "home",  new { area = ""})" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Home</span></a>
+            </li>
+            <li class="@Html.RouteIf("FileListing", "active")">
+                <a href="@Url.Action("FileListing", "file", new { Area = "files" })"><i class="fa fa-lg fa-fw fa-table"></i> <span class="menu-item-parent">Search Files</span></a>
+            </li>
+            <li class="@Html.RouteIf("SPAnLoan", "active")">
+                <a href="@Url.Action("index", "SPAnLoan", new { Area = "files" })"><i class="fa fa-lg fa-fw fa-pencil-square-o"></i> <span class="menu-item-parent">SPA & LOAN</span></a>
+
+            </li>
+            <li class="@Html.RouteIf("Refinancing", "active")">
+                <a href="@Url.Action("index", "Refinancing", new { Area = "files" })"><i class="fa fa-lg fa-fw fa-desktop"></i> <span class="menu-item-parent">Refinancing</span></a>
+
+            </li>
+            <li class="@Html.RouteIf("POTC", "active")">
+                <a href="@Url.Action("index", "POTC", new { Area = "files" })"><i class="fa fa-lg fa-fw fa-list-alt"></i> <span class="menu-item-parent">PoTC</span></a>
+            </li>
+            <li class="@Html.RouteIf("transfer", "active")">
+                <a href="@Url.Action("index", "transfer", new { Area = "files" })"><i class="fa fa-lg fa-fw fa-share"></i> <span class="menu-item-parent">Transfer</span></a>
+            </li>
+
+
+
+            <li class="@Html.RouteIf("Administration", "active")">
+                <a href="#"><i class="fa fa-lg fa-fw fa-users"> </i> <span class="menu-item-parent">Administration</span></a>
+                <ul>
+                    <li class="@Html.RouteIf("Client", "active")">
+                        <a href="@Url.Action("index", "Client", new { Area = "Administration" })"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">Client Management</span></a>
+                    </li>
+
+                    <li class="@Html.RouteIf("Firm", "active")">
+                        <a href="@Url.Action("index", "Firm", new { Area = "Administration" })"><i class="fa fa-lg fa-fw fa-building-o"></i> <span class="menu-item-parent">Firm Management</span></a>
+                    </li>
+                    @*<li class="@Html.RouteIf("Bank", "active")">
+            <a href="@Url.Action("index", "Bank", new { Area = "Administration" })"><i class="fa fa-lg fa-fw fa-money"></i> <span class="menu-item-parent">Bank Management</span></a>
+        </li>*@
+                    <li class="@Html.RouteIf("Bank", "active")">
+                        <a href="#"><i class="fa fa-lg fa-fw fa-user"></i>Bank Management</a>
+                        <ul>
+                            <li class="@Html.RouteIf("Bank", "active")">
+                                <a href="@Url.Action("index", "Bank", new { Area = "Administration" })"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">Bank</span></a>
+                            </li>
+                            <li class="@Html.RouteIf("BankCAC", "active")">
+                                <a href="@Url.Action("index", "BankCAC", new { Area = "Administration" })"><i class="fa fa-lg fa-fw fa-fire-extinguisher"></i> <span class="menu-item-parent">Bank CAC</span> </a>
+                            </li>
+                            <li class="@Html.RouteIf("BankShortcut", "active")">
+                                <a href="@Url.Action("index", "BankShortcut", new { Area = "Administration" })"><i class="fa fa-lg fa-fw fa-fire-extinguisher"></i> <span class="menu-item-parent">Bank Shortcut</span> </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="@Html.RouteIf("Workflow", "active")">
+                        <a href="@Url.Action("index", "Workflow", new { Area = "SystemSetting" })"><i class="fa fa-lg fa-fw fa-list"></i> <span class="menu-item-parent">Checklist</span></a>
+                    </li>
+                    <li class="@Html.RouteIf("Company", "active")">
+                        <a href="@Url.Action("index", "Company", new { Area = "SystemSetting" })"><i class="fa fa-lg fa-fw fa-bookmark"></i> <span class="menu-item-parent">Company Profile</span></a>
+                    </li>
+
+                </ul>
+            </li>
+            <li class="@Html.RouteIf("SystemSetting", "active")">
+                <a href="#"><i class="fa fa-lg fa-fw fa-user-md"> </i> <span class="menu-item-parent">System Setting</span></a>
+                <ul>
+                    <li class="@Html.RouteIf("User", "active")">
+                        <a href="#"><i class="fa fa-lg fa-fw fa-user"></i>User Management</a>
+                        <ul>
+                            <li class="@Html.RouteIf("UserAccount", "active")">
+                                <a href="@Url.Action("Userlist", "UserAccount", new { Area = "" })"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">User</span></a>
+                            </li>
+                            <li class="@Html.RouteIf("RoleMaster", "active")">
+                                <a href="@Url.Action("index", "RoleMaster", new { Area = "SystemSetting" })"><i class="fa fa-lg fa-fw fa-fire-extinguisher"></i> <span class="menu-item-parent">Role</span> </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="@Html.RouteIf("Enum", "active")">
+                        <a href="#"><i class="fa fa-lg fa-fw fa-user"></i>Parameter</a>
+                        <ul>
+                            <li class="@Html.RouteIf("Enum", "active")">
+                                <a href="@Url.Action("index", "Enum", new { Area = "Administration" , enumType="IdentityType"})"> <span class="menu-item-parent">Identity Type</span></a>
+                            </li>
+                            <li class="@Html.RouteIf("Enum", "active")">
+                                <a href="@Url.Action("index", "Enum", new { Area = "Administration" , enumType="OwningType"})"> <span class="menu-item-parent">Owning Type</span></a>
+                            </li>
+                            <li class="@Html.RouteIf("Enum", "active")">
+                                <a href="@Url.Action("index", "Enum", new { Area = "Administration" , enumType="UserType"})"> <span class="menu-item-parent">User Type</span></a>
+                            </li>
+                            <li class="@Html.RouteIf("Enum", "active")">
+                                <a href="@Url.Action("index", "Enum", new { Area = "Administration" , enumType="LotType"})"> <span class="menu-item-parent">Lot Type</span></a>
+                            </li>
+                            <li class="@Html.RouteIf("Enum", "active")">
+                                <a href="@Url.Action("index", "Enum", new { Area = "Administration" , enumType="TypeofLot"})"> <span class="menu-item-parent">Type of Lot</span></a>
+                            </li>
+                            <li class="@Html.RouteIf("Enum", "active")">
+                                <a href="@Url.Action("index", "Enum", new { Area = "Administration" , enumType="AreaType"})"> <span class="menu-item-parent">Area Type</span></a>
+                            </li>
+                            <li class="@Html.RouteIf("Enum", "active")">
+                                <a href="@Url.Action("index", "Enum", new { Area = "Administration" , enumType="GeranStatusType"})"> <span class="menu-item-parent">GeranStatus Type</span></a>
+                            </li>
+                            <li class="@Html.RouteIf("Enum", "active")">
+                                <a href="@Url.Action("index", "Enum", new { Area = "Administration" , enumType="ConditionType"})"> <span class="menu-item-parent">Condition Type</span></a>
+                            </li>
+                            <li class="@Html.RouteIf("Enum", "active")">
+                                <a href="@Url.Action("index", "Enum", new { Area = "Administration" , enumType="LandUsageCategoryType"})"> <span class="menu-item-parent">Land Usage Category Type</span></a>
+                            </li>
+                            <li class="@Html.RouteIf("Enum", "active")">
+                                <a href="@Url.Action("index", "Enum", new { Area = "Administration" , enumType="RestrictionType"})"> <span class="menu-item-parent">Restriction Type</span></a>
+                            </li>
+                            <li class="@Html.RouteIf("Enum", "active")">
+                                <a href="@Url.Action("index", "Enum", new { Area = "Administration" , enumType="BuildingType"})"> <span class="menu-item-parent">Building Type</span></a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </li>
+
+        </ul>
+    </nav>
+    <span class="minifyme" data-action="minifyMenu">
+        <i class="fa fa-arrow-circle-left hit"></i>
+    </span>
+
+</aside>
+<!-- END NAVIGATION -->

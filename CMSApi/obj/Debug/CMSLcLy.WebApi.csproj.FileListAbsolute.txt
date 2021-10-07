@@ -190,3 +190,13 @@ C:\Study\WebApi\CMSApi\CMSApi\obj\Debug\CMSApi.dll
 C:\Study\WebApi\CMSApi\CMSApi\obj\Debug\CMSApi.pdb
 C:\Study\WebApi\CMSApi\CMSApi\bin\Renci.SshNet.dll
 C:\Study\WebApi\CMSApi\CMSApi\bin\Renci.SshNet.xml
+C:\Study\WebApi\CMSApi\CMSApi\bin\Syncfusion.Compression.Base.dll
+C:\Study\WebApi\CMSApi\CMSApi\bin\Syncfusion.DocIO.Base.dll
+C:\Study\WebApi\CMSApi\CMSApi\bin\Syncfusion.Licensing.dll
+C:\Study\WebApi\CMSApi\CMSApi\bin\Syncfusion.OfficeChart.Base.dll
+C:\Study\WebApi\CMSApi\CMSApi\bin\Syncfusion.Compression.Base.xml
+C:\Study\WebApi\CMSApi\CMSApi\bin\Syncfusion.DocIO.Base.xml
+C:\Study\WebApi\CMSApi\CMSApi\bin\Syncfusion.Licensing.xml
+C:\Study\WebApi\CMSApi\CMSApi\bin\Syncfusion.OfficeChart.Base.xml
+C:\Study\WebApi\CMSApi\CMSApi\bin\CMSLcLy.Common.dll
+C:\Study\WebApi\CMSApi\CMSApi\bin\CMSLcLy.Common.pdb

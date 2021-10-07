@@ -20,32 +20,31 @@ namespace CMSApi.Controllers
         // GET api/values/5
         public IHttpActionResult GetWorkFlow(int id)
         {
-            IList<CMSLcLy.Data.Workflow.workflowmasterItemViewModel> workflowmasterItemViewModel = null;
+            IList<CMSLcLy.Data.Workflow.WorkFlowMaster.WorkflowMasterItemViewModel> model = null;
 
-            using (var mgr = new CMSLcLy.Data.Workflow.Manager())
+            using (var mgr = new CMSLcLy.Data.Workflow.WorkFlowMaster.Manager())
             {
-                workflowmasterItemViewModel = mgr.List().ToList();
+                model = mgr.List().ToList();
             }
 
-            if(workflowmasterItemViewModel.Count == 0) return NotFound();
+            if(model.Count == 0) return NotFound();
         
 
-            return Ok(workflowmasterItemViewModel);
+            return Ok(model);
              
         }
 
         // POST api/values
-        public IHttpActionResult Post(CMSLcLy.Data.Workflow.workflowmasterItemViewModel workflowmasterItemViewModel)
+        public IHttpActionResult Post(CMSLcLy.Data.Workflow.WorkFlowMaster.WorkflowMasterItemViewModel model)
         {
-            workflowmasterItemViewModel.CreatedBy = User.Identity.Name;
-            workflowmasterItemViewModel.ModifyBy = User.Identity.Name;
+            model.CreatedBy = User.Identity.Name;
 
             if (!ModelState.IsValid)
                 return BadRequest("Not a valid model");
 
-            using (var mgr = new CMSLcLy.Data.Workflow.Manager())
+            using (var mgr = new CMSLcLy.Data.Workflow.WorkFlowMaster.Manager())
             {
-                var result = mgr.Add(workflowmasterItemViewModel);
+                var result = mgr.Add(model);
             }
 
             return Ok();

@@ -101,7 +101,7 @@ namespace CMSApi.Models
     }
 
     public class RegisterViewModel
-    {
+    { 
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
@@ -111,12 +111,20 @@ namespace CMSApi.Models
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
-        public string Password { get; set; }
+        public string Password { get; set; } = "LcLy@123";
 
-        [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-        public string ConfirmPassword { get; set; }
+        //[DataType(DataType.Password)]
+        //[Display(Name = "Confirm password")]
+        //[Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        //public string ConfirmPassword { get; set; }
+
+
+        [Required]
+        [Display(Name = "UserRoles")]
+        public string UserRoles { get; set; }
+
+
+        public List<System.Web.Mvc.SelectListItem> Roles { get; set; }
     }
 
     public class ResetPasswordViewModel
