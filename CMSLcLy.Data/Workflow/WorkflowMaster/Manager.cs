@@ -22,6 +22,7 @@ namespace CMSLcLy.Data.Workflow.WorkFlowMaster
                 WorkFlowMasterDesc_BM = model.WorkFlowMasterDesc_BM,
                 WorkFlowMasterDesc_CN = model.WorkFlowMasterDesc_CN,
                 WorkFlowMasterDuration = model.WorkFlowMasterDuration,
+                Sequence = model.Sequence,
                 CreatedDate = DateTime.Now,
                 CreatedBy = model.CreatedBy,
                 //ModifyBy = workflowmasterItemViewModel.ModifyBy,
@@ -54,19 +55,21 @@ namespace CMSLcLy.Data.Workflow.WorkFlowMaster
 
 
 
-            //q.WorkFlowDetails = (from model in Context.workflowdetails
-            //                     where model.WorkflowMasterID == q.ID
-            //                     select new WorkFlowDetailMasterItemViewModel
-            //                     {
-            //                         ID = model.ID,
-            //                         WorkflowMasterID = model.WorkflowMasterID,
-            //                         Sequence = model.Sequence,
-            //                         Description = model.Description,
-            //                         Description_BM = model.Description_BM,
-            //                         Description_CN = model.Description_CN,
-            //                         CreatedBy = model.CreatedBy,
-            //                         CreatedDate = model.CreatedDate,
-            //                     }).ToList();
+            q.WorkFlowDetails = (from model in Context.workflowdetails
+                                 where model.WorkflowMasterID == q.ID
+                                 orderby model.Sequence
+                                 select new WorkFlowDetailMasterItemViewModel
+                                 {
+                                     ID = model.ID,
+                                     WorkflowMasterID = model.WorkflowMasterID,
+                                     Sequence = model.Sequence,
+                                     Description = model.Description,
+                                     Description_BM = model.Description_BM,
+                                     Description_CN = model.Description_CN,
+                                     Duration = model.Duration,
+                                     CreatedBy = model.CreatedBy,
+                                     CreatedDate = model.CreatedDate,
+                                 }).ToList();
 
 
             return q;
@@ -83,6 +86,7 @@ namespace CMSLcLy.Data.Workflow.WorkFlowMaster
                          WorkFlowMasterDesc_BM = model.WorkFlowMasterDesc_BM,
                          WorkFlowMasterDesc_CN = model.WorkFlowMasterDesc_CN,
                          WorkFlowMasterDuration = model.WorkFlowMasterDuration,
+                         Sequence = model.Sequence,
                          CreatedBy = model.CreatedBy,
                          CreatedDate = model.CreatedDate,
                      });

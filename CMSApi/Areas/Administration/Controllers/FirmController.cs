@@ -12,6 +12,7 @@ using CMSLcLy.Data.Firm;
 using COMM = CMSLcLy.Common;
 using DATA = CMSLcLy.Data;
 using System.Net;
+using CMSLcLy.Data.User;
 
 namespace CMSApi.Areas.Administration.Controllers
 {
@@ -253,13 +254,13 @@ namespace CMSApi.Areas.Administration.Controllers
                 return RedirectToAction("Index");
             }
         }
-                          
+
         public FirmMasterItemViewModel InitializeNewModel(FirmMasterItemViewModel model = null)
         {
             if (model == null)
                 model = new FirmMasterItemViewModel();
             model.Users = GetRoles().Select(x => new SelectListItem() { Value = x.Id.ToString(), Text = x.UserName }).ToList();
-            model.Users.Insert(0, new SelectListItem() { Value = "0", Text = "Please select ..." }); 
+            model.Users.Insert(0, new SelectListItem() { Value = "0", Text = "Please select ..." });
 
 
             return model;
@@ -302,9 +303,111 @@ namespace CMSApi.Areas.Administration.Controllers
                 CombineAddress(n);
 
             return model;
-        }        
-         
+        }
+
         public FirmMasterItemViewModel CombineAddress(FirmMasterItemViewModel model)
+        {
+            if (model == null) return model;
+            model.Address = $"{model.Address}, {model.Address2}, {model.Address3} ";
+
+            return model;
+        }
+
+        [HttpGet]
+        public dynamic GetPartnerList()
+        {
+            List<UserMasterItemViewModel> userMasterItemViewModel = null;
+
+            using (var mgr = new CMSLcLy.Data.User.Manager())
+            {
+                userMasterItemViewModel = mgr.List().ToList();
+            }
+
+            userMasterItemViewModel = CombineAddress(userMasterItemViewModel);
+
+            foreach (var model in userMasterItemViewModel)
+            {
+                model.Role = UserManager.GetRoles(model.AspNetUserID).FirstOrDefault();
+            }
+
+            userMasterItemViewModel.RemoveAll(x => x.Role != "Partner");
+
+            return Json(userMasterItemViewModel, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public dynamic GetLawyerList()
+        {
+            List<UserMasterItemViewModel> userMasterItemViewModel = null;
+
+            using (var mgr = new CMSLcLy.Data.User.Manager())
+            {
+                userMasterItemViewModel = mgr.List().ToList();
+            }
+
+            userMasterItemViewModel = CombineAddress(userMasterItemViewModel);
+
+            foreach (var model in userMasterItemViewModel)
+            {
+                model.Role = UserManager.GetRoles(model.AspNetUserID).FirstOrDefault();
+            }
+
+            userMasterItemViewModel.RemoveAll(x => x.Role != "Legal Assistance");
+
+            return Json(userMasterItemViewModel, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public dynamic GetFirmList()
+        {
+            List<FirmMasterItemViewModel> firmMasterItemViewModel = null;
+
+            using (var mgr = new CMSLcLy.Data.Firm.Manager())
+            {
+                firmMasterItemViewModel = mgr.List().ToList();
+            }
+
+            return Json(firmMasterItemViewModel, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public dynamic GetRepFirm()
+        {
+            FirmMasterItemViewModel firmMasterItemViewModel = null;
+
+            using (var mgr = new CMSLcLy.Data.Firm.Manager())
+            {
+                firmMasterItemViewModel = mgr.GetRepFirm();
+            }
+
+            return Json(firmMasterItemViewModel, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public dynamic GetFirm(string firmName)
+        {
+            FirmMasterItemViewModel firmMasterItemViewModel = null;
+
+            using (var mgr = new CMSLcLy.Data.Firm.Manager())
+            {
+                firmMasterItemViewModel = mgr.GetFirm(firmName);
+            }
+
+            return Json(firmMasterItemViewModel, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public List<UserMasterItemViewModel> CombineAddress(List<UserMasterItemViewModel> model)
+        {
+            if (model == null) return model;
+
+            foreach (var n in model)
+                CombineAddress(n);
+
+            return model;
+        }
+
+        public UserMasterItemViewModel CombineAddress(UserMasterItemViewModel model)
         {
             if (model == null) return model;
             model.Address = $"{model.Address}, {model.Address2}, {model.Address3} ";

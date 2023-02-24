@@ -73,8 +73,11 @@ namespace CMSApi.Areas.Administration.Controllers
         }
 
         // GET: Administration/Bank/Create
-        public ActionResult Create()
+        public ActionResult Create(int isPopUP = 0)
         {
+            if (isPopUP > 0)
+                TempData["IsPopUp"] = 1;
+
             return View();
         }
 

@@ -1,0 +1,13 @@
+@model DevExpressMailMerge.Models.exportmodel
+@Html.DevExpress().RichEdit(settings =>
+{
+    settings.Name = "RichEdit";
+    settings.CallbackRouteValues = new { Controller = "Home", Action = "RichEditPartial" };
+    settings.CustomActionRouteValues = new { Controller = "DocumentManagement", Action = "ExportFile" };
+
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.Height = 500;
+    settings.ReadOnly = true;
+    settings.RibbonMode = RichEditRibbonMode.None;
+    settings.ViewMergedData = true;
+}).Open(Path.Combine(Model.doc.DocumentPath, Model.doc.DocumentName)).Bind(Model.doc.DocumentDs).GetHtml()

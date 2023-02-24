@@ -25,5 +25,6 @@ namespace CMSLcLy.Data.DbModels
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> ModifyDate { get; set; }
         public string ModifyBy { get; set; }
+        public sbyte IsFavourite { get; set; }
     }
 }

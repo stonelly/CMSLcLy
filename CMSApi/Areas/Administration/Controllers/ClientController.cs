@@ -172,8 +172,6 @@ namespace CMSApi.Areas.Administration.Controllers
             }
         }
 
-
-
         public UserMasterItemViewModel InitializeNewUserModel(UserMasterItemViewModel model = null)
         {
             if (model == null)
@@ -217,7 +215,6 @@ namespace CMSApi.Areas.Administration.Controllers
             return model;
         }
 
-
         public UserMasterItemViewModel CombineAddress(UserMasterItemViewModel model)
         {
             if (model == null) return model;
@@ -225,5 +222,133 @@ namespace CMSApi.Areas.Administration.Controllers
 
             return model;
         }
+
+        [HttpGet]
+        public dynamic GetClientList()
+        {
+            List<UserMasterItemViewModel> userMasterItemViewModel = null;
+
+            using (var mgr = new CMSLcLy.Data.User.Manager())
+            {
+                userMasterItemViewModel = mgr.List().ToList();
+            }
+
+            userMasterItemViewModel = CombineAddress(userMasterItemViewModel);
+
+            foreach (var model in userMasterItemViewModel)
+            {
+                model.Role = UserManager.GetRoles(model.AspNetUserID).FirstOrDefault();
+            }
+
+            userMasterItemViewModel.RemoveAll(x => x.Role != "Client");
+
+            return Json(userMasterItemViewModel , JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public dynamic GetVendorList()
+        {
+            List<UserMasterItemViewModel> userMasterItemViewModel = null;
+
+            using (var mgr = new CMSLcLy.Data.User.Manager())
+            {
+                userMasterItemViewModel = mgr.List().ToList();
+            }
+
+            userMasterItemViewModel.RemoveAll(x => x.UserTypeID != 21);
+
+            return Json(userMasterItemViewModel, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public dynamic GetChargorList()
+        {
+            List<UserMasterItemViewModel> userMasterItemViewModel = null;
+
+            using (var mgr = new CMSLcLy.Data.User.Manager())
+            {
+                userMasterItemViewModel = mgr.List().ToList();
+            }
+
+            userMasterItemViewModel.RemoveAll(x => x.UserTypeID != 21);
+
+            return Json(userMasterItemViewModel, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public dynamic GetPurchaserList()
+        {
+            List<UserMasterItemViewModel> userMasterItemViewModel = null;
+
+            using (var mgr = new CMSLcLy.Data.User.Manager())
+            {
+                userMasterItemViewModel = mgr.List().ToList();
+            }
+
+            userMasterItemViewModel.RemoveAll(x => x.UserTypeID != 22);
+
+            return Json(userMasterItemViewModel, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public dynamic GetBorrowerList()
+        {
+            List<UserMasterItemViewModel> userMasterItemViewModel = null;
+
+            using (var mgr = new CMSLcLy.Data.User.Manager())
+            {
+                userMasterItemViewModel = mgr.List().ToList();
+            }
+
+            userMasterItemViewModel.RemoveAll(x => x.UserTypeID != 23);
+
+            return Json(userMasterItemViewModel, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public dynamic GetDeveloperList()
+        {
+            List<UserMasterItemViewModel> userMasterItemViewModel = null;
+
+            using (var mgr = new CMSLcLy.Data.User.Manager())
+            {
+                userMasterItemViewModel = mgr.List().ToList();
+            }
+
+            userMasterItemViewModel.RemoveAll(x => x.UserTypeID != 24);
+
+            return Json(userMasterItemViewModel, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public dynamic GetProprietorList()
+        {
+            List<UserMasterItemViewModel> userMasterItemViewModel = null;
+
+            using (var mgr = new CMSLcLy.Data.User.Manager())
+            {
+                userMasterItemViewModel = mgr.List().ToList();
+            }
+
+            userMasterItemViewModel.RemoveAll(x => x.UserTypeID != 25);
+
+            return Json(userMasterItemViewModel, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public dynamic GetGuarantorList()
+        {
+            List<UserMasterItemViewModel> userMasterItemViewModel = null;
+
+            using (var mgr = new CMSLcLy.Data.User.Manager())
+            {
+                userMasterItemViewModel = mgr.List().ToList();
+            }
+
+            userMasterItemViewModel.RemoveAll(x => x.UserTypeID != 26);
+
+            return Json(userMasterItemViewModel, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

@@ -1,0 +1,47 @@
+@using DevExpress.Web.Mvc;
+@using DevExpress.Web.Mvc.UI;
+@using DevExpress.Web.ASPxRichEdit;
+
+@model CMSApi.Models.DocumentModel
+
+@if (!string.IsNullOrEmpty(Model.DocumentName))
+{
+    Html.DevExpress().RichEdit(settings =>
+    {
+        settings.Name = Model.DocumentId;
+        settings.CallbackRouteValues = new { Controller = "Home", Action = "RichEdit2Partial", id = Model.DocumentId };
+        settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+        settings.Height = 700;
+//settings.ReadOnly = false;
+//settings.RibbonMode = RichEditRibbonMode.Ribbon;
+settings.WorkDirectory = Model.DocumentPath;
+//settings.ViewMergedData = true;
+settings.Saving = (s, e) =>
+        {
+//byte[] docBytes = RichEditExtension.SaveCopy("RichEditName", DevExpress.XtraRichEdit.DocumentFormat.Rtf);
+//DXWebApplication1.Models.DataHelper.SaveDocument(docBytes);
+DevExpress.Web.Mvc.MVCxRichEdit ttt = s as DevExpress.Web.Mvc.MVCxRichEdit;
+            RichEditExtension.SaveCopy(ttt.UniqueID, e.DocumentID);
+            CMSApi.Models.DataHelper.SaveDocumentTemplate(ttt.UniqueID, e.DocumentID);
+            e.Handled = true;
+        };
+    }).Open(Path.Combine(Model.DocumentPath, Model.DocumentName)).Bind(Model.DocumentDs).GetHtml();
+}
+else
+{
+    Html.DevExpress().RichEdit(settings =>
+    {
+        settings.Name = Model.DocumentId;
+        settings.CallbackRouteValues = new { Controller = "Home", Action = "RichEdit2Partial", id = Model.DocumentId };
+        settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+        settings.Height = 700;
+        settings.ReadOnly = false;
+        settings.RibbonMode = RichEditRibbonMode.Ribbon;
+        settings.WorkDirectory = "~/APP_Data";
+        settings.Saving = (s, e) =>
+        {
+            e.Handled = true;
+        };
+    }).Bind(Model.DocumentDs).GetHtml();
+}
+

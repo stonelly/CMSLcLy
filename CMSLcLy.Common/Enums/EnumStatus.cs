@@ -11,4 +11,14 @@ namespace CMSLcLy.Common.Enums
         InActive = 0,
         Active = 1,
     }
+
+    /// <summary>
+    /// File Status
+    /// </summary>
+    public enum FileStatus
+    {
+        InProgress = 0,
+        Completed = 1,
+        Cancelled = 2
+    }
 }

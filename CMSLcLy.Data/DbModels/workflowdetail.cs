@@ -11,9 +11,11 @@ namespace CMSLcLy.Data.DbModels
 {
     using System;
     using System.Collections.Generic;
-    
+
+    [System.ComponentModel.DataAnnotations.Schema.Table("workflowdetail")]
     public partial class workflowdetail
     {
+        [System.ComponentModel.DataAnnotations.Key]
         public int ID { get; set; }
         public int WorkflowMasterID { get; set; }
         public Nullable<int> Sequence { get; set; }

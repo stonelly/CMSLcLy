@@ -60,6 +60,7 @@ namespace CMSLcLy.Data.Workflow
                          WorkFlowMasterDesc_BM = model.WorkFlowMasterDesc_BM,
                          WorkFlowMasterDesc_CN = model.WorkFlowMasterDesc_CN,
                          WorkFlowMasterDuration = model.WorkFlowMasterDuration,
+                         Sequence = model.Sequence,
                          CreatedBy = model.CreatedBy,
                          CreatedDate = model.CreatedDate,
                      }).ToList();             

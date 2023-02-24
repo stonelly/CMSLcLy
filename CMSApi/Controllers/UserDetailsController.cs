@@ -5,11 +5,13 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 namespace CMSApi.Controllers
 {
     [Authorize]
+    //[EnableCors("*", "*", "*")]
     public class UserDetailsController : ApiController
     {
         private ApplicationUserManager _userManager;

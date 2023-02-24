@@ -16,28 +16,38 @@ namespace CMSLcLy.Data.DbModels
     public partial class DefaultConnection : DbContext
     {
         public DefaultConnection()
-            : base("name=DefaultConnection")
+          : base("name=DefaultConnection")
         {
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-           // throw new UnintentionalCodeFirstException();
+            //throw new UnintentionalCodeFirstException();
         }
-    
+
         public virtual DbSet<aspnetrole> aspnetroles { get; set; }
         public virtual DbSet<aspnetuserclaim> aspnetuserclaims { get; set; }
         public virtual DbSet<aspnetuserlogin> aspnetuserlogins { get; set; }
         public virtual DbSet<aspnetuser> aspnetusers { get; set; }
-        public virtual DbSet<bankmaster> bankmasters { get; set; }
-        public virtual DbSet<bankshortcutmaster> bankshortcutmasters { get; set; }
         public virtual DbSet<cacmaster> cacmasters { get; set; }
-        public virtual DbSet<documentworkflow> documentworkflows { get; set; }
         public virtual DbSet<enummaster> enummasters { get; set; }
+        public virtual DbSet<bankshortcutmaster> bankshortcutmasters { get; set; }
+        public virtual DbSet<bankmaster> bankmasters { get; set; }
         public virtual DbSet<firmmaster> firmmasters { get; set; }
-        public virtual DbSet<userdetail> userdetails { get; set; }
+        public virtual DbSet<documentworkflow> documentworkflows { get; set; }
         public virtual DbSet<workflow> workflows { get; set; }
         public virtual DbSet<workflowdetail> workflowdetails { get; set; }
         public virtual DbSet<workflowmaster> workflowmasters { get; set; }
+        public virtual DbSet<userdetail> userdetails { get; set; }
+        public virtual DbSet<firmprofile> firmprofiles { get; set; }
+        public virtual DbSet<documentmaster> documentmasters { get; set; }
+        public virtual DbSet<messagemaster> messagemasters { get; set; }
+        public virtual DbSet<notificationmaster> notificationmasters { get; set; }
+        public virtual DbSet<spa_loan_chain_of_ownership> spa_loan_chain_of_ownership { get; set; }
+        public virtual DbSet<spa_loan_for_loan> spa_loan_for_loan { get; set; }
+        public virtual DbSet<spa_loan_individual> spa_loan_individual { get; set; }
+        public virtual DbSet<spa_loan_purchase_price> spa_loan_purchase_price { get; set; }
+        public virtual DbSet<spa_loan_strata> spa_loan_strata { get; set; }
+        public virtual DbSet<spa_loan_without_transfer_direct_transfer> spa_loan_without_transfer_direct_transfer { get; set; }
     }
 }

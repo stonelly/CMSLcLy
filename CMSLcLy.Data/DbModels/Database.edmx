@@ -117,20 +117,62 @@
           <Property Name="ModifyDate" Type="datetime" Precision="0" />
           <Property Name="ModifyBy" Type="varchar" MaxLength="128" />
         </EntityType>
+        <EntityType Name="documentmaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FileNo" Type="varchar" MaxLength="50" />
+          <Property Name="FileType" Type="varchar" MaxLength="100" />
+          <Property Name="FileReference" Type="varchar" MaxLength="128" />
+          <Property Name="FileOpenDate" Type="datetime" Precision="0" />
+          <Property Name="ClientID" Type="varchar" MaxLength="128" />
+          <Property Name="PartnerID" Type="varchar" MaxLength="128" />
+          <Property Name="FirmID" Type="varchar" MaxLength="128" />
+          <Property Name="Status" Type="int" />
+          <Property Name="RelatedFileNo" Type="varchar" MaxLength="50" />
+          <Property Name="Remark" Type="varchar" MaxLength="1000" />
+          <Property Name="VendorID" Type="varchar" MaxLength="128" />
+          <Property Name="VendorFirmID" Type="varchar" MaxLength="128" />
+          <Property Name="VendorFirmTel" Type="varchar" MaxLength="50" />
+          <Property Name="VendorFirmEmail" Type="varchar" MaxLength="50" />
+          <Property Name="VendorFirmAddress1" Type="varchar" MaxLength="500" />
+          <Property Name="VendorFirmAddress2" Type="varchar" MaxLength="500" />
+          <Property Name="VendorFirmZipCode" Type="varchar" MaxLength="500" />
+          <Property Name="VendorFirmCity" Type="varchar" MaxLength="500" />
+          <Property Name="VendorFirmState" Type="varchar" MaxLength="500" />
+          <Property Name="VendorFirmFileRefNo" Type="varchar" MaxLength="50" />
+          <Property Name="PurchaserID" Type="varchar" MaxLength="128" />
+          <Property Name="PurchaserFirmID" Type="varchar" MaxLength="128" />
+          <Property Name="PurchaserFirmTel" Type="varchar" MaxLength="50" />
+          <Property Name="PurchaserFirmEmail" Type="varchar" MaxLength="50" />
+          <Property Name="PurchaserFirmAddress1" Type="varchar" MaxLength="500" />
+          <Property Name="PurchaserFirmAddress2" Type="varchar" MaxLength="500" />
+          <Property Name="PurchaserFirmZipCode" Type="varchar" MaxLength="500" />
+          <Property Name="PurchaserFirmCity" Type="varchar" MaxLength="500" />
+          <Property Name="PurchaserFirmState" Type="varchar" MaxLength="500" />
+          <Property Name="PurchaserFirmFileRefNo" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="128" />
+          <Property Name="CreatedDate" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="ModifyBy" Type="varchar" MaxLength="128" />
+          <Property Name="ModifyDate" Type="datetime" Precision="0" />
+        </EntityType>
         <EntityType Name="documentworkflow">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DocumentID" Type="int" />
-          <Property Name="WorkflowDetailID" Type="int" Nullable="false" />
-          <Property Name="Sequence" Type="int" Nullable="false" />
-          <Property Name="UserID" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="DueDate" Type="datetime" Precision="0" Nullable="false" />
-          <Property Name="isCompleted" Type="int" Nullable="false" />
-          <Property Name="isRPA" Type="bit" Nullable="false" />
-          <Property Name="CreatedDate" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CreatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="WorkflowDetailID" Type="int" />
+          <Property Name="Sequence" Type="int" />
+          <Property Name="UserID" Type="varchar" MaxLength="50" />
+          <Property Name="DueDate" Type="datetime" Precision="0" />
+          <Property Name="isCompleted" Type="int" />
+          <Property Name="isRPA" Type="int" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="ModifyBy" Type="varchar" MaxLength="50" />
+          <Property Name="ModifyDate" Type="datetime" Precision="0" />
         </EntityType>
         <EntityType Name="enummaster">
           <Key>
@@ -141,6 +183,7 @@
           <Property Name="EnumName" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="EnumValue" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="IsFavourite" Type="tinyint" Nullable="false" />
           <Property Name="CreatedDate" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CreatedBy" Type="varchar" MaxLength="128" />
           <Property Name="ModifyDate" Type="datetime" Precision="0" />
@@ -171,6 +214,322 @@
           <Property Name="CreatedBy" Type="varchar" MaxLength="128" />
           <Property Name="ModifyDate" Type="datetime" Precision="0" />
           <Property Name="ModifyBy" Type="varchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="firmprofile">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="firm_name" Type="varchar" MaxLength="256" />
+          <Property Name="add1" Type="varchar" MaxLength="100" />
+          <Property Name="add2" Type="varchar" MaxLength="100" />
+          <Property Name="add3" Type="varchar" MaxLength="100" />
+          <Property Name="add4" Type="varchar" MaxLength="100" />
+          <Property Name="postcode" Type="varchar" MaxLength="45" />
+          <Property Name="Town" Type="varchar" MaxLength="45" />
+          <Property Name="state" Type="varchar" MaxLength="45" />
+          <Property Name="Country" Type="varchar" MaxLength="100" />
+          <Property Name="phone1" Type="varchar" MaxLength="45" />
+          <Property Name="phone2" Type="varchar" MaxLength="45" />
+          <Property Name="phone3" Type="varchar" MaxLength="45" />
+          <Property Name="fax1" Type="varchar" MaxLength="45" />
+          <Property Name="fax2" Type="varchar" MaxLength="45" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
+          <Property Name="irb_no" Type="varchar" MaxLength="45" />
+          <Property Name="irb_branch" Type="varchar" MaxLength="100" />
+          <Property Name="socso_no" Type="varchar" MaxLength="45" />
+          <Property Name="socso_branch" Type="varchar" MaxLength="100" />
+          <Property Name="epf_no" Type="varchar" MaxLength="45" />
+          <Property Name="epf_branch" Type="varchar" MaxLength="100" />
+          <Property Name="gst_sst_no" Type="varchar" MaxLength="45" />
+          <Property Name="freefield1" Type="varchar" MaxLength="45" />
+          <Property Name="freefield2" Type="varchar" MaxLength="45" />
+          <Property Name="freefield3" Type="varchar" MaxLength="45" />
+          <Property Name="freefield4" Type="varchar" MaxLength="45" />
+          <Property Name="freefield5" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="messagemaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RoomName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Message" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="IsMessageRead" Type="tinyint" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="notificationmaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MessageID" Type="int" Nullable="false" />
+          <Property Name="CustomerName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RoomName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Status" Type="tinyint" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="spa_loan_chain_of_ownership">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DocumentId" Type="int" Nullable="false" />
+          <Property Name="Document_Type_Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Document_Agreement_Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Purchaser1_User_ID" Type="int" />
+          <Property Name="Purchaser1_DOA_Date" Type="timestamp" Precision="0" />
+          <Property Name="Purchaser1_FA_Date" Type="timestamp" Precision="0" />
+          <Property Name="Purchaser1_Loan_Date" Type="timestamp" Precision="0" />
+          <Property Name="Purchaser1_DRR_Date" Type="timestamp" Precision="0" />
+          <Property Name="Purchaser2_User_ID" Type="int" />
+          <Property Name="Purchaser2_DOA_Date" Type="timestamp" Precision="0" />
+          <Property Name="Purchaser2_FA_Date" Type="timestamp" Precision="0" />
+          <Property Name="Purchaser2_Loan_Date" Type="timestamp" Precision="0" />
+          <Property Name="Purchaser2_DRR_Date" Type="timestamp" Precision="0" />
+          <Property Name="Purchaser3_User_ID" Type="int" />
+          <Property Name="Purchaser3_DOA_Date" Type="timestamp" Precision="0" />
+          <Property Name="Purchaser3_FA_Date" Type="timestamp" Precision="0" />
+          <Property Name="Purchaser3_Loan_Date" Type="timestamp" Precision="0" />
+          <Property Name="Purchaser3_DRR_Date" Type="timestamp" Precision="0" />
+          <Property Name="Purchaser4_User_ID" Type="int" />
+          <Property Name="Purchaser4_DOA_Date" Type="timestamp" Precision="0" />
+          <Property Name="Purchaser4_FA_Date" Type="timestamp" Precision="0" />
+          <Property Name="Purchaser4_Loan_Date" Type="timestamp" Precision="0" />
+          <Property Name="Purchaser4_DRR_Date" Type="timestamp" Precision="0" />
+          <Property Name="Purchaser5_User_ID" Type="int" />
+          <Property Name="Purchaser5_DOA_Date" Type="timestamp" Precision="0" />
+          <Property Name="Purchaser5_FA_Date" Type="timestamp" Precision="0" />
+          <Property Name="Purchaser5_Loan_Date" Type="timestamp" Precision="0" />
+          <Property Name="Purchaser5_DRR_Date" Type="timestamp" Precision="0" />
+          <Property Name="Purchaser6_User_ID" Type="int" />
+          <Property Name="Purchaser6_DOA_Date" Type="timestamp" Precision="0" />
+          <Property Name="Purchaser6_FA_Date" Type="timestamp" Precision="0" />
+          <Property Name="Purchaser6_Loan_Date" Type="timestamp" Precision="0" />
+          <Property Name="Purchaser6_DRR_Date" Type="timestamp" Precision="0" />
+          <Property Name="Purchaser7_User_ID" Type="int" />
+          <Property Name="Purchaser7_DOA_Date" Type="timestamp" Precision="0" />
+          <Property Name="Purchaser7_FA_Date" Type="timestamp" Precision="0" />
+          <Property Name="Purchaser7_Loan_Date" Type="timestamp" Precision="0" />
+          <Property Name="Purchaser7_DRR_Date" Type="timestamp" Precision="0" />
+          <Property Name="CreatedDate" Type="timestamp" Precision="0" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="spa_loan_for_loan">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DocumentId" Type="int" Nullable="false" />
+          <Property Name="Document_Type_Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Document_Agreement_Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Borrower1_User_ID" Type="int" />
+          <Property Name="Borrower2_User_ID" Type="int" />
+          <Property Name="Borrower3_User_ID" Type="int" />
+          <Property Name="Borrower4_User_ID" Type="int" />
+          <Property Name="Borrower5_User_ID" Type="int" />
+          <Property Name="Guarantor1_User_ID" Type="int" />
+          <Property Name="Guarantor2_User_ID" Type="int" />
+          <Property Name="Guarantor3_User_ID" Type="int" />
+          <Property Name="Guarantor4_User_ID" Type="int" />
+          <Property Name="Guarantor5_User_ID" Type="int" />
+          <Property Name="Bank_Branch_ID" Type="int" />
+          <Property Name="Bank_Reference" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Offer_Letter_Date" Type="datetime" Precision="0" />
+          <Property Name="Letter_of_Instruction_Date" Type="datetime" Precision="0" />
+          <Property Name="Officer1_Id" Type="int" Nullable="false" />
+          <Property Name="Officer1_Username" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Officer1_Password" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Officer2_Id" Type="int" Nullable="false" />
+          <Property Name="Officer2_Username" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Officer2_Password" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Conventional_Loan_Type" Type="int" />
+          <Property Name="Conventional_Financing_Type" Type="int" />
+          <Property Name="Conventional_Loan_Amount" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Other_Loan1_Type" Type="int" />
+          <Property Name="Other_Loan1_Amount" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Other_Loan2_Type" Type="int" />
+          <Property Name="Other_Loan2_Amount" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Other_Loan3_Type" Type="int" />
+          <Property Name="Other_Loan3_Amount" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Other_Loan4_Type" Type="int" />
+          <Property Name="Other_Loan4_Amount" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Other_Loan5_Type" Type="int" />
+          <Property Name="Other_Loan5_Amount" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Other_Loan6_Type" Type="int" />
+          <Property Name="Other_Loan6_Amount" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Conventional_Loan_Total_Financing_Sum" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Islamic_Loan_Type" Type="int" />
+          <Property Name="Islamic_Financing_Type" Type="int" />
+          <Property Name="Islamic_Financing_Amount" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Other_Financing1_Type" Type="int" />
+          <Property Name="Other_Financing1_Amount" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Other_Financing2_Type" Type="int" />
+          <Property Name="Other_Financing2_Amount" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Other_Financing3_Type" Type="int" />
+          <Property Name="Other_Financing3_Amount" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Other_Financing4_Type" Type="int" />
+          <Property Name="Other_Financing4_Amount" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Other_Financing5_Type" Type="int" />
+          <Property Name="Other_Financing5_Amount" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Islamic_Loan_Total_Financing_Sum" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Bank_Selling_Price" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Bank_Purchase_Price" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Other_Islamic_Loan1_Bank_Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Other_Islamic_Loan1_Product_Type" Type="int" />
+          <Property Name="Other_Islamic_Loan1_Specification" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Other_Islamic_Loan1_Amount" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Other_Islamic_Loan1_Unit_Percentage" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Other_Islamic_Loan1_Ref" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Other_Islamic_Loan2_Bank_Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Other_Islamic_Loan2_Product_Type" Type="int" />
+          <Property Name="Other_Islamic_Loan2_Specification" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Other_Islamic_Loan2_Amount" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Other_Islamic_Loan2_Unit_Percentage" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Other_Islamic_Loan2_Ref" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Other_Islamic_Loan3_Bank_Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Other_Islamic_Loan3_Product_Type" Type="int" />
+          <Property Name="Other_Islamic_Loan3_Specification" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Other_Islamic_Loan3_Amount" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Other_Islamic_Loan3_Unit_Percentage" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Other_Islamic_Loan3_Ref" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Other_Islamic_Loan4_Bank_Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Other_Islamic_Loan4_Product_Type" Type="int" />
+          <Property Name="Other_Islamic_Loan4_Specification" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Other_Islamic_Loan4_Amount" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Other_Islamic_Loan4_Unit_Percentage" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Other_Islamic_Loan4_Ref" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Other_Islamic_Loan5_Bank_Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Other_Islamic_Loan5_Product_Type" Type="int" />
+          <Property Name="Other_Islamic_Loan5_Specification" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Other_Islamic_Loan5_Amount" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Other_Islamic_Loan5_Unit_Percentage" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Other_Islamic_Loan5_Ref" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Other_Islamic_Loan6_Bank_Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Other_Islamic_Loan6_Product_Type" Type="int" />
+          <Property Name="Other_Islamic_Loan6_Specification" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Other_Islamic_Loan6_Amount" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Other_Islamic_Loan6_Unit_Percentage" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Other_Islamic_Loan6_Ref" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Other_Islamic_Loan7_Bank_Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Other_Islamic_Loan7_Product_Type" Type="int" />
+          <Property Name="Other_Islamic_Loan7_Specification" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Other_Islamic_Loan7_Amount" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Other_Islamic_Loan7_Unit_Percentage" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Other_Islamic_Loan7_Ref" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Bank_Solicitor_ID" Type="int" />
+          <Property Name="Bank_Solicitor_Firm_Phone_No" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Bank_Solicitor_Firm_Address1" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Bank_Solicitor_Firm_Address2" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Bank_Solicitor_Firm_Postcode" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Bank_Solicitor_Firm_City" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Bank_Solicitor_Firm_State" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Bank_Solicitor_Ref" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Bank_Solicitor_Email" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedDate" Type="timestamp" Precision="0" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="spa_loan_individual">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Document_ID" Type="int" Nullable="false" />
+          <Property Name="Document_Type_Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Document_Agreement_Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Tenure_Type_Id" Type="int" />
+          <Property Name="Land_Usage_Type_Id" Type="int" />
+          <Property Name="Area_Id" Type="int" />
+          <Property Name="State_Id" Type="int" />
+          <Property Name="Area_Type_Id" Type="int" />
+          <Property Name="Geran_Type_ID" Type="int" />
+          <Property Name="Date_Open_File" Type="datetime" Precision="0" />
+          <Property Name="Condition_Type_ID" Type="int" />
+          <Property Name="Restriction_Type_ID" Type="int" />
+          <Property Name="Building_Type_ID" Type="int" />
+          <Property Name="Postal_Address" Type="varchar" MaxLength="255" />
+          <Property Name="CreatedDate" Type="timestamp" Precision="0" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="spa_loan_purchase_price">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Document_ID" Type="int" Nullable="false" />
+          <Property Name="Document_Type_Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Document_Agreement_Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Purchase_Price" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Earnest_Deposit" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="RPGT_Retention_Sum" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Balance_Deposit" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Total Deposit" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Balance_Purchase_Price" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Consuption_Tax" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Purchase_Price_After_Tax" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Adjustment_Rate" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Bank_Branch_ID" Type="int" />
+          <Property Name="Charge_Presentation_No" Type="varchar" MaxLength="255" />
+          <Property Name="Existing_Borrower1_User_ID" Type="int" />
+          <Property Name="Existing_Borrower2_User_ID" Type="int" />
+          <Property Name="Existing_Borrower3_User_ID" Type="int" />
+          <Property Name="Existing_Borrower4_User_ID" Type="int" />
+          <Property Name="Existing_Borrower5_User_ID" Type="int" />
+          <Property Name="CreatedDate" Type="timestamp" Precision="0" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="spa_loan_strata">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DocumentId" Type="int" Nullable="false" />
+          <Property Name="Document_Type_Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Document_Agreement_Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Tenure_Type_Id" Type="int" />
+          <Property Name="Lot_Type_Id" Type="int" />
+          <Property Name="Area_Id" Type="int" />
+          <Property Name="State_Id" Type="int" />
+          <Property Name="Area_Type_Id" Type="int" />
+          <Property Name="Geran_Type_Id" Type="int" />
+          <Property Name="Date_Open_File" Type="datetime" Precision="0" />
+          <Property Name="Land_Usage_Type_Id" Type="int" />
+          <Property Name="Condition_Type_Id" Type="int" />
+          <Property Name="Restriction_Type_Id" Type="int" />
+          <Property Name="Building_Type_Id" Type="int" />
+          <Property Name="Postal_Address" Type="varchar" MaxLength="255" />
+          <Property Name="Parcel_No" Type="varchar" MaxLength="255" />
+          <Property Name="Story_No" Type="varchar" MaxLength="255" />
+          <Property Name="Building_No" Type="varchar" MaxLength="255" />
+          <Property Name="Parcel_No_Description" Type="varchar" MaxLength="255" />
+          <Property Name="Unit_Area" Type="int" />
+          <Property Name="CreatedDate" Type="timestamp" Precision="0" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="spa_loan_without_transfer_direct_transfer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DocumentId" Type="int" Nullable="false" />
+          <Property Name="Document_Type_Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Document_Agreement_Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Developer_Id" Type="int" />
+          <Property Name="Proprietor_Id" Type="int" />
+          <Property Name="Project_Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Schedule_Id" Type="int" />
+          <Property Name="Parcel_No" Type="varchar" MaxLength="255" />
+          <Property Name="Unit_Area" Type="int" />
+          <Property Name="Area_Id" Type="int" />
+          <Property Name="Story_No" Type="varchar" MaxLength="255" />
+          <Property Name="Building_No" Type="varchar" MaxLength="255" />
+          <Property Name="Accessory_Parcel_No" Type="varchar" MaxLength="255" />
+          <Property Name="Master_Title_No" Type="varchar" MaxLength="255" />
+          <Property Name="CreatedDate" Type="timestamp" Precision="0" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="128" />
         </EntityType>
         <EntityType Name="userdetail">
           <Key>
@@ -225,12 +584,12 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="WorkflowDescrption" Type="varchar" MaxLength="500" Nullable="false" />
-          <Property Name="WorkflowDescrption_BM" Type="varchar" MaxLength="500" Nullable="false" />
-          <Property Name="WorkflowDescrption_CN" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="WorkflowDescrption_BM" Type="varchar" MaxLength="500" />
+          <Property Name="WorkflowDescrption_CN" Type="varchar" MaxLength="500" />
           <Property Name="WorkflowTotalDuration" Type="int" />
           <Property Name="CriticalDuration" Type="int" />
-          <Property Name="CreatedBy" Type="varchar" MaxLength="500" Nullable="false" />
-          <Property Name="CreatedDate" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="500" />
+          <Property Name="CreatedDate" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="workflowdetail">
           <Key>
@@ -242,9 +601,9 @@
           <Property Name="Description" Type="varchar" MaxLength="500" />
           <Property Name="Description_BM" Type="varchar" MaxLength="500" />
           <Property Name="Description_CN" Type="varchar" MaxLength="500" />
-          <Property Name="Duration" Type="int" Nullable="false" />
-          <Property Name="CreatedDate" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CreatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Duration" Type="int" />
+          <Property Name="CreatedDate" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="workflowmaster">
           <Key>
@@ -253,11 +612,13 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="WorkflowID" Type="int" />
           <Property Name="Sequence" Type="int" />
-          <Property Name="WorkFlowMasterDesc" Type="varchar" MaxLength="500" Nullable="false" />
-          <Property Name="WorkFlowMasterDesc_BM" Type="varchar" MaxLength="500" Nullable="false" />
-          <Property Name="WorkFlowMasterDesc_CN" Type="varchar" MaxLength="500" Nullable="false" />
-          <Property Name="WorkFlowMasterDuration" Type="int" Nullable="false" />
-          <Property Name="CreatedDate" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="WorkFlowMasterDesc" Type="varchar" MaxLength="500" />
+          <Property Name="WorkFlowMasterDesc_BM" Type="varchar" MaxLength="500" />
+          <Property Name="WorkFlowMasterDesc_CN" Type="varchar" MaxLength="500" />
+          <Property Name="WorkFlowMasterDuration" Type="int" />
+          <Property Name="IsSNP" Type="int" />
+          <Property Name="IsCP" Type="int" />
+          <Property Name="CreatedDate" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
           <Property Name="CreatedBy" Type="varchar" MaxLength="128" />
         </EntityType>
         <Association Name="FK_userclaim_user">
@@ -329,9 +690,19 @@
           <EntitySet Name="bankmaster" EntityType="Self.bankmaster" Schema="lawfirmhelper" store:Type="Tables" />
           <EntitySet Name="bankshortcutmaster" EntityType="Self.bankshortcutmaster" Schema="lawfirmhelper" store:Type="Tables" />
           <EntitySet Name="cacmaster" EntityType="Self.cacmaster" Schema="lawfirmhelper" store:Type="Tables" />
+          <EntitySet Name="documentmaster" EntityType="Self.documentmaster" Schema="lawfirmhelper" store:Type="Tables" />
           <EntitySet Name="documentworkflow" EntityType="Self.documentworkflow" Schema="lawfirmhelper" store:Type="Tables" />
           <EntitySet Name="enummaster" EntityType="Self.enummaster" Schema="lawfirmhelper" store:Type="Tables" />
           <EntitySet Name="firmmaster" EntityType="Self.firmmaster" Schema="lawfirmhelper" store:Type="Tables" />
+          <EntitySet Name="firmprofile" EntityType="Self.firmprofile" Schema="lawfirmhelper" store:Type="Tables" />
+          <EntitySet Name="messagemaster" EntityType="Self.messagemaster" Schema="lawfirmhelper" store:Type="Tables" />
+          <EntitySet Name="notificationmaster" EntityType="Self.notificationmaster" Schema="lawfirmhelper" store:Type="Tables" />
+          <EntitySet Name="spa_loan_chain_of_ownership" EntityType="Self.spa_loan_chain_of_ownership" Schema="lawfirmhelper" store:Type="Tables" />
+          <EntitySet Name="spa_loan_for_loan" EntityType="Self.spa_loan_for_loan" Schema="lawfirmhelper" store:Type="Tables" />
+          <EntitySet Name="spa_loan_individual" EntityType="Self.spa_loan_individual" Schema="lawfirmhelper" store:Type="Tables" />
+          <EntitySet Name="spa_loan_purchase_price" EntityType="Self.spa_loan_purchase_price" Schema="lawfirmhelper" store:Type="Tables" />
+          <EntitySet Name="spa_loan_strata" EntityType="Self.spa_loan_strata" Schema="lawfirmhelper" store:Type="Tables" />
+          <EntitySet Name="spa_loan_without_transfer_direct_transfer" EntityType="Self.spa_loan_without_transfer_direct_transfer" Schema="lawfirmhelper" store:Type="Tables" />
           <EntitySet Name="userdetail" EntityType="Self.userdetail" Schema="lawfirmhelper" store:Type="Tables" />
           <EntitySet Name="workflow" EntityType="Self.workflow" Schema="lawfirmhelper" store:Type="Tables" />
           <EntitySet Name="workflowdetail" EntityType="Self.workflowdetail" Schema="lawfirmhelper" store:Type="Tables" />
@@ -392,6 +763,16 @@
             <End Role="aspnetuser" EntitySet="aspnetusers" />
             <End Role="userdetail" EntitySet="userdetails" />
           </AssociationSet>
+          <EntitySet Name="firmprofiles" EntityType="DefaultConnection.firmprofile" />
+          <EntitySet Name="documentmasters" EntityType="DefaultConnection.documentmaster" />
+          <EntitySet Name="messagemasters" EntityType="DefaultConnection.messagemaster" />
+          <EntitySet Name="notificationmasters" EntityType="DefaultConnection.notificationmaster" />
+          <EntitySet Name="spa_loan_chain_of_ownership" EntityType="DefaultConnection.spa_loan_chain_of_ownership" />
+          <EntitySet Name="spa_loan_for_loan" EntityType="DefaultConnection.spa_loan_for_loan" />
+          <EntitySet Name="spa_loan_individual" EntityType="DefaultConnection.spa_loan_individual" />
+          <EntitySet Name="spa_loan_purchase_price" EntityType="DefaultConnection.spa_loan_purchase_price" />
+          <EntitySet Name="spa_loan_strata" EntityType="DefaultConnection.spa_loan_strata" />
+          <EntitySet Name="spa_loan_without_transfer_direct_transfer" EntityType="DefaultConnection.spa_loan_without_transfer_direct_transfer" />
           </EntityContainer>
         <EntityType Name="aspnetrole">
           <Key>
@@ -479,6 +860,7 @@
           <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Name="ModifyDate" Type="DateTime" />
           <Property Name="ModifyBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="IsFavourite" Type="SByte" Nullable="false" />
         </EntityType>
         <Association Name="FK_userclaim_user">
           <End Type="DefaultConnection.aspnetuser" Role="aspnetuser" Multiplicity="1" />
@@ -584,9 +966,11 @@
           <Property Name="UserID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="DueDate" Type="DateTime" Nullable="false" />
           <Property Name="isCompleted" Type="Int32" Nullable="false" />
-          <Property Name="isRPA" Type="Boolean" Nullable="false" />
+          <Property Name="isRPA" Type="Int32" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModifyBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModifyDate" Type="DateTime" />
         </EntityType>
         <EntityType Name="workflow">
           <Key>
@@ -628,6 +1012,8 @@
           <Property Name="WorkFlowMasterDuration" Type="Int32" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="IsSNP" Type="Int32" />
+          <Property Name="IsCP" Type="Int32" />
         </EntityType>
         <EntityType Name="userdetail">
           <Key>
@@ -689,6 +1075,362 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="firmprofile">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="firm_name" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="add1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="add2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="add3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="add4" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="postcode" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Town" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="state" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="phone1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="phone2" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="phone3" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="fax1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="fax2" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="irb_no" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="irb_branch" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="socso_no" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="socso_branch" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="epf_no" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="epf_branch" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="gst_sst_no" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="freefield1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="freefield2" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="freefield3" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="freefield4" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="freefield5" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="documentmaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FileOpenDate" Type="DateTime" />
+          <Property Name="ClientID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="PartnerID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="FirmID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="RelatedFileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Remark" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="VendorID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="VendorFirmID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="VendorFirmTel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VendorFirmEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VendorFirmFileRefNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PurchaserID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="PurchaserFirmID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="PurchaserFirmTel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PurchaserFirmEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PurchaserFirmFileRefNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ModifyBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="ModifyDate" Type="DateTime" />
+          <Property Name="VendorFirmAddress1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="VendorFirmAddress2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="VendorFirmZipCode" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="VendorFirmCity" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="PurchaserFirmAddress1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="PurchaserFirmAddress2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="PurchaserFirmZipCode" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="PurchaserFirmCity" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="FileReference" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="FileType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="VendorFirmState" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="PurchaserFirmState" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="messagemaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="RoomName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="IsMessageRead" Type="SByte" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="notificationmaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MessageID" Type="Int32" Nullable="false" />
+          <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="RoomName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="SByte" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="spa_loan_chain_of_ownership">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DocumentId" Type="Int32" Nullable="false" />
+          <Property Name="Document_Type_Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Document_Agreement_Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Purchaser1_User_ID" Type="Int32" />
+          <Property Name="Purchaser2_User_ID" Type="Int32" />
+          <Property Name="Purchaser3_User_ID" Type="Int32" />
+          <Property Name="Purchaser4_User_ID" Type="Int32" />
+          <Property Name="Purchaser5_User_ID" Type="Int32" />
+          <Property Name="Purchaser6_User_ID" Type="Int32" />
+          <Property Name="Purchaser7_User_ID" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" />
+          <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Purchaser1_DOA_Date" Type="DateTime" />
+          <Property Name="Purchaser1_FA_Date" Type="DateTime" />
+          <Property Name="Purchaser1_Loan_Date" Type="DateTime" />
+          <Property Name="Purchaser1_DRR_Date" Type="DateTime" />
+          <Property Name="Purchaser2_DOA_Date" Type="DateTime" />
+          <Property Name="Purchaser2_FA_Date" Type="DateTime" />
+          <Property Name="Purchaser2_Loan_Date" Type="DateTime" />
+          <Property Name="Purchaser2_DRR_Date" Type="DateTime" />
+          <Property Name="Purchaser3_DOA_Date" Type="DateTime" />
+          <Property Name="Purchaser3_FA_Date" Type="DateTime" />
+          <Property Name="Purchaser3_Loan_Date" Type="DateTime" />
+          <Property Name="Purchaser3_DRR_Date" Type="DateTime" />
+          <Property Name="Purchaser4_DOA_Date" Type="DateTime" />
+          <Property Name="Purchaser4_FA_Date" Type="DateTime" />
+          <Property Name="Purchaser4_Loan_Date" Type="DateTime" />
+          <Property Name="Purchaser4_DRR_Date" Type="DateTime" />
+          <Property Name="Purchaser5_DOA_Date" Type="DateTime" />
+          <Property Name="Purchaser5_FA_Date" Type="DateTime" />
+          <Property Name="Purchaser5_Loan_Date" Type="DateTime" />
+          <Property Name="Purchaser5_DRR_Date" Type="DateTime" />
+          <Property Name="Purchaser6_DOA_Date" Type="DateTime" />
+          <Property Name="Purchaser6_FA_Date" Type="DateTime" />
+          <Property Name="Purchaser6_Loan_Date" Type="DateTime" />
+          <Property Name="Purchaser6_DRR_Date" Type="DateTime" />
+          <Property Name="Purchaser7_DOA_Date" Type="DateTime" />
+          <Property Name="Purchaser7_FA_Date" Type="DateTime" />
+          <Property Name="Purchaser7_Loan_Date" Type="DateTime" />
+          <Property Name="Purchaser7_DRR_Date" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="spa_loan_for_loan">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DocumentId" Type="Int32" Nullable="false" />
+          <Property Name="Document_Type_Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Document_Agreement_Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Borrower1_User_ID" Type="Int32" />
+          <Property Name="Borrower2_User_ID" Type="Int32" />
+          <Property Name="Borrower3_User_ID" Type="Int32" />
+          <Property Name="Borrower4_User_ID" Type="Int32" />
+          <Property Name="Borrower5_User_ID" Type="Int32" />
+          <Property Name="Guarantor1_User_ID" Type="Int32" />
+          <Property Name="Guarantor2_User_ID" Type="Int32" />
+          <Property Name="Guarantor3_User_ID" Type="Int32" />
+          <Property Name="Guarantor4_User_ID" Type="Int32" />
+          <Property Name="Guarantor5_User_ID" Type="Int32" />
+          <Property Name="Bank_Branch_ID" Type="Int32" />
+          <Property Name="Bank_Reference" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Offer_Letter_Date" Type="DateTime" />
+          <Property Name="Letter_of_Instruction_Date" Type="DateTime" />
+          <Property Name="Officer1_Username" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Officer1_Password" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Officer2_Username" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Officer2_Password" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Conventional_Loan_Type" Type="Int32" />
+          <Property Name="Conventional_Financing_Type" Type="Int32" />
+          <Property Name="Conventional_Loan_Amount" Type="Decimal" Nullable="false" />
+          <Property Name="Other_Loan1_Type" Type="Int32" />
+          <Property Name="Other_Loan1_Amount" Type="Decimal" Nullable="false" />
+          <Property Name="Other_Loan2_Type" Type="Int32" />
+          <Property Name="Other_Loan2_Amount" Type="Decimal" Nullable="false" />
+          <Property Name="Other_Loan3_Type" Type="Int32" />
+          <Property Name="Other_Loan3_Amount" Type="Decimal" Nullable="false" />
+          <Property Name="Other_Loan4_Type" Type="Int32" />
+          <Property Name="Other_Loan4_Amount" Type="Decimal" Nullable="false" />
+          <Property Name="Other_Loan5_Type" Type="Int32" />
+          <Property Name="Other_Loan5_Amount" Type="Decimal" Nullable="false" />
+          <Property Name="Other_Loan6_Type" Type="Int32" />
+          <Property Name="Other_Loan6_Amount" Type="Decimal" Nullable="false" />
+          <Property Name="Conventional_Loan_Total_Financing_Sum" Type="Decimal" Nullable="false" />
+          <Property Name="Islamic_Loan_Type" Type="Int32" />
+          <Property Name="Islamic_Financing_Type" Type="Int32" />
+          <Property Name="Islamic_Financing_Amount" Type="Decimal" Nullable="false" />
+          <Property Name="Other_Financing1_Type" Type="Int32" />
+          <Property Name="Other_Financing1_Amount" Type="Decimal" Nullable="false" />
+          <Property Name="Other_Financing2_Type" Type="Int32" />
+          <Property Name="Other_Financing2_Amount" Type="Decimal" Nullable="false" />
+          <Property Name="Other_Financing3_Type" Type="Int32" />
+          <Property Name="Other_Financing3_Amount" Type="Decimal" Nullable="false" />
+          <Property Name="Other_Financing4_Type" Type="Int32" />
+          <Property Name="Other_Financing4_Amount" Type="Decimal" Nullable="false" />
+          <Property Name="Other_Financing5_Type" Type="Int32" />
+          <Property Name="Other_Financing5_Amount" Type="Decimal" Nullable="false" />
+          <Property Name="Islamic_Loan_Total_Financing_Sum" Type="Decimal" Nullable="false" />
+          <Property Name="Bank_Selling_Price" Type="Decimal" Nullable="false" />
+          <Property Name="Bank_Purchase_Price" Type="Decimal" Nullable="false" />
+          <Property Name="Other_Islamic_Loan1_Bank_Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Other_Islamic_Loan1_Product_Type" Type="Int32" Nullable="true" />
+          <Property Name="Other_Islamic_Loan1_Specification" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Other_Islamic_Loan1_Amount" Type="Decimal" Nullable="false" />
+          <Property Name="Other_Islamic_Loan1_Unit_Percentage" Type="Decimal" Nullable="false" />
+          <Property Name="Other_Islamic_Loan1_Ref" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Other_Islamic_Loan2_Bank_Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Other_Islamic_Loan2_Product_Type" Type="Int32" Nullable="true" />
+          <Property Name="Other_Islamic_Loan2_Specification" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Other_Islamic_Loan2_Amount" Type="Decimal" Nullable="false" />
+          <Property Name="Other_Islamic_Loan2_Unit_Percentage" Type="Decimal" Nullable="false" />
+          <Property Name="Other_Islamic_Loan2_Ref" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Other_Islamic_Loan3_Bank_Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Other_Islamic_Loan3_Product_Type" Type="Int32" Nullable="true" />
+          <Property Name="Other_Islamic_Loan3_Specification" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Other_Islamic_Loan3_Amount" Type="Decimal" Nullable="false" />
+          <Property Name="Other_Islamic_Loan3_Unit_Percentage" Type="Decimal" Nullable="false" />
+          <Property Name="Other_Islamic_Loan3_Ref" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Bank_Solicitor_ID" Type="Int32" />
+          <Property Name="Bank_Solicitor_Firm_Phone_No" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Bank_Solicitor_Email" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" />
+          <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Officer1_Id" Type="Int32" Nullable="false" />
+          <Property Name="Officer2_Id" Type="Int32" Nullable="false" />
+          <Property Name="Other_Islamic_Loan4_Bank_Name" Type="String" Nullable="false" />
+          <Property Name="Other_Islamic_Loan4_Product_Type" Type="Int32" Nullable="true" />
+          <Property Name="Other_Islamic_Loan4_Specification" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Other_Islamic_Loan4_Amount" Type="Decimal" Nullable="false" />
+          <Property Name="Other_Islamic_Loan4_Unit_Percentage" Type="Decimal" Nullable="false" />
+          <Property Name="Other_Islamic_Loan4_Ref" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Other_Islamic_Loan5_Bank_Name" Type="String" Nullable="false" />
+          <Property Name="Other_Islamic_Loan5_Product_Type" Type="Int32" Nullable="true" />
+          <Property Name="Other_Islamic_Loan5_Specification" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Other_Islamic_Loan5_Amount" Type="Decimal" Nullable="false" />
+          <Property Name="Other_Islamic_Loan5_Unit_Percentage" Type="Decimal" Nullable="false" />
+          <Property Name="Other_Islamic_Loan5_Ref" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Other_Islamic_Loan6_Bank_Name" Type="String" Nullable="false" />
+          <Property Name="Other_Islamic_Loan6_Product_Type" Type="Int32" Nullable="true" />
+          <Property Name="Other_Islamic_Loan6_Specification" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Other_Islamic_Loan6_Amount" Type="Decimal" Nullable="false" />
+          <Property Name="Other_Islamic_Loan6_Unit_Percentage" Type="Decimal" Nullable="false" />
+          <Property Name="Other_Islamic_Loan6_Ref" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Other_Islamic_Loan7_Bank_Name" Type="String" Nullable="false" />
+          <Property Name="Other_Islamic_Loan7_Product_Type" Type="Int32" Nullable="true" />
+          <Property Name="Other_Islamic_Loan7_Specification" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Other_Islamic_Loan7_Amount" Type="Decimal" Nullable="false" />
+          <Property Name="Other_Islamic_Loan7_Unit_Percentage" Type="Decimal" Nullable="false" />
+          <Property Name="Other_Islamic_Loan7_Ref" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Bank_Solicitor_Firm_Address1" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Bank_Solicitor_Firm_Address2" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Bank_Solicitor_Firm_Postcode" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Bank_Solicitor_Firm_City" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Bank_Solicitor_Firm_State" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Bank_Solicitor_Ref" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="spa_loan_individual">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Document_ID" Type="Int32" Nullable="false" />
+          <Property Name="Document_Type_Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Document_Agreement_Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="State_Id" Type="Int32" />
+          <Property Name="Area_Id" Type="Int32" />
+          <Property Name="Condition_Type_ID" Type="Int32" />
+          <Property Name="Restriction_Type_ID" Type="Int32" />
+          <Property Name="Building_Type_ID" Type="Int32" />
+          <Property Name="Postal_Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" />
+          <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Tenure_Type_Id" Type="Int32" />
+          <Property Name="Land_Usage_Type_Id" Type="Int32" />
+          <Property Name="Area_Type_Id" Type="Int32" />
+          <Property Name="Geran_Type_ID" Type="Int32" />
+          <Property Name="Date_Open_File" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="spa_loan_purchase_price">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Document_ID" Type="Int32" Nullable="false" />
+          <Property Name="Document_Type_Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Document_Agreement_Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Purchase_Price" Type="Decimal" Nullable="false" />
+          <Property Name="Earnest_Deposit" Type="Decimal" Nullable="false" />
+          <Property Name="RPGT_Retention_Sum" Type="Decimal" Nullable="false" />
+          <Property Name="Balance_Deposit" Type="Decimal" Nullable="false" />
+          <Property Name="Total_Deposit" Type="Decimal" Nullable="false" />
+          <Property Name="Balance_Purchase_Price" Type="Decimal" Nullable="false" />
+          <Property Name="Consuption_Tax" Type="Decimal" Nullable="false" />
+          <Property Name="Purchase_Price_After_Tax" Type="Decimal" Nullable="false" />
+          <Property Name="Adjustment_Rate" Type="Decimal" Nullable="false" />
+          <Property Name="Bank_Branch_ID" Type="Int32" />
+          <Property Name="Charge_Presentation_No" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Existing_Borrower1_User_ID" Type="Int32" />
+          <Property Name="Existing_Borrower2_User_ID" Type="Int32" />
+          <Property Name="Existing_Borrower3_User_ID" Type="Int32" />
+          <Property Name="Existing_Borrower4_User_ID" Type="Int32" />
+          <Property Name="Existing_Borrower5_User_ID" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" />
+          <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="spa_loan_strata">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DocumentId" Type="Int32" Nullable="false" />
+          <Property Name="Document_Type_Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Document_Agreement_Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="State_Id" Type="Int32" />
+          <Property Name="Area_Id" Type="Int32" />
+          <Property Name="Condition_Type_Id" Type="Int32" />
+          <Property Name="Restriction_Type_Id" Type="Int32" />
+          <Property Name="Building_Type_Id" Type="Int32" />
+          <Property Name="Postal_Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Parcel_No" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Story_No" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Building_No" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Unit_Area" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" />
+          <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Tenure_Type_Id" Type="Int32" />
+          <Property Name="Land_Usage_Type_Id" Type="Int32" />
+          <Property Name="Area_Type_Id" Type="Int32" />
+          <Property Name="Geran_Type_Id" Type="Int32" />
+          <Property Name="Date_Open_File" Type="DateTime" />
+          <Property Name="Parcel_No_Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Lot_Type_Id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="spa_loan_without_transfer_direct_transfer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DocumentId" Type="Int32" Nullable="false" />
+          <Property Name="Document_Type_Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Document_Agreement_Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Area_Id" Type="Int32" />
+          <Property Name="Story_No" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Building_No" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Accessory_Parcel_No" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Unit_Area" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" />
+          <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Developer_Id" Type="Int32" />
+          <Property Name="Proprietor_Id" Type="Int32" />
+          <Property Name="Project_Name" Type="String" Nullable="false" />
+          <Property Name="Schedule_Id" Type="Int32" />
+          <Property Name="Master_Title_No" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Parcel_No" Type="String" Nullable="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -767,6 +1509,7 @@
           <EntitySetMapping Name="enummasters">
             <EntityTypeMapping TypeName="DefaultConnection.enummaster">
               <MappingFragment StoreEntitySet="enummaster">
+                <ScalarProperty Name="IsFavourite" ColumnName="IsFavourite" />
                 <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
                 <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
@@ -859,6 +1602,8 @@
           <EntitySetMapping Name="documentworkflows">
             <EntityTypeMapping TypeName="DefaultConnection.documentworkflow">
               <MappingFragment StoreEntitySet="documentworkflow">
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="isRPA" ColumnName="isRPA" />
@@ -904,6 +1649,8 @@
           <EntitySetMapping Name="workflowmasters">
             <EntityTypeMapping TypeName="DefaultConnection.workflowmaster">
               <MappingFragment StoreEntitySet="workflowmaster">
+                <ScalarProperty Name="IsCP" ColumnName="IsCP" />
+                <ScalarProperty Name="IsSNP" ColumnName="IsSNP" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="WorkFlowMasterDuration" ColumnName="WorkFlowMasterDuration" />
@@ -961,6 +1708,372 @@
                 <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
                 <ScalarProperty Name="AspNetUserId" ColumnName="AspNetUserId" />
                 <ScalarProperty Name="UserDetailsId" ColumnName="UserDetailsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="firmprofiles">
+            <EntityTypeMapping TypeName="DefaultConnection.firmprofile">
+              <MappingFragment StoreEntitySet="firmprofile">
+                <ScalarProperty Name="freefield5" ColumnName="freefield5" />
+                <ScalarProperty Name="freefield4" ColumnName="freefield4" />
+                <ScalarProperty Name="freefield3" ColumnName="freefield3" />
+                <ScalarProperty Name="freefield2" ColumnName="freefield2" />
+                <ScalarProperty Name="freefield1" ColumnName="freefield1" />
+                <ScalarProperty Name="gst_sst_no" ColumnName="gst_sst_no" />
+                <ScalarProperty Name="epf_branch" ColumnName="epf_branch" />
+                <ScalarProperty Name="epf_no" ColumnName="epf_no" />
+                <ScalarProperty Name="socso_branch" ColumnName="socso_branch" />
+                <ScalarProperty Name="socso_no" ColumnName="socso_no" />
+                <ScalarProperty Name="irb_branch" ColumnName="irb_branch" />
+                <ScalarProperty Name="irb_no" ColumnName="irb_no" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="fax2" ColumnName="fax2" />
+                <ScalarProperty Name="fax1" ColumnName="fax1" />
+                <ScalarProperty Name="phone3" ColumnName="phone3" />
+                <ScalarProperty Name="phone2" ColumnName="phone2" />
+                <ScalarProperty Name="phone1" ColumnName="phone1" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="Town" ColumnName="Town" />
+                <ScalarProperty Name="postcode" ColumnName="postcode" />
+                <ScalarProperty Name="add4" ColumnName="add4" />
+                <ScalarProperty Name="add3" ColumnName="add3" />
+                <ScalarProperty Name="add2" ColumnName="add2" />
+                <ScalarProperty Name="add1" ColumnName="add1" />
+                <ScalarProperty Name="firm_name" ColumnName="firm_name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="documentmasters">
+            <EntityTypeMapping TypeName="DefaultConnection.documentmaster">
+              <MappingFragment StoreEntitySet="documentmaster">
+                <ScalarProperty Name="PurchaserFirmState" ColumnName="PurchaserFirmState" />
+                <ScalarProperty Name="VendorFirmState" ColumnName="VendorFirmState" />
+                <ScalarProperty Name="FileType" ColumnName="FileType" />
+                <ScalarProperty Name="FileReference" ColumnName="FileReference" />
+                <ScalarProperty Name="PurchaserFirmCity" ColumnName="PurchaserFirmCity" />
+                <ScalarProperty Name="PurchaserFirmZipCode" ColumnName="PurchaserFirmZipCode" />
+                <ScalarProperty Name="PurchaserFirmAddress2" ColumnName="PurchaserFirmAddress2" />
+                <ScalarProperty Name="PurchaserFirmAddress1" ColumnName="PurchaserFirmAddress1" />
+                <ScalarProperty Name="VendorFirmCity" ColumnName="VendorFirmCity" />
+                <ScalarProperty Name="VendorFirmZipCode" ColumnName="VendorFirmZipCode" />
+                <ScalarProperty Name="VendorFirmAddress2" ColumnName="VendorFirmAddress2" />
+                <ScalarProperty Name="VendorFirmAddress1" ColumnName="VendorFirmAddress1" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="PurchaserFirmFileRefNo" ColumnName="PurchaserFirmFileRefNo" />
+                <ScalarProperty Name="PurchaserFirmEmail" ColumnName="PurchaserFirmEmail" />
+                <ScalarProperty Name="PurchaserFirmTel" ColumnName="PurchaserFirmTel" />
+                <ScalarProperty Name="PurchaserFirmID" ColumnName="PurchaserFirmID" />
+                <ScalarProperty Name="PurchaserID" ColumnName="PurchaserID" />
+                <ScalarProperty Name="VendorFirmFileRefNo" ColumnName="VendorFirmFileRefNo" />
+                <ScalarProperty Name="VendorFirmEmail" ColumnName="VendorFirmEmail" />
+                <ScalarProperty Name="VendorFirmTel" ColumnName="VendorFirmTel" />
+                <ScalarProperty Name="VendorFirmID" ColumnName="VendorFirmID" />
+                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="RelatedFileNo" ColumnName="RelatedFileNo" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="FirmID" ColumnName="FirmID" />
+                <ScalarProperty Name="PartnerID" ColumnName="PartnerID" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="FileOpenDate" ColumnName="FileOpenDate" />
+                <ScalarProperty Name="FileNo" ColumnName="FileNo" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="messagemasters">
+            <EntityTypeMapping TypeName="DefaultConnection.messagemaster">
+              <MappingFragment StoreEntitySet="messagemaster">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsMessageRead" ColumnName="IsMessageRead" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="RoomName" ColumnName="RoomName" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="notificationmasters">
+            <EntityTypeMapping TypeName="DefaultConnection.notificationmaster">
+              <MappingFragment StoreEntitySet="notificationmaster">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="RoomName" ColumnName="RoomName" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="MessageID" ColumnName="MessageID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="spa_loan_chain_of_ownership">
+            <EntityTypeMapping TypeName="DefaultConnection.spa_loan_chain_of_ownership">
+              <MappingFragment StoreEntitySet="spa_loan_chain_of_ownership">
+                <ScalarProperty Name="Purchaser7_DRR_Date" ColumnName="Purchaser7_DRR_Date" />
+                <ScalarProperty Name="Purchaser7_Loan_Date" ColumnName="Purchaser7_Loan_Date" />
+                <ScalarProperty Name="Purchaser7_FA_Date" ColumnName="Purchaser7_FA_Date" />
+                <ScalarProperty Name="Purchaser7_DOA_Date" ColumnName="Purchaser7_DOA_Date" />
+                <ScalarProperty Name="Purchaser6_DRR_Date" ColumnName="Purchaser6_DRR_Date" />
+                <ScalarProperty Name="Purchaser6_Loan_Date" ColumnName="Purchaser6_Loan_Date" />
+                <ScalarProperty Name="Purchaser6_FA_Date" ColumnName="Purchaser6_FA_Date" />
+                <ScalarProperty Name="Purchaser6_DOA_Date" ColumnName="Purchaser6_DOA_Date" />
+                <ScalarProperty Name="Purchaser5_DRR_Date" ColumnName="Purchaser5_DRR_Date" />
+                <ScalarProperty Name="Purchaser5_Loan_Date" ColumnName="Purchaser5_Loan_Date" />
+                <ScalarProperty Name="Purchaser5_FA_Date" ColumnName="Purchaser5_FA_Date" />
+                <ScalarProperty Name="Purchaser5_DOA_Date" ColumnName="Purchaser5_DOA_Date" />
+                <ScalarProperty Name="Purchaser4_DRR_Date" ColumnName="Purchaser4_DRR_Date" />
+                <ScalarProperty Name="Purchaser4_Loan_Date" ColumnName="Purchaser4_Loan_Date" />
+                <ScalarProperty Name="Purchaser4_FA_Date" ColumnName="Purchaser4_FA_Date" />
+                <ScalarProperty Name="Purchaser4_DOA_Date" ColumnName="Purchaser4_DOA_Date" />
+                <ScalarProperty Name="Purchaser3_DRR_Date" ColumnName="Purchaser3_DRR_Date" />
+                <ScalarProperty Name="Purchaser3_Loan_Date" ColumnName="Purchaser3_Loan_Date" />
+                <ScalarProperty Name="Purchaser3_FA_Date" ColumnName="Purchaser3_FA_Date" />
+                <ScalarProperty Name="Purchaser3_DOA_Date" ColumnName="Purchaser3_DOA_Date" />
+                <ScalarProperty Name="Purchaser2_DRR_Date" ColumnName="Purchaser2_DRR_Date" />
+                <ScalarProperty Name="Purchaser2_Loan_Date" ColumnName="Purchaser2_Loan_Date" />
+                <ScalarProperty Name="Purchaser2_FA_Date" ColumnName="Purchaser2_FA_Date" />
+                <ScalarProperty Name="Purchaser2_DOA_Date" ColumnName="Purchaser2_DOA_Date" />
+                <ScalarProperty Name="Purchaser1_DRR_Date" ColumnName="Purchaser1_DRR_Date" />
+                <ScalarProperty Name="Purchaser1_Loan_Date" ColumnName="Purchaser1_Loan_Date" />
+                <ScalarProperty Name="Purchaser1_FA_Date" ColumnName="Purchaser1_FA_Date" />
+                <ScalarProperty Name="Purchaser1_DOA_Date" ColumnName="Purchaser1_DOA_Date" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Purchaser7_User_ID" ColumnName="Purchaser7_User_ID" />
+                <ScalarProperty Name="Purchaser6_User_ID" ColumnName="Purchaser6_User_ID" />
+                <ScalarProperty Name="Purchaser5_User_ID" ColumnName="Purchaser5_User_ID" />
+                <ScalarProperty Name="Purchaser4_User_ID" ColumnName="Purchaser4_User_ID" />
+                <ScalarProperty Name="Purchaser3_User_ID" ColumnName="Purchaser3_User_ID" />
+                <ScalarProperty Name="Purchaser2_User_ID" ColumnName="Purchaser2_User_ID" />
+                <ScalarProperty Name="Purchaser1_User_ID" ColumnName="Purchaser1_User_ID" />
+                <ScalarProperty Name="Document_Agreement_Name" ColumnName="Document_Agreement_Name" />
+                <ScalarProperty Name="Document_Type_Name" ColumnName="Document_Type_Name" />
+                <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="spa_loan_for_loan">
+            <EntityTypeMapping TypeName="DefaultConnection.spa_loan_for_loan">
+              <MappingFragment StoreEntitySet="spa_loan_for_loan">
+                <ScalarProperty Name="Bank_Solicitor_Ref" ColumnName="Bank_Solicitor_Ref" />
+                <ScalarProperty Name="Bank_Solicitor_Firm_State" ColumnName="Bank_Solicitor_Firm_State" />
+                <ScalarProperty Name="Bank_Solicitor_Firm_City" ColumnName="Bank_Solicitor_Firm_City" />
+                <ScalarProperty Name="Bank_Solicitor_Firm_Postcode" ColumnName="Bank_Solicitor_Firm_Postcode" />
+                <ScalarProperty Name="Bank_Solicitor_Firm_Address2" ColumnName="Bank_Solicitor_Firm_Address2" />
+                <ScalarProperty Name="Bank_Solicitor_Firm_Address1" ColumnName="Bank_Solicitor_Firm_Address1" />
+                <ScalarProperty Name="Other_Islamic_Loan7_Ref" ColumnName="Other_Islamic_Loan7_Ref" />
+                <ScalarProperty Name="Other_Islamic_Loan7_Unit_Percentage" ColumnName="Other_Islamic_Loan7_Unit_Percentage" />
+                <ScalarProperty Name="Other_Islamic_Loan7_Amount" ColumnName="Other_Islamic_Loan7_Amount" />
+                <ScalarProperty Name="Other_Islamic_Loan7_Specification" ColumnName="Other_Islamic_Loan7_Specification" />
+                <ScalarProperty Name="Other_Islamic_Loan7_Product_Type" ColumnName="Other_Islamic_Loan7_Product_Type" />
+                <ScalarProperty Name="Other_Islamic_Loan7_Bank_Name" ColumnName="Other_Islamic_Loan7_Bank_Name" />
+                <ScalarProperty Name="Other_Islamic_Loan6_Ref" ColumnName="Other_Islamic_Loan6_Ref" />
+                <ScalarProperty Name="Other_Islamic_Loan6_Unit_Percentage" ColumnName="Other_Islamic_Loan6_Unit_Percentage" />
+                <ScalarProperty Name="Other_Islamic_Loan6_Amount" ColumnName="Other_Islamic_Loan6_Amount" />
+                <ScalarProperty Name="Other_Islamic_Loan6_Specification" ColumnName="Other_Islamic_Loan6_Specification" />
+                <ScalarProperty Name="Other_Islamic_Loan6_Product_Type" ColumnName="Other_Islamic_Loan6_Product_Type" />
+                <ScalarProperty Name="Other_Islamic_Loan6_Bank_Name" ColumnName="Other_Islamic_Loan6_Bank_Name" />
+                <ScalarProperty Name="Other_Islamic_Loan5_Ref" ColumnName="Other_Islamic_Loan5_Ref" />
+                <ScalarProperty Name="Other_Islamic_Loan5_Unit_Percentage" ColumnName="Other_Islamic_Loan5_Unit_Percentage" />
+                <ScalarProperty Name="Other_Islamic_Loan5_Amount" ColumnName="Other_Islamic_Loan5_Amount" />
+                <ScalarProperty Name="Other_Islamic_Loan5_Specification" ColumnName="Other_Islamic_Loan5_Specification" />
+                <ScalarProperty Name="Other_Islamic_Loan5_Product_Type" ColumnName="Other_Islamic_Loan5_Product_Type" />
+                <ScalarProperty Name="Other_Islamic_Loan5_Bank_Name" ColumnName="Other_Islamic_Loan5_Bank_Name" />
+                <ScalarProperty Name="Other_Islamic_Loan4_Ref" ColumnName="Other_Islamic_Loan4_Ref" />
+                <ScalarProperty Name="Other_Islamic_Loan4_Unit_Percentage" ColumnName="Other_Islamic_Loan4_Unit_Percentage" />
+                <ScalarProperty Name="Other_Islamic_Loan4_Amount" ColumnName="Other_Islamic_Loan4_Amount" />
+                <ScalarProperty Name="Other_Islamic_Loan4_Specification" ColumnName="Other_Islamic_Loan4_Specification" />
+                <ScalarProperty Name="Other_Islamic_Loan4_Product_Type" ColumnName="Other_Islamic_Loan4_Product_Type" />
+                <ScalarProperty Name="Other_Islamic_Loan4_Bank_Name" ColumnName="Other_Islamic_Loan4_Bank_Name" />
+                <ScalarProperty Name="Officer2_Id" ColumnName="Officer2_Id" />
+                <ScalarProperty Name="Officer1_Id" ColumnName="Officer1_Id" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Bank_Solicitor_Email" ColumnName="Bank_Solicitor_Email" />
+                <ScalarProperty Name="Bank_Solicitor_Firm_Phone_No" ColumnName="Bank_Solicitor_Firm_Phone_No" />
+                <ScalarProperty Name="Bank_Solicitor_ID" ColumnName="Bank_Solicitor_ID" />
+                <ScalarProperty Name="Other_Islamic_Loan3_Ref" ColumnName="Other_Islamic_Loan3_Ref" />
+                <ScalarProperty Name="Other_Islamic_Loan3_Unit_Percentage" ColumnName="Other_Islamic_Loan3_Unit_Percentage" />
+                <ScalarProperty Name="Other_Islamic_Loan3_Amount" ColumnName="Other_Islamic_Loan3_Amount" />
+                <ScalarProperty Name="Other_Islamic_Loan3_Specification" ColumnName="Other_Islamic_Loan3_Specification" />
+                <ScalarProperty Name="Other_Islamic_Loan3_Product_Type" ColumnName="Other_Islamic_Loan3_Product_Type" />
+                <ScalarProperty Name="Other_Islamic_Loan3_Bank_Name" ColumnName="Other_Islamic_Loan3_Bank_Name" />
+                <ScalarProperty Name="Other_Islamic_Loan2_Ref" ColumnName="Other_Islamic_Loan2_Ref" />
+                <ScalarProperty Name="Other_Islamic_Loan2_Unit_Percentage" ColumnName="Other_Islamic_Loan2_Unit_Percentage" />
+                <ScalarProperty Name="Other_Islamic_Loan2_Amount" ColumnName="Other_Islamic_Loan2_Amount" />
+                <ScalarProperty Name="Other_Islamic_Loan2_Specification" ColumnName="Other_Islamic_Loan2_Specification" />
+                <ScalarProperty Name="Other_Islamic_Loan2_Product_Type" ColumnName="Other_Islamic_Loan2_Product_Type" />
+                <ScalarProperty Name="Other_Islamic_Loan2_Bank_Name" ColumnName="Other_Islamic_Loan2_Bank_Name" />
+                <ScalarProperty Name="Other_Islamic_Loan1_Ref" ColumnName="Other_Islamic_Loan1_Ref" />
+                <ScalarProperty Name="Other_Islamic_Loan1_Unit_Percentage" ColumnName="Other_Islamic_Loan1_Unit_Percentage" />
+                <ScalarProperty Name="Other_Islamic_Loan1_Amount" ColumnName="Other_Islamic_Loan1_Amount" />
+                <ScalarProperty Name="Other_Islamic_Loan1_Specification" ColumnName="Other_Islamic_Loan1_Specification" />
+                <ScalarProperty Name="Other_Islamic_Loan1_Product_Type" ColumnName="Other_Islamic_Loan1_Product_Type" />
+                <ScalarProperty Name="Other_Islamic_Loan1_Bank_Name" ColumnName="Other_Islamic_Loan1_Bank_Name" />
+                <ScalarProperty Name="Bank_Purchase_Price" ColumnName="Bank_Purchase_Price" />
+                <ScalarProperty Name="Bank_Selling_Price" ColumnName="Bank_Selling_Price" />
+                <ScalarProperty Name="Islamic_Loan_Total_Financing_Sum" ColumnName="Islamic_Loan_Total_Financing_Sum" />
+                <ScalarProperty Name="Other_Financing5_Amount" ColumnName="Other_Financing5_Amount" />
+                <ScalarProperty Name="Other_Financing5_Type" ColumnName="Other_Financing5_Type" />
+                <ScalarProperty Name="Other_Financing4_Amount" ColumnName="Other_Financing4_Amount" />
+                <ScalarProperty Name="Other_Financing4_Type" ColumnName="Other_Financing4_Type" />
+                <ScalarProperty Name="Other_Financing3_Amount" ColumnName="Other_Financing3_Amount" />
+                <ScalarProperty Name="Other_Financing3_Type" ColumnName="Other_Financing3_Type" />
+                <ScalarProperty Name="Other_Financing2_Amount" ColumnName="Other_Financing2_Amount" />
+                <ScalarProperty Name="Other_Financing2_Type" ColumnName="Other_Financing2_Type" />
+                <ScalarProperty Name="Other_Financing1_Amount" ColumnName="Other_Financing1_Amount" />
+                <ScalarProperty Name="Other_Financing1_Type" ColumnName="Other_Financing1_Type" />
+                <ScalarProperty Name="Islamic_Financing_Amount" ColumnName="Islamic_Financing_Amount" />
+                <ScalarProperty Name="Islamic_Financing_Type" ColumnName="Islamic_Financing_Type" />
+                <ScalarProperty Name="Islamic_Loan_Type" ColumnName="Islamic_Loan_Type" />
+                <ScalarProperty Name="Conventional_Loan_Total_Financing_Sum" ColumnName="Conventional_Loan_Total_Financing_Sum" />
+                <ScalarProperty Name="Other_Loan6_Amount" ColumnName="Other_Loan6_Amount" />
+                <ScalarProperty Name="Other_Loan6_Type" ColumnName="Other_Loan6_Type" />
+                <ScalarProperty Name="Other_Loan5_Amount" ColumnName="Other_Loan5_Amount" />
+                <ScalarProperty Name="Other_Loan5_Type" ColumnName="Other_Loan5_Type" />
+                <ScalarProperty Name="Other_Loan4_Amount" ColumnName="Other_Loan4_Amount" />
+                <ScalarProperty Name="Other_Loan4_Type" ColumnName="Other_Loan4_Type" />
+                <ScalarProperty Name="Other_Loan3_Amount" ColumnName="Other_Loan3_Amount" />
+                <ScalarProperty Name="Other_Loan3_Type" ColumnName="Other_Loan3_Type" />
+                <ScalarProperty Name="Other_Loan2_Amount" ColumnName="Other_Loan2_Amount" />
+                <ScalarProperty Name="Other_Loan2_Type" ColumnName="Other_Loan2_Type" />
+                <ScalarProperty Name="Other_Loan1_Amount" ColumnName="Other_Loan1_Amount" />
+                <ScalarProperty Name="Other_Loan1_Type" ColumnName="Other_Loan1_Type" />
+                <ScalarProperty Name="Conventional_Loan_Amount" ColumnName="Conventional_Loan_Amount" />
+                <ScalarProperty Name="Conventional_Financing_Type" ColumnName="Conventional_Financing_Type" />
+                <ScalarProperty Name="Conventional_Loan_Type" ColumnName="Conventional_Loan_Type" />
+                <ScalarProperty Name="Officer2_Password" ColumnName="Officer2_Password" />
+                <ScalarProperty Name="Officer2_Username" ColumnName="Officer2_Username" />
+                <ScalarProperty Name="Officer1_Password" ColumnName="Officer1_Password" />
+                <ScalarProperty Name="Officer1_Username" ColumnName="Officer1_Username" />
+                <ScalarProperty Name="Letter_of_Instruction_Date" ColumnName="Letter_of_Instruction_Date" />
+                <ScalarProperty Name="Offer_Letter_Date" ColumnName="Offer_Letter_Date" />
+                <ScalarProperty Name="Bank_Reference" ColumnName="Bank_Reference" />
+                <ScalarProperty Name="Bank_Branch_ID" ColumnName="Bank_Branch_ID" />
+                <ScalarProperty Name="Guarantor5_User_ID" ColumnName="Guarantor5_User_ID" />
+                <ScalarProperty Name="Guarantor4_User_ID" ColumnName="Guarantor4_User_ID" />
+                <ScalarProperty Name="Guarantor3_User_ID" ColumnName="Guarantor3_User_ID" />
+                <ScalarProperty Name="Guarantor2_User_ID" ColumnName="Guarantor2_User_ID" />
+                <ScalarProperty Name="Guarantor1_User_ID" ColumnName="Guarantor1_User_ID" />
+                <ScalarProperty Name="Borrower5_User_ID" ColumnName="Borrower5_User_ID" />
+                <ScalarProperty Name="Borrower4_User_ID" ColumnName="Borrower4_User_ID" />
+                <ScalarProperty Name="Borrower3_User_ID" ColumnName="Borrower3_User_ID" />
+                <ScalarProperty Name="Borrower2_User_ID" ColumnName="Borrower2_User_ID" />
+                <ScalarProperty Name="Borrower1_User_ID" ColumnName="Borrower1_User_ID" />
+                <ScalarProperty Name="Document_Agreement_Name" ColumnName="Document_Agreement_Name" />
+                <ScalarProperty Name="Document_Type_Name" ColumnName="Document_Type_Name" />
+                <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="spa_loan_individual">
+            <EntityTypeMapping TypeName="DefaultConnection.spa_loan_individual">
+              <MappingFragment StoreEntitySet="spa_loan_individual">
+                <ScalarProperty Name="Date_Open_File" ColumnName="Date_Open_File" />
+                <ScalarProperty Name="Geran_Type_ID" ColumnName="Geran_Type_ID" />
+                <ScalarProperty Name="Area_Type_Id" ColumnName="Area_Type_Id" />
+                <ScalarProperty Name="Land_Usage_Type_Id" ColumnName="Land_Usage_Type_Id" />
+                <ScalarProperty Name="Tenure_Type_Id" ColumnName="Tenure_Type_Id" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Postal_Address" ColumnName="Postal_Address" />
+                <ScalarProperty Name="Building_Type_ID" ColumnName="Building_Type_ID" />
+                <ScalarProperty Name="Restriction_Type_ID" ColumnName="Restriction_Type_ID" />
+                <ScalarProperty Name="Condition_Type_ID" ColumnName="Condition_Type_ID" />
+                <ScalarProperty Name="Area_Id" ColumnName="Area_Id" />
+                <ScalarProperty Name="State_Id" ColumnName="State_Id" />
+                <ScalarProperty Name="Document_Agreement_Name" ColumnName="Document_Agreement_Name" />
+                <ScalarProperty Name="Document_Type_Name" ColumnName="Document_Type_Name" />
+                <ScalarProperty Name="Document_ID" ColumnName="Document_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="spa_loan_purchase_price">
+            <EntityTypeMapping TypeName="DefaultConnection.spa_loan_purchase_price">
+              <MappingFragment StoreEntitySet="spa_loan_purchase_price">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Existing_Borrower5_User_ID" ColumnName="Existing_Borrower5_User_ID" />
+                <ScalarProperty Name="Existing_Borrower4_User_ID" ColumnName="Existing_Borrower4_User_ID" />
+                <ScalarProperty Name="Existing_Borrower3_User_ID" ColumnName="Existing_Borrower3_User_ID" />
+                <ScalarProperty Name="Existing_Borrower2_User_ID" ColumnName="Existing_Borrower2_User_ID" />
+                <ScalarProperty Name="Existing_Borrower1_User_ID" ColumnName="Existing_Borrower1_User_ID" />
+                <ScalarProperty Name="Charge_Presentation_No" ColumnName="Charge_Presentation_No" />
+                <ScalarProperty Name="Bank_Branch_ID" ColumnName="Bank_Branch_ID" />
+                <ScalarProperty Name="Adjustment_Rate" ColumnName="Adjustment_Rate" />
+                <ScalarProperty Name="Purchase_Price_After_Tax" ColumnName="Purchase_Price_After_Tax" />
+                <ScalarProperty Name="Consuption_Tax" ColumnName="Consuption_Tax" />
+                <ScalarProperty Name="Balance_Purchase_Price" ColumnName="Balance_Purchase_Price" />
+                <ScalarProperty Name="Total_Deposit" ColumnName="Total Deposit" />
+                <ScalarProperty Name="Balance_Deposit" ColumnName="Balance_Deposit" />
+                <ScalarProperty Name="RPGT_Retention_Sum" ColumnName="RPGT_Retention_Sum" />
+                <ScalarProperty Name="Earnest_Deposit" ColumnName="Earnest_Deposit" />
+                <ScalarProperty Name="Purchase_Price" ColumnName="Purchase_Price" />
+                <ScalarProperty Name="Document_Agreement_Name" ColumnName="Document_Agreement_Name" />
+                <ScalarProperty Name="Document_Type_Name" ColumnName="Document_Type_Name" />
+                <ScalarProperty Name="Document_ID" ColumnName="Document_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="spa_loan_strata">
+            <EntityTypeMapping TypeName="DefaultConnection.spa_loan_strata">
+              <MappingFragment StoreEntitySet="spa_loan_strata">
+                <ScalarProperty Name="Lot_Type_Id" ColumnName="Lot_Type_Id" />
+                <ScalarProperty Name="Parcel_No_Description" ColumnName="Parcel_No_Description" />
+                <ScalarProperty Name="Date_Open_File" ColumnName="Date_Open_File" />
+                <ScalarProperty Name="Geran_Type_Id" ColumnName="Geran_Type_Id" />
+                <ScalarProperty Name="Area_Type_Id" ColumnName="Area_Type_Id" />
+                <ScalarProperty Name="Land_Usage_Type_Id" ColumnName="Land_Usage_Type_Id" />
+                <ScalarProperty Name="Tenure_Type_Id" ColumnName="Tenure_Type_Id" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Unit_Area" ColumnName="Unit_Area" />
+                <ScalarProperty Name="Building_No" ColumnName="Building_No" />
+                <ScalarProperty Name="Story_No" ColumnName="Story_No" />
+                <ScalarProperty Name="Parcel_No" ColumnName="Parcel_No" />
+                <ScalarProperty Name="Postal_Address" ColumnName="Postal_Address" />
+                <ScalarProperty Name="Building_Type_Id" ColumnName="Building_Type_Id" />
+                <ScalarProperty Name="Restriction_Type_Id" ColumnName="Restriction_Type_Id" />
+                <ScalarProperty Name="Condition_Type_Id" ColumnName="Condition_Type_Id" />
+                <ScalarProperty Name="Area_Id" ColumnName="Area_Id" />
+                <ScalarProperty Name="State_Id" ColumnName="State_Id" />
+                <ScalarProperty Name="Document_Agreement_Name" ColumnName="Document_Agreement_Name" />
+                <ScalarProperty Name="Document_Type_Name" ColumnName="Document_Type_Name" />
+                <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="spa_loan_without_transfer_direct_transfer">
+            <EntityTypeMapping TypeName="DefaultConnection.spa_loan_without_transfer_direct_transfer">
+              <MappingFragment StoreEntitySet="spa_loan_without_transfer_direct_transfer">
+                <ScalarProperty Name="Parcel_No" ColumnName="Parcel_No" />
+                <ScalarProperty Name="Master_Title_No" ColumnName="Master_Title_No" />
+                <ScalarProperty Name="Schedule_Id" ColumnName="Schedule_Id" />
+                <ScalarProperty Name="Project_Name" ColumnName="Project_Name" />
+                <ScalarProperty Name="Proprietor_Id" ColumnName="Proprietor_Id" />
+                <ScalarProperty Name="Developer_Id" ColumnName="Developer_Id" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Unit_Area" ColumnName="Unit_Area" />
+                <ScalarProperty Name="Accessory_Parcel_No" ColumnName="Accessory_Parcel_No" />
+                <ScalarProperty Name="Building_No" ColumnName="Building_No" />
+                <ScalarProperty Name="Story_No" ColumnName="Story_No" />
+                <ScalarProperty Name="Area_Id" ColumnName="Area_Id" />
+                <ScalarProperty Name="Document_Agreement_Name" ColumnName="Document_Agreement_Name" />
+                <ScalarProperty Name="Document_Type_Name" ColumnName="Document_Type_Name" />
+                <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -1,4 +1,5 @@
-﻿using MAT;
+﻿using CMSLcLy.Data.DbModels;
+using MAT;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace CMSLcLy.Data.User
                          Id = model.Id,
                          UserName = model.UserName,
                          UserDetailsId = t21.UserDetailsId,
-                         AspNetUserID = t21.AspNetUserId,
+                         AspNetUserID = model.Id,
                          UserTypeID = t21.UserTypeID,
                          UserType = t41.EnumValue,
                          IdentityType = t21.IdentityType,
@@ -72,6 +73,70 @@ namespace CMSLcLy.Data.User
             return q;
         }
 
+        public IQueryable<UserMasterItemViewModel> getUser(string username)
+        {
+            var q = (from model in Context.aspnetusers
+                     join t2 in Context.userdetails on model.Id equals t2.AspNetUserId into gj
+                     from t21 in gj.DefaultIfEmpty()
+                     join t3 in Context.enummasters on t21.IdentityType equals t3.Id into gj2
+                     from t31 in gj2.DefaultIfEmpty()
+                     join t4 in Context.enummasters on t21.UserTypeID equals t4.Id into gj3
+                     from t41 in gj3.DefaultIfEmpty()
+                     where model.UserName == username
+                     select new UserMasterItemViewModel
+                     {
+                         Id = model.Id,
+                         UserName = model.UserName,
+                         UserDetailsId = t21.UserDetailsId,
+                         AspNetUserID = model.Id,
+                         UserTypeID = t21.UserTypeID,
+                         UserType = t41.EnumValue,
+                         IdentityType = t21.IdentityType,
+                         IdentityTypeDesc = t31.EnumValue,
+                         IdentityNo = t21.IdentityNo,
+                         ConsumptionTaxNo = t21.ConsumptionTaxNo,
+                         FullName = t21.FullName,
+                         Address = t21.Address,
+                         Address2 = t21.Address2,
+                         Address3 = t21.Address3,
+                         PostCode = t21.PostCode,
+                         City = t21.City,
+                         State = t21.State,
+                         Country = t21.Country,
+                         PhoneNumber = t21.PhoneNumber,
+                         HomeContactNo = t21.HomeContactNo,
+                         OfficeContactNo = t21.OfficeContactNo,
+                         MobileContactNo = t21.MobileContactNo,
+                         Fax = t21.Fax,
+                         Email = t21.Email,
+                         TaxFileNo = t21.TaxFileNo,
+                         TaxBranch = t21.TaxBranch,
+                         RegAddress = t21.RegAddress,
+                         RegAddress2 = t21.RegAddress2,
+                         RegAddress3 = t21.RegAddress3,
+                         RegPostCode = t21.RegPostCode,
+                         RegCity = t21.RegCity,
+                         RegState = t21.RegState,
+                         BussAddress = t21.BussAddress,
+                         BussAddress2 = t21.BussAddress2,
+                         BussAddress3 = t21.BussAddress3,
+                         BussPostCode = t21.BussPostCode,
+                         BussCity = t21.BussCity,
+                         BussState = t21.BussState,
+                         DirectorName = t21.DirectorName,
+                         DirectorIDNo = t21.DirectorIDNo,
+                         DirectorSectName = t21.DirectorSectName,
+                         DirectorSectIDNo = t21.DirectorSectIDNo,
+                         CreatedBy = t21.CreatedBy,
+                         CreatedDate = t21.CreatedDate,
+                         ModifiedBy = t21.ModifiedBy,
+                         ModifiedDate = t21.ModifiedDate,
+                     });
+
+            return q;
+        }
+
+
         public virtual UserMasterItemViewModel Get(string Id)
         {
             var q = (from model in Context.aspnetusers
@@ -87,7 +152,7 @@ namespace CMSLcLy.Data.User
                          Id = model.Id,
                          UserName = model.UserName,
                          UserDetailsId = t21.UserDetailsId,
-                         AspNetUserID = t21.AspNetUserId,
+                         AspNetUserID = model.Id,
                          UserTypeID = t21.UserTypeID,
                          UserType = t41.EnumValue,
                          IdentityType = t21.IdentityType,

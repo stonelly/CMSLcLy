@@ -7,6 +7,8 @@ using System.Web;
 using System.Web.Mvc;
 using CMSApi.Models;
 using CMSLcLy.Data;
+using CMSLcLy.Data.File;
+using Microsoft.AspNet.Identity;
 using COMM = CMSLcLy.Common;
 
 namespace CMSApi.Controllers
@@ -75,6 +77,47 @@ namespace CMSApi.Controllers
             ViewBag.Title = "Home Page";
 
             return View(workflowmaster);
+        }
+
+        [HttpGet]
+        public dynamic WorkFlowList()
+        {
+            String userName = User.Identity.GetUserName();
+
+            IList<DocumentItemViewModel> documentItemViewModel = null;
+
+            using (var mgr = new CMSLcLy.Data.File.Manager())
+            {
+                documentItemViewModel = mgr.ListByUser(userName).ToList();
+            }
+
+            List<WFMasterItemViewModel> wfItemList = new List<WFMasterItemViewModel>();
+            foreach (var doc in documentItemViewModel)
+            {
+                using (var mgr = new CMSLcLy.Data.File.Manager())
+                {
+                    var wfList = mgr.ListByFileId(doc.ID).ToList();
+                    var wf = wfList.Where(x => x.isCompleted == 0).FirstOrDefault();
+                    if(wf != null)
+                    {
+                        wfItemList.Add(wf);
+                    }
+                }
+            }
+
+            return Json(wfItemList, JsonRequestBehavior.AllowGet); 
+        }
+
+        [HttpGet]
+        public dynamic UpdateToDo(int documentWorkflowId)
+        {
+            var result = "";
+            using (var mgr = new CMSLcLy.Data.File.Manager())
+            {
+                result = mgr.UpdateTodo(documentWorkflowId);
+            }
+
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
 

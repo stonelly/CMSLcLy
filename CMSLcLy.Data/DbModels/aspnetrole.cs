@@ -20,8 +20,7 @@ namespace CMSLcLy.Data.DbModels
         {
             this.aspnetusers = new HashSet<aspnetuser>();
         }
-
-        [System.ComponentModel.DataAnnotations.Key]
+    
         public string Id { get; set; }
         public string Name { get; set; }
     

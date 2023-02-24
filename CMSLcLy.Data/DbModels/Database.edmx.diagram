@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c0ea5906e29f4f09a65608ff4030725d" Name="Diagram1" ZoomLevel="54">
+      <Diagram DiagramId="c0ea5906e29f4f09a65608ff4030725d" Name="Diagram1" ZoomLevel="67">
         <EntityTypeShape EntityType="DefaultConnection.aspnetrole" Width="1.5" PointX="0.75" PointY="11.375" />
         <EntityTypeShape EntityType="DefaultConnection.aspnetuserclaim" Width="1.5" PointX="5.25" PointY="1.875" />
         <EntityTypeShape EntityType="DefaultConnection.aspnetuserlogin" Width="1.5" PointX="5.25" PointY="10.625" />
@@ -23,6 +23,16 @@
         <EntityTypeShape EntityType="DefaultConnection.workflowmaster" Width="1.5" PointX="5.75" PointY="6.75" />
         <EntityTypeShape EntityType="DefaultConnection.userdetail" Width="1.5" PointX="5.25" PointY="13.375" />
         <AssociationConnector Association="DefaultConnection.userdetail_ibfk_1" />
+        <EntityTypeShape EntityType="DefaultConnection.firmprofile" Width="1.5" PointX="12.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DefaultConnection.documentmaster" Width="2.375" PointX="12.375" PointY="8.75" />
+        <EntityTypeShape EntityType="DefaultConnection.messagemaster" Width="1.5" PointX="8.375" PointY="6.75" />
+        <EntityTypeShape EntityType="DefaultConnection.notificationmaster" Width="1.5" PointX="7.375" PointY="10.75" />
+        <EntityTypeShape EntityType="DefaultConnection.spa_loan_chain_of_ownership" Width="1.5" PointX="14.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DefaultConnection.spa_loan_for_loan" Width="3.75" PointX="15" PointY="13.25" />
+        <EntityTypeShape EntityType="DefaultConnection.spa_loan_individual" Width="1.5" PointX="0.75" PointY="15.75" />
+        <EntityTypeShape EntityType="DefaultConnection.spa_loan_purchase_price" Width="1.5" PointX="2.75" PointY="15.75" />
+        <EntityTypeShape EntityType="DefaultConnection.spa_loan_strata" Width="2.625" PointX="18.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DefaultConnection.spa_loan_without_transfer_direct_transfer" Width="1.875" PointX="16.75" PointY="6.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

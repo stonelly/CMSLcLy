@@ -68,11 +68,14 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="@Html.RouteIf("Template", "active")">
+                        <a href="@Url.Action("index", "Template", new { Area = "Administration" })"><i class="fa fa-lg fa-fw fa-building-o"></i> <span class="menu-item-parent">Document Template</span></a>
+                    </li>
                     <li class="@Html.RouteIf("Workflow", "active")">
                         <a href="@Url.Action("index", "Workflow", new { Area = "SystemSetting" })"><i class="fa fa-lg fa-fw fa-list"></i> <span class="menu-item-parent">Checklist</span></a>
                     </li>
                     <li class="@Html.RouteIf("Company", "active")">
-                        <a href="@Url.Action("index", "Company", new { Area = "SystemSetting" })"><i class="fa fa-lg fa-fw fa-bookmark"></i> <span class="menu-item-parent">Company Profile</span></a>
+                        <a href="@Url.Action("details", "Company", new { Area = "SystemSetting"})"><i class="fa fa-lg fa-fw fa-bookmark"></i> <span class="menu-item-parent">Firm Profile</span></a>
                     </li>
 
                 </ul>

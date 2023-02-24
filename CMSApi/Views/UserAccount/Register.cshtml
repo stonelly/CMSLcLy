@@ -60,6 +60,13 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
+                                                            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                            <div class="col-md-10">
+                                                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
                                                             @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
                                                             <div class="col-md-10">
                                                                 @Html.PasswordFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
@@ -69,9 +76,9 @@
                                                         <div class="form-group">
                                                             @Html.LabelFor(model => model.UserRoles, htmlAttributes: new { @class = "control-label col-md-2" })
                                                             <div class="col-md-10">
-                                                                @Html.DropDownListFor(m => m.UserRoles, new SelectList(Model.Roles, "Value", "Text"), new { @id = "ddlBankShortcutID", @class = "form-control", @onchange = "javascript:GetBankShortCut(this.value);" })
+                                                                @Html.DropDownListFor(m => m.UserRoles, new SelectList(Model.Roles, "Value", "Text", Model.RoleAdd), new { @class = "form-control" })
                                                                 @Html.ValidationMessageFor(model => model.UserRoles, "", new { @class = "text-danger" })
-                                                                @Html.HiddenFor(m => m.UserRoles, new { @id = "hidBankShortCutID" })
+                                                                @Html.HiddenFor(m => m.UserRoles)
                                                             </div>
                                                         </div>
 
@@ -141,6 +148,12 @@
 
     <script type="text/javascript">
 
+        function RefreshParent() {
+            if (window.opener != null && !window.opener.closed) {
+                window.opener.getClientList();
+            }
+        }
+        window.onbeforeunload = RefreshParent;
 
     </script>
 }

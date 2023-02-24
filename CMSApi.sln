@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1525
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32126.315
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMSLcLy.WebApi", "CMSApi\CMSLcLy.WebApi.csproj", "{F03EA6D5-3992-4122-9087-2A5D0887C1B8}"
 EndProject
@@ -10,6 +10,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resources", "Resources\Resources.csproj", "{BA67124C-EF74-41B2-9561-BF19127712E7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMSLcLy.Common", "CMSLcLy.Common\CMSLcLy.Common.csproj", "{D2EB4595-D587-42E3-9AFB-4144D2F2E98A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DB", "DB", "{217A0584-075D-4131-89A8-7ACE2982266A}"
+	ProjectSection(SolutionItems) = preProject
+		Document_Type_Tables.sql = Document_Type_Tables.sql
+		DB\LY-Database.sql = DB\LY-Database.sql
+		messagemaster.sql = messagemaster.sql
+		notificationmaster.sql = notificationmaster.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

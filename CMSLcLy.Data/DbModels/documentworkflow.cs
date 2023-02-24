@@ -23,8 +23,10 @@ namespace CMSLcLy.Data.DbModels
         public string UserID { get; set; }
         public System.DateTime DueDate { get; set; }
         public int isCompleted { get; set; }
-        public bool isRPA { get; set; }
+        public int isRPA { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public string CreatedBy { get; set; }
+        public string ModifyBy { get; set; }
+        public Nullable<System.DateTime> ModifyDate { get; set; }
     }
 }

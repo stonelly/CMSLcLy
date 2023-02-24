@@ -20,7 +20,6 @@ namespace CMSLcLy.Data.DbModels
         {
             this.aspnetuserclaims = new HashSet<aspnetuserclaim>();
             this.aspnetuserlogins = new HashSet<aspnetuserlogin>();
-            this.firmmasters = new HashSet<firmmaster>();
             this.userdetails = new HashSet<userdetail>();
         }
 
@@ -42,10 +41,8 @@ namespace CMSLcLy.Data.DbModels
         public virtual ICollection<aspnetuserclaim> aspnetuserclaims { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<aspnetuserlogin> aspnetuserlogins { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<firmmaster> firmmasters { get; set; }
+        public virtual aspnetrole aspnetrole { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<userdetail> userdetails { get; set; }
-        public virtual aspnetrole aspnetrole { get; set; }
     }
 }

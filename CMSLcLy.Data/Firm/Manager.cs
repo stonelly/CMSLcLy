@@ -44,6 +44,57 @@ namespace CMSLcLy.Data.Firm
             return q;
         }
 
+        public FirmMasterItemViewModel GetRepFirm()
+        {
+            var q = (from model in Context.firmprofiles              
+                     select new FirmMasterItemViewModel
+                     {
+                         Id = model.ID,        
+                         AspNetUserID = model.freefield1,
+                         FirmName = model.firm_name,
+                         Address = model.add1,
+                         Address2 = model.add2,
+                         Address3 = model.add3,
+                         PostCode = model.postcode,
+                         City = model.Town,
+                         State = model.state,
+                         Phone = model.phone1,
+                         Phone2 = model.phone2,
+                         Phone3 = model.phone3,
+                         Fax = model.fax1,
+                         Fax2 = model.fax2,
+                         Email = model.email,
+                         Remark= model.freefield2
+                     }).FirstOrDefault();
+            return q;
+        }
+
+        public FirmMasterItemViewModel GetFirm(string firmName)
+        {
+            var q = (from model in Context.firmprofiles
+                     where model.firm_name == firmName
+                     select new FirmMasterItemViewModel
+                     {
+                         Id = model.ID,
+                         AspNetUserID = model.freefield1,
+                         FirmName = model.firm_name,
+                         Address = model.add1,
+                         Address2 = model.add2,
+                         Address3 = model.add3,
+                         PostCode = model.postcode,
+                         City = model.Town,
+                         State = model.state,
+                         Phone = model.phone1,
+                         Phone2 = model.phone2,
+                         Phone3 = model.phone3,
+                         Fax = model.fax1,
+                         Fax2 = model.fax2,
+                         Email = model.email,
+                         Remark = model.freefield2
+                     }).FirstOrDefault();
+            return q;
+        }
+
         public virtual FirmMasterItemViewModel Get(int Id)
         {
             var q = (from model in Context.firmmasters

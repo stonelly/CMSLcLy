@@ -31,6 +31,16 @@
       <End Role="aspnetuser" EntitySet="aspnetusers" />
       <End Role="userdetail" EntitySet="userdetails" />
     </AssociationSet>
+    <EntitySet Name="firmprofiles" EntityType="DefaultConnection.firmprofile" />
+    <EntitySet Name="documentmasters" EntityType="DefaultConnection.documentmaster" />
+    <EntitySet Name="messagemasters" EntityType="DefaultConnection.messagemaster" />
+    <EntitySet Name="notificationmasters" EntityType="DefaultConnection.notificationmaster" />
+    <EntitySet Name="spa_loan_chain_of_ownership" EntityType="DefaultConnection.spa_loan_chain_of_ownership" />
+    <EntitySet Name="spa_loan_for_loan" EntityType="DefaultConnection.spa_loan_for_loan" />
+    <EntitySet Name="spa_loan_individual" EntityType="DefaultConnection.spa_loan_individual" />
+    <EntitySet Name="spa_loan_purchase_price" EntityType="DefaultConnection.spa_loan_purchase_price" />
+    <EntitySet Name="spa_loan_strata" EntityType="DefaultConnection.spa_loan_strata" />
+    <EntitySet Name="spa_loan_without_transfer_direct_transfer" EntityType="DefaultConnection.spa_loan_without_transfer_direct_transfer" />
   </EntityContainer>
   <EntityType Name="aspnetrole">
     <Key>
@@ -118,6 +128,7 @@
     <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
     <Property Name="ModifyDate" Type="DateTime" />
     <Property Name="ModifyBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="IsFavourite" Type="SByte" Nullable="false" />
   </EntityType>
   <Association Name="FK_userclaim_user">
     <End Type="DefaultConnection.aspnetuser" Role="aspnetuser" Multiplicity="1" />
@@ -223,9 +234,11 @@
     <Property Name="UserID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="DueDate" Type="DateTime" Nullable="false" />
     <Property Name="isCompleted" Type="Int32" Nullable="false" />
-    <Property Name="isRPA" Type="Boolean" Nullable="false" />
+    <Property Name="isRPA" Type="Int32" Nullable="false" />
     <Property Name="CreatedDate" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModifyBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModifyDate" Type="DateTime" />
   </EntityType>
   <EntityType Name="workflow">
     <Key>
@@ -267,6 +280,8 @@
     <Property Name="WorkFlowMasterDuration" Type="Int32" Nullable="false" />
     <Property Name="CreatedDate" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="IsSNP" Type="Int32" />
+    <Property Name="IsCP" Type="Int32" />
   </EntityType>
   <EntityType Name="userdetail">
     <Key>
@@ -328,4 +343,360 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="firmprofile">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="firm_name" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="add1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="add2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="add3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="add4" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="postcode" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="Town" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="state" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="phone1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="phone2" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="phone3" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="fax1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="fax2" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="irb_no" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="irb_branch" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="socso_no" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="socso_branch" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="epf_no" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="epf_branch" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="gst_sst_no" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="freefield1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="freefield2" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="freefield3" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="freefield4" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="freefield5" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="documentmaster">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FileOpenDate" Type="DateTime" />
+    <Property Name="ClientID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="PartnerID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="FirmID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="RelatedFileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Remark" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="VendorID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="VendorFirmID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="VendorFirmTel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="VendorFirmEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="VendorFirmFileRefNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PurchaserID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="PurchaserFirmID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="PurchaserFirmTel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PurchaserFirmEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PurchaserFirmFileRefNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ModifyBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="ModifyDate" Type="DateTime" />
+    <Property Name="VendorFirmAddress1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="VendorFirmAddress2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="VendorFirmZipCode" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="VendorFirmCity" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="PurchaserFirmAddress1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="PurchaserFirmAddress2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="PurchaserFirmZipCode" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="PurchaserFirmCity" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="FileReference" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="FileType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="VendorFirmState" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="PurchaserFirmState" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="messagemaster">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="RoomName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Message" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="IsMessageRead" Type="SByte" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="notificationmaster">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MessageID" Type="Int32" Nullable="false" />
+    <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="RoomName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="SByte" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="spa_loan_chain_of_ownership">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DocumentId" Type="Int32" Nullable="false" />
+    <Property Name="Document_Type_Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Document_Agreement_Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Purchaser1_User_ID" Type="Int32" />
+    <Property Name="Purchaser2_User_ID" Type="Int32" />
+    <Property Name="Purchaser3_User_ID" Type="Int32" />
+    <Property Name="Purchaser4_User_ID" Type="Int32" />
+    <Property Name="Purchaser5_User_ID" Type="Int32" />
+    <Property Name="Purchaser6_User_ID" Type="Int32" />
+    <Property Name="Purchaser7_User_ID" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" />
+    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="Purchaser1_DOA_Date" Type="DateTime" />
+    <Property Name="Purchaser1_FA_Date" Type="DateTime" />
+    <Property Name="Purchaser1_Loan_Date" Type="DateTime" />
+    <Property Name="Purchaser1_DRR_Date" Type="DateTime" />
+    <Property Name="Purchaser2_DOA_Date" Type="DateTime" />
+    <Property Name="Purchaser2_FA_Date" Type="DateTime" />
+    <Property Name="Purchaser2_Loan_Date" Type="DateTime" />
+    <Property Name="Purchaser2_DRR_Date" Type="DateTime" />
+    <Property Name="Purchaser3_DOA_Date" Type="DateTime" />
+    <Property Name="Purchaser3_FA_Date" Type="DateTime" />
+    <Property Name="Purchaser3_Loan_Date" Type="DateTime" />
+    <Property Name="Purchaser3_DRR_Date" Type="DateTime" />
+    <Property Name="Purchaser4_DOA_Date" Type="DateTime" />
+    <Property Name="Purchaser4_FA_Date" Type="DateTime" />
+    <Property Name="Purchaser4_Loan_Date" Type="DateTime" />
+    <Property Name="Purchaser4_DRR_Date" Type="DateTime" />
+    <Property Name="Purchaser5_DOA_Date" Type="DateTime" />
+    <Property Name="Purchaser5_FA_Date" Type="DateTime" />
+    <Property Name="Purchaser5_Loan_Date" Type="DateTime" />
+    <Property Name="Purchaser5_DRR_Date" Type="DateTime" />
+    <Property Name="Purchaser6_DOA_Date" Type="DateTime" />
+    <Property Name="Purchaser6_FA_Date" Type="DateTime" />
+    <Property Name="Purchaser6_Loan_Date" Type="DateTime" />
+    <Property Name="Purchaser6_DRR_Date" Type="DateTime" />
+    <Property Name="Purchaser7_DOA_Date" Type="DateTime" />
+    <Property Name="Purchaser7_FA_Date" Type="DateTime" />
+    <Property Name="Purchaser7_Loan_Date" Type="DateTime" />
+    <Property Name="Purchaser7_DRR_Date" Type="DateTime" />
+  </EntityType>
+  <EntityType Name="spa_loan_for_loan">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DocumentId" Type="Int32" Nullable="false" />
+    <Property Name="Document_Type_Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Document_Agreement_Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Borrower1_User_ID" Type="Int32" />
+    <Property Name="Borrower2_User_ID" Type="Int32" />
+    <Property Name="Borrower3_User_ID" Type="Int32" />
+    <Property Name="Borrower4_User_ID" Type="Int32" />
+    <Property Name="Borrower5_User_ID" Type="Int32" />
+    <Property Name="Guarantor1_User_ID" Type="Int32" />
+    <Property Name="Guarantor2_User_ID" Type="Int32" />
+    <Property Name="Guarantor3_User_ID" Type="Int32" />
+    <Property Name="Guarantor4_User_ID" Type="Int32" />
+    <Property Name="Guarantor5_User_ID" Type="Int32" />
+    <Property Name="Bank_Branch_ID" Type="Int32" />
+    <Property Name="Bank_Reference" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Offer_Letter_Date" Type="DateTime" />
+    <Property Name="Letter_of_Instruction_Date" Type="DateTime" />
+    <Property Name="Officer1_Username" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Officer1_Password" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Officer2_Username" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Officer2_Password" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Conventional_Loan_Type" Type="Int32" />
+    <Property Name="Conventional_Financing_Type" Type="Int32" />
+    <Property Name="Conventional_Loan_Amount" Type="Decimal" Nullable="false" />
+    <Property Name="Other_Loan1_Type" Type="Int32" />
+    <Property Name="Other_Loan1_Amount" Type="Decimal" Nullable="false" />
+    <Property Name="Other_Loan2_Type" Type="Int32" />
+    <Property Name="Other_Loan2_Amount" Type="Decimal" Nullable="false" />
+    <Property Name="Other_Loan3_Type" Type="Int32" />
+    <Property Name="Other_Loan3_Amount" Type="Decimal" Nullable="false" />
+    <Property Name="Other_Loan4_Type" Type="Int32" />
+    <Property Name="Other_Loan4_Amount" Type="Decimal" Nullable="false" />
+    <Property Name="Other_Loan5_Type" Type="Int32" />
+    <Property Name="Other_Loan5_Amount" Type="Decimal" Nullable="false" />
+    <Property Name="Other_Loan6_Type" Type="Int32" />
+    <Property Name="Other_Loan6_Amount" Type="Decimal" Nullable="false" />
+    <Property Name="Conventional_Loan_Total_Financing_Sum" Type="Decimal" Nullable="false" />
+    <Property Name="Islamic_Loan_Type" Type="Int32" />
+    <Property Name="Islamic_Financing_Type" Type="Int32" />
+    <Property Name="Islamic_Financing_Amount" Type="Decimal" Nullable="false" />
+    <Property Name="Other_Financing1_Type" Type="Int32" />
+    <Property Name="Other_Financing1_Amount" Type="Decimal" Nullable="false" />
+    <Property Name="Other_Financing2_Type" Type="Int32" />
+    <Property Name="Other_Financing2_Amount" Type="Decimal" Nullable="false" />
+    <Property Name="Other_Financing3_Type" Type="Int32" />
+    <Property Name="Other_Financing3_Amount" Type="Decimal" Nullable="false" />
+    <Property Name="Other_Financing4_Type" Type="Int32" />
+    <Property Name="Other_Financing4_Amount" Type="Decimal" Nullable="false" />
+    <Property Name="Other_Financing5_Type" Type="Int32" />
+    <Property Name="Other_Financing5_Amount" Type="Decimal" Nullable="false" />
+    <Property Name="Islamic_Loan_Total_Financing_Sum" Type="Decimal" Nullable="false" />
+    <Property Name="Bank_Selling_Price" Type="Decimal" Nullable="false" />
+    <Property Name="Bank_Purchase_Price" Type="Decimal" Nullable="false" />
+    <Property Name="Other_Islamic_Loan1_Bank_Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Other_Islamic_Loan1_Product_Type" Type="Int32" Nullable="true" />
+    <Property Name="Other_Islamic_Loan1_Specification" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Other_Islamic_Loan1_Amount" Type="Decimal" Nullable="false" />
+    <Property Name="Other_Islamic_Loan1_Unit_Percentage" Type="Decimal" Nullable="false" />
+    <Property Name="Other_Islamic_Loan1_Ref" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Other_Islamic_Loan2_Bank_Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Other_Islamic_Loan2_Product_Type" Type="Int32" Nullable="true" />
+    <Property Name="Other_Islamic_Loan2_Specification" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Other_Islamic_Loan2_Amount" Type="Decimal" Nullable="false" />
+    <Property Name="Other_Islamic_Loan2_Unit_Percentage" Type="Decimal" Nullable="false" />
+    <Property Name="Other_Islamic_Loan2_Ref" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Other_Islamic_Loan3_Bank_Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Other_Islamic_Loan3_Product_Type" Type="Int32" Nullable="true" />
+    <Property Name="Other_Islamic_Loan3_Specification" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Other_Islamic_Loan3_Amount" Type="Decimal" Nullable="false" />
+    <Property Name="Other_Islamic_Loan3_Unit_Percentage" Type="Decimal" Nullable="false" />
+    <Property Name="Other_Islamic_Loan3_Ref" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Bank_Solicitor_ID" Type="Int32" />
+    <Property Name="Bank_Solicitor_Firm_Phone_No" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Bank_Solicitor_Email" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" />
+    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="Officer1_Id" Type="Int32" Nullable="false" />
+    <Property Name="Officer2_Id" Type="Int32" Nullable="false" />
+    <Property Name="Other_Islamic_Loan4_Bank_Name" Type="String" Nullable="false" />
+    <Property Name="Other_Islamic_Loan4_Product_Type" Type="Int32" Nullable="true" />
+    <Property Name="Other_Islamic_Loan4_Specification" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Other_Islamic_Loan4_Amount" Type="Decimal" Nullable="false" />
+    <Property Name="Other_Islamic_Loan4_Unit_Percentage" Type="Decimal" Nullable="false" />
+    <Property Name="Other_Islamic_Loan4_Ref" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Other_Islamic_Loan5_Bank_Name" Type="String" Nullable="false" />
+    <Property Name="Other_Islamic_Loan5_Product_Type" Type="Int32" Nullable="true" />
+    <Property Name="Other_Islamic_Loan5_Specification" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Other_Islamic_Loan5_Amount" Type="Decimal" Nullable="false" />
+    <Property Name="Other_Islamic_Loan5_Unit_Percentage" Type="Decimal" Nullable="false" />
+    <Property Name="Other_Islamic_Loan5_Ref" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Other_Islamic_Loan6_Bank_Name" Type="String" Nullable="false" />
+    <Property Name="Other_Islamic_Loan6_Product_Type" Type="Int32" Nullable="true" />
+    <Property Name="Other_Islamic_Loan6_Specification" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Other_Islamic_Loan6_Amount" Type="Decimal" Nullable="false" />
+    <Property Name="Other_Islamic_Loan6_Unit_Percentage" Type="Decimal" Nullable="false" />
+    <Property Name="Other_Islamic_Loan6_Ref" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Other_Islamic_Loan7_Bank_Name" Type="String" Nullable="false" />
+    <Property Name="Other_Islamic_Loan7_Product_Type" Type="Int32" Nullable="true" />
+    <Property Name="Other_Islamic_Loan7_Specification" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Other_Islamic_Loan7_Amount" Type="Decimal" Nullable="false" />
+    <Property Name="Other_Islamic_Loan7_Unit_Percentage" Type="Decimal" Nullable="false" />
+    <Property Name="Other_Islamic_Loan7_Ref" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Bank_Solicitor_Firm_Address1" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Bank_Solicitor_Firm_Address2" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Bank_Solicitor_Firm_Postcode" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Bank_Solicitor_Firm_City" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Bank_Solicitor_Firm_State" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Bank_Solicitor_Ref" Type="String" Nullable="false" />
+  </EntityType>
+  <EntityType Name="spa_loan_individual">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Document_ID" Type="Int32" Nullable="false" />
+    <Property Name="Document_Type_Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Document_Agreement_Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="State_Id" Type="Int32" />
+    <Property Name="Area_Id" Type="Int32" />
+    <Property Name="Condition_Type_ID" Type="Int32" />
+    <Property Name="Restriction_Type_ID" Type="Int32" />
+    <Property Name="Building_Type_ID" Type="Int32" />
+    <Property Name="Postal_Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" />
+    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="Tenure_Type_Id" Type="Int32" />
+    <Property Name="Land_Usage_Type_Id" Type="Int32" />
+    <Property Name="Area_Type_Id" Type="Int32" />
+    <Property Name="Geran_Type_ID" Type="Int32" />
+    <Property Name="Date_Open_File" Type="DateTime" />
+  </EntityType>
+  <EntityType Name="spa_loan_purchase_price">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Document_ID" Type="Int32" Nullable="false" />
+    <Property Name="Document_Type_Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Document_Agreement_Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Purchase_Price" Type="Decimal" Nullable="false" />
+    <Property Name="Earnest_Deposit" Type="Decimal" Nullable="false" />
+    <Property Name="RPGT_Retention_Sum" Type="Decimal" Nullable="false" />
+    <Property Name="Balance_Deposit" Type="Decimal" Nullable="false" />
+    <Property Name="Total_Deposit" Type="Decimal" Nullable="false" />
+    <Property Name="Balance_Purchase_Price" Type="Decimal" Nullable="false" />
+    <Property Name="Consuption_Tax" Type="Decimal" Nullable="false" />
+    <Property Name="Purchase_Price_After_Tax" Type="Decimal" Nullable="false" />
+    <Property Name="Adjustment_Rate" Type="Decimal" Nullable="false" />
+    <Property Name="Bank_Branch_ID" Type="Int32" />
+    <Property Name="Charge_Presentation_No" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Existing_Borrower1_User_ID" Type="Int32" />
+    <Property Name="Existing_Borrower2_User_ID" Type="Int32" />
+    <Property Name="Existing_Borrower3_User_ID" Type="Int32" />
+    <Property Name="Existing_Borrower4_User_ID" Type="Int32" />
+    <Property Name="Existing_Borrower5_User_ID" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" />
+    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="spa_loan_strata">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DocumentId" Type="Int32" Nullable="false" />
+    <Property Name="Document_Type_Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Document_Agreement_Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="State_Id" Type="Int32" />
+    <Property Name="Area_Id" Type="Int32" />
+    <Property Name="Condition_Type_Id" Type="Int32" />
+    <Property Name="Restriction_Type_Id" Type="Int32" />
+    <Property Name="Building_Type_Id" Type="Int32" />
+    <Property Name="Postal_Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Parcel_No" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Story_No" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Building_No" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Unit_Area" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" />
+    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="Tenure_Type_Id" Type="Int32" />
+    <Property Name="Land_Usage_Type_Id" Type="Int32" />
+    <Property Name="Area_Type_Id" Type="Int32" />
+    <Property Name="Geran_Type_Id" Type="Int32" />
+    <Property Name="Date_Open_File" Type="DateTime" />
+    <Property Name="Parcel_No_Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Lot_Type_Id" Type="Int32" />
+  </EntityType>
+  <EntityType Name="spa_loan_without_transfer_direct_transfer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DocumentId" Type="Int32" Nullable="false" />
+    <Property Name="Document_Type_Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Document_Agreement_Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Area_Id" Type="Int32" />
+    <Property Name="Story_No" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Building_No" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Accessory_Parcel_No" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Unit_Area" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" />
+    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="Developer_Id" Type="Int32" />
+    <Property Name="Proprietor_Id" Type="Int32" />
+    <Property Name="Project_Name" Type="String" Nullable="false" />
+    <Property Name="Schedule_Id" Type="Int32" />
+    <Property Name="Master_Title_No" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Parcel_No" Type="String" Nullable="false" />
+  </EntityType>
 </Schema>

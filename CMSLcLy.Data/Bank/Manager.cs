@@ -81,6 +81,42 @@ namespace CMSLcLy.Data.Bank
             return q;
         }
 
+        public virtual bankmasterItemViewModel GetByBranchName(string branchName)
+        {
+            var q = (from model in Context.bankmasters
+                     join t2 in Context.bankshortcutmasters on model.BankShortCutID equals t2.Id into gj
+                     from t21 in gj.DefaultIfEmpty()
+                     join t3 in Context.cacmasters on model.CACID equals t3.Id into gj2
+                     from t31 in gj2.DefaultIfEmpty()
+                     where model.BranchName == branchName
+                     select new bankmasterItemViewModel
+                     {
+                         Id = model.Id,
+                         BankShortCutID = model.BankShortCutID,
+                         BranchName = model.BranchName,
+                         BankName = t21.BankName,
+                         BankShortCut = t21.BankShortCut,
+                         Address = model.Address,
+                         Address2 = model.Address2,
+                         Address3 = model.Address3,
+                         PostCode = model.PostCode,
+                         State = model.State,
+                         Phone = model.Phone,
+                         Phone2 = model.Phone2,
+                         Phone3 = model.Phone3,
+                         Fax = model.Fax,
+                         Fax2 = model.Fax2,
+                         Email = model.Email,
+                         CACID = model.CACID,
+                         CAC = t31.CACName,
+                         Remarks = model.Remarks,
+                         CreatedBy = model.CreatedBy,
+                         CreatedDate = model.CreatedDate,
+                     }).FirstOrDefault();
+
+            return q;
+        }
+
         public string Save(bankmasterItemViewModel model)
         {
             if (model == null) return Resources.GlobalResource.NotificationMsg_InvalidNotificationType;

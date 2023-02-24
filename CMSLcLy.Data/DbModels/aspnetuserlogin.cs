@@ -25,7 +25,7 @@ namespace CMSLcLy.Data.DbModels
         [System.ComponentModel.DataAnnotations.Key]
         [Column(Order = 3)]
         public string UserId { get; set; }
-    
+
         public virtual aspnetuser aspnetuser { get; set; }
     }
 }

@@ -25,5 +25,7 @@ namespace CMSLcLy.Data.DbModels
         public int WorkFlowMasterDuration { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public string CreatedBy { get; set; }
+        public Nullable<int> IsSNP { get; set; }
+        public Nullable<int> IsCP { get; set; }
     }
 }

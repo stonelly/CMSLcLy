@@ -12,6 +12,7 @@
 
     <!-- Basic Styles -->
     @Styles.Render("~/content/smartadmin")
+
     <!-- FAVICONS -->
     <link rel="shortcut icon" href="~/content/img/favicon/favicon.ico" type="image/x-icon">
     <link rel="icon" href="~/content/img/favicon/favicon.ico" type="image/x-icon">
@@ -51,6 +52,10 @@
             width: 100%;
         }
 
+        .select2-hidden-accessible {
+            display: none !important;
+            visibility: hidden !important;
+        }
 
         /* The object datatableMain is found in most of the 'details' view which is used to browse data. This css is used to make the data display smoother when first time loading */
         #datatableMain {
@@ -79,10 +84,10 @@
 
 </html>
 <script>
-	$(document).ready(function () {
+    $(document).ready(function () {
 
         $('#datatableMain').show(); // show the datatableMain after all CSS and effects script has been applied.
-	});
-     
+    });
+
 
 </script>

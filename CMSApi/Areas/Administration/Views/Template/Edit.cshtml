@@ -1,0 +1,9 @@
+﻿@{
+    ViewBag.Title = "Document Template Management";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}	<!-- MAIN CONTENT -->
+
+@using (Html.BeginForm())
+{
+    @Html.Action("RichEdit2Partial", new { documentid = ViewBag.DocID })
+}

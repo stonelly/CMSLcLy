@@ -73,12 +73,12 @@ namespace CMSApi.Areas.SystemSetting.Controllers
         }
 
         // GET: SystemSetting/Checklist/Create
-        public ActionResult Create(int WorkflowID)
+        public ActionResult Create(int id = 1)
         {
             DATA.WorkflowMasterItemViewModel model = new DATA.WorkflowMasterItemViewModel();
-            model.WorkflowID = WorkflowID;
+            model.WorkflowID = id;
 
-            return View();
+            return View(model);
         }
 
         // POST: SystemSetting/Checklist/Create

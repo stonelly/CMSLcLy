@@ -54,10 +54,22 @@
                                                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                                         <div class="form-group">
                                                             @Html.LabelFor(model => model.BankShortCut, htmlAttributes: new { @class = "control-label col-md-2" })
-                                                            <div class="col-md-10">
-                                                                @Html.DropDownListFor(m => m.BankShortCutID, new SelectList(Model.BankShortCuts, "Value", "Text"), new { @id = "ddlBankShortcutID", @class = "form-control", @onchange = "javascript:GetBankShortCut(this.value);" })
+                                                            <div class="col-md-8">
+                                                                @Html.DropDownListFor(m => m.BankShortCutID, new SelectList(Model.BankShortCuts, "Value", "Text"), new { @id = "ddlBankShortcutID", @class = "select2", @onchange = "javascript:GetBankShortCut(this.value);" })
                                                                 @Html.ValidationMessageFor(model => model.BankShortCutID, "", new { @class = "text-danger" })
                                                                 @Html.HiddenFor(m => m.BankShortCutID, new { @id = "hidBankShortCutID" })
+                                                            </div>
+                                                            <div class="col-md-2">
+
+                                                                <div class="input-group-btn">
+                                                                    <button class="btn btn-default" type="button" data-toggle="modal" data-target="#viewClientModal">
+                                                                        View
+                                                                    </button>
+                                                                    <input type="button" class="btn btn-default" id="btnpopup" value="Add" onclick="ShowModelPopUp();" />
+                                                                    @*<button class="btn btn-default" type="button" data-toggle="modal" data-target="#addClientModal">
+                                                                        Add
+                                                                    </button>*@
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
@@ -232,6 +244,17 @@
     <script src="/scripts/plugin/typeahead/typeaheadjs.min.js"></script>
 
     <script type="text/javascript">
+        ShowModelPopUp = function () {
+            var winObj = window.open('/Administration/BankShortcut/Create', "WindowPopup", 'width=800px,height=600px');
+
+            var loop = setInterval(function () {
+                if (winObj.closed) {
+                    clearInterval(loop);
+                    alert('closed');
+                }
+            }, 1000); 
+        };
+               
         function GetBankShortCut(_bankshortcutID) {
 
             var token = getCookie("apiToken");

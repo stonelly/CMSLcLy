@@ -18,10 +18,12 @@ using System.Security.Principal;
 using CMSLcLy.Data.User;
 using COMM = CMSLcLy.Common;
 using DATA = CMSLcLy.Data;
+using System.Web.Http.Cors;
 
 namespace CMSApi.Controllers
 {
     [Authorize]
+    //[EnableCors("*", "*", "*")]
     public class UserAccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -212,9 +214,10 @@ namespace CMSApi.Controllers
         //
         // GET: /Account/Register
         [AllowAnonymous]
-        public ActionResult Register()
+        public ActionResult Register(string ActionType = "Client")
         {
             var model = InitializeNewModel();
+            model.RoleAdd = ActionType;
             return View("Register", model);
         }
 
@@ -243,6 +246,7 @@ namespace CMSApi.Controllers
                     {
                         UserMasterItemViewModel userDetailsModel = new UserMasterItemViewModel();
                         userDetailsModel.AspNetUserID = user.Id;
+                        userDetailsModel.FullName = model.Name;
 
                         using (var mgr = new CMSLcLy.Data.User.Manager())
                         {
@@ -259,7 +263,7 @@ namespace CMSApi.Controllers
                 }
                 AddErrors(result);
             }
-
+            model = InitializeNewModel(model);
             // If we got this far, something failed, redisplay form
             return View(model);
         }

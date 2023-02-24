@@ -1,14 +1,20 @@
-﻿using System;
+﻿using CMSLcLy.Data.SystemSetting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+
+using COMM = CMSLcLy.Common;
 
 namespace CMSApi.Areas.SystemSetting.Controllers
 {
     [Authorize]
     public class CompanyController : Controller
     {
+
+ 
+
         // GET: SystemSetting/Company
         public ActionResult Index()
         {
@@ -16,9 +22,25 @@ namespace CMSApi.Areas.SystemSetting.Controllers
         }
 
         // GET: SystemSetting/Company/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int id = 1)
         {
-            return View();
+
+            
+            CompanyProfileViewModel model = null;
+            try
+            {
+                using (var cp = new CMSLcLy.Data.SystemSetting.Manager())
+                {
+                    model = cp.Get(1);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                TempData[COMM.Constants.WebUI.ErrorMessage] = "Failed to retrieve Role Information: " + ex.Message;
+            }
+
+            return View(model);           
         }
 
         // GET: SystemSetting/Company/Create
@@ -44,9 +66,52 @@ namespace CMSApi.Areas.SystemSetting.Controllers
         }
 
         // GET: SystemSetting/Company/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int id = 1)
         {
-            return View();
+            CompanyProfileViewModel model = null;
+            try
+            {
+                using (var cp = new CMSLcLy.Data.SystemSetting.Manager())
+                {
+                    model = cp.Get(1);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                TempData[COMM.Constants.WebUI.ErrorMessage] = "Failed to retrieve Role Information: " + ex.Message;
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [OverrideAuthorization]
+        //[RoleAuthorize(Roles = DefaultFunction.ManageVehicle, AccessType = AccessTypes.Create)]
+        public ActionResult Save(CompanyProfileViewModel model, FormCollection form)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
+
+                    return RedirectToAction("Index");
+                }
+
+
+                using (var mgr = new CMSLcLy.Data.SystemSetting.Manager())
+                {
+                    var result = mgr.Save(model);
+                }
+
+                return RedirectToAction("details");
+            }
+            catch (Exception ex)
+            {
+                TempData[COMM.Constants.WebUI.ErrorMessage] = "Failed to update User: " + ex.Message;
+                return RedirectToAction("Index", model);
+            }
         }
 
         // POST: SystemSetting/Company/Edit/5
